@@ -25,7 +25,7 @@ const Home = () => {
     <div className='w-full'>
       <div 
         style={{backgroundImage: `url(${Background})`, backgroundSize:"cover", backgroundRepeat: "no-repeat"}}
-        className='w-full h-[650px] pt-[185px] pb-[120px] z-10 flex justify-center absolute top-0'
+        className='w-full h-[650px] pt-[185px] pb-[120px] -z-10 flex justify-center absolute top-0'
       >
         <div className='w-[844px]   flex flex-col gap-6 items-center justify-center'>
           <p className='text-WHITE-_100 text-center font-semibold font-poppins text-[38px]'>Your AI Powered <span style={{ background: "radial-gradient(#E8562E, #F9E4DF)", WebkitBackgroundClip:"text", WebkitTextFillColor: "transparent" }}>PR Partner.</span> <br /> Upgrade Your PR Strategy with Audio Intelligence</p>
@@ -106,7 +106,7 @@ const Home = () => {
           </div>
         </div>
 
-        <iframe width="100%" height="1600" src="https://rss.app/embed/v1/wall/twxQdpyxGOCGmusq" frameborder="0"></iframe>
+        <iframe width="100%" className='mt-10' height="1600" src="https://rss.app/embed/v1/wall/twxQdpyxGOCGmusq" frameborder="0"></iframe>
         
         <div className='mt-[120px] w-[1205px] m-auto'>
           <p className='text-[40px] font-semibold font-poppins text-[#17053E]'>About VoxPR</p>
