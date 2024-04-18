@@ -1,21 +1,22 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import Logo from "../assets/svg/logo.svg"
 
 const Header = () => {
+
+  const navigate = useNavigate()
+
   return (
     <div 
-        className='w-full h-[120px] py-[26px] px-[100px] flex items-center justify-between' 
-    
+      className='w-full h-[120px] py-[26px] px-[100px] flex items-center justify-between' 
     >
-        <img src={Logo} alt='logo' />
+        <img src={Logo} alt='logo' onClick={() => navigate("/")} className='cursor-pointer'/>
         <div className='flex items-center gap-[48px]'>
-            <p className='text-WHITE-_100 font-poppins'>About Us</p>
-            <p className='text-WHITE-_100 font-poppins'>Product</p>
-            <p className='text-WHITE-_100 font-poppins'>Feed</p>
+            <p className='text-BLACK-_100 cursor-pointer font-poppins' onClick={() => navigate("/")}>Home</p>
+            <p className='text-BLACK-_100 cursor-pointer  font-poppins' onClick={() => navigate("/about")}>About us</p>
         </div>
-        <button className='w-[371px] p-4 rounded-lg bg-[#FF6600] '>
-            <p className='text-[#fff] font-medium font-poppins text-lg text-center'>Request Free Consultation</p>
-        </button>
+        
     </div>
   )
 }

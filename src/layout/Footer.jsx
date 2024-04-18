@@ -1,18 +1,13 @@
 import React from 'react'
+import Logo from "../assets/svg/logo.svg"
 
 const Footer = () => {
   return (
-    <div className='w-full mb-14'>
-      <div className='w-[1157px] flex mx-auto justify-between'>
-        <p className='text-[32px] text-[#17053E] font-poppins font-semibold'>VoxPR</p>
-        <div className='flex items-center w-[476px] justify-between'>
-          <p className='text-[20px] font-poppins text-[#17053E]'>Product</p>
-          <p className='text-[20px] font-poppins text-[#17053E]'>Demo</p>
-          <p className='text-[20px] font-poppins text-[#17053E]'>Pricing</p>
-          <p className='text-[20px] font-poppins text-[#17053E]'>Resources</p>
-        </div>
+    <div className='w-full mb-14 flex justify-center'>
+      <div className='flex flex-col items-center gap-[22px]'>
+        <img src={Logo} alt='Logo' />
+        <p>© A product of CihanMedia All rights reserved.</p>
       </div>
-
     </div>
   )
 }
