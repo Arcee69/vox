@@ -9,16 +9,16 @@ const RequestForm = ({ handleClose }) => {
   const [loading, setLoading] = useState(false)
 
   return (
-    <div className='bg-[#fff] mt-[10px] h-[520px] py-5 w-[500px] px-5 '>
+    <div className='bg-[#fff] mt-[10px] h-[580px] py-5 w-[500px] px-5 '>
       <div className='flex justify-end cursor-pointer' onClick={handleClose}>
         <IoClose className='text-lg'/>
       </div>
       <div className=' w-full '>
         <Formik
         initialValues={{
-            // firstName: "",
-            // lastName: "",
             fullName: "",
+            email: "",
+            phone: "",
             companyName: "",
             message: ""
         }}
@@ -42,7 +42,7 @@ const RequestForm = ({ handleClose }) => {
         }) => (
             <Form onSubmit={handleSubmit} className="flex ">
               <div className="flex flex-col gap-[21px]">
-                  <p className='text-[#19373E] font-inter font-medium text-[24px] text-center'>Request Access</p>
+                  <p className='text-[#19373E] font-inter font-medium text-[24px] text-center'>Request Consultation</p>
                   
                   {/* <div className='flex flex-col md:flex-row items-center gap-[35px]'>
                     <div className='flex flex-col gap-2 w-full md:w-[276px]'>
@@ -72,7 +72,27 @@ const RequestForm = ({ handleClose }) => {
                       placeholder="Full Name"
                       type='text'
                       onChange={handleChange}
-                      className='w-full  h-[58px] outline-none border border-[#8F8F8F] p-2.5'
+                      className='w-full  h-[48px] outline-none border border-[#8F8F8F] p-2.5'
+                    />
+                  </div>
+
+                  <div className='w-[450px] flex flex-col gap-2'>
+                    <input 
+                      name="email"
+                      placeholder="Email"
+                      type='text'
+                      onChange={handleChange}
+                      className='w-full  h-[48px] outline-none border border-[#8F8F8F] p-2.5'
+                    />
+                  </div>
+
+                  <div className='w-[450px] flex flex-col gap-2'>
+                    <input 
+                      name="phone"
+                      placeholder="Phone"
+                      type='number'
+                      onChange={handleChange}
+                      className='w-full  h-[48px] outline-none border border-[#8F8F8F] p-2.5'
                     />
                   </div>
 
@@ -82,7 +102,7 @@ const RequestForm = ({ handleClose }) => {
                       placeholder="Company Name"
                       type='text'
                       onChange={handleChange}
-                      className='w-full  h-[58px] outline-none border border-[#8F8F8F] p-2.5'
+                      className='w-full  h-[48px] outline-none border border-[#8F8F8F] p-2.5'
                     />
                   </div>
 
@@ -91,7 +111,7 @@ const RequestForm = ({ handleClose }) => {
                   <div className='w-[450px] flex flex-col gap-2'>
                     <textarea
                       name="message"
-                      className='w-full outline-none border border-[#8F8F8F] p-2.5 h-[150px]'
+                      className='w-full outline-none border border-[#8F8F8F] p-2.5 h-[100px]'
                       rows="5"
                       cols="10"
                       placeholder="Message"
