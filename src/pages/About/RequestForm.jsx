@@ -9,7 +9,7 @@ const RequestForm = ({ handleClose }) => {
   const [loading, setLoading] = useState(false)
 
   return (
-    <div className='bg-[#fff] mt-[10px] h-[580px] py-5 w-[500px] px-5 '>
+    <div className='bg-[#fff] mt-[100px] xl:mt-[10px] h-[580px] w-full py-5 xl:w-[500px] px-5 '>
       <div className='flex justify-end cursor-pointer' onClick={handleClose}>
         <IoClose className='text-lg'/>
       </div>
@@ -40,7 +40,7 @@ const RequestForm = ({ handleClose }) => {
             // setFieldTouched,
             values,
         }) => (
-            <Form onSubmit={handleSubmit} className="flex ">
+            <Form onSubmit={handleSubmit} className="w-full ">
               <div className="flex flex-col gap-[21px]">
                   <p className='text-[#19373E] font-inter font-medium text-[24px] text-center'>Request Consultation</p>
                   
@@ -66,17 +66,17 @@ const RequestForm = ({ handleClose }) => {
 
                   </div> */}
 
-                  <div className='w-[450px] flex flex-col gap-2'>
+                  <div className='w-full xl:w-[450px] flex flex-col gap-2'>
                     <input 
                       name="fullName"
                       placeholder="Full Name"
                       type='text'
                       onChange={handleChange}
-                      className='w-full  h-[48px] outline-none border border-[#8F8F8F] p-2.5'
+                      className='w-full h-[48px] outline-none border border-[#8F8F8F] p-2.5'
                     />
                   </div>
 
-                  <div className='w-[450px] flex flex-col gap-2'>
+                  <div className='w-full xl:w-[450px] flex flex-col gap-2'>
                     <input 
                       name="email"
                       placeholder="Email"
@@ -86,7 +86,7 @@ const RequestForm = ({ handleClose }) => {
                     />
                   </div>
 
-                  <div className='w-[450px] flex flex-col gap-2'>
+                  <div className='w-full xl:w-[450px] flex flex-col gap-2'>
                     <input 
                       name="phone"
                       placeholder="Phone"
@@ -96,7 +96,7 @@ const RequestForm = ({ handleClose }) => {
                     />
                   </div>
 
-                  <div className='w-[450px]  flex flex-col gap-2'>
+                  <div className='w-full xl:w-[450px]  flex flex-col gap-2'>
                     <input 
                       name="companyName"
                       placeholder="Company Name"
@@ -108,7 +108,7 @@ const RequestForm = ({ handleClose }) => {
 
           
 
-                  <div className='w-[450px] flex flex-col gap-2'>
+                  <div className='w-full xl:w-[450px] flex flex-col gap-2'>
                     <textarea
                       name="message"
                       className='w-full outline-none border border-[#8F8F8F] p-2.5 h-[100px]'

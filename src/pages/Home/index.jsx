@@ -35,23 +35,23 @@ const Home = () => {
   return (
     <div className='w-full'>
       <div className='w-full pb-[120px] flex justify-center items-center relative'>
-        <div className='absolute -top-10 left-14'>
+        <div className='absolute hidden xl:block -top-10 left-14'>
           <img src={Cone} alt='Cone' />
         </div>
-        <div className='w-[844px]  mt-10 flex flex-col gap-6 items-center justify-center'>
+        <div className='w-[300px] md:w-[500px] xl:w-[844px] mt-24 xl:mt-10 flex flex-col gap-6 items-center justify-center'>
           <p className='text-[#404040] text-center font-medium font-poppins text-[20px]'>VoxPR: Your AI-Powered PR Partner</p>
-          <p className='font-poppins text-[48px] text-[#17053E]'>Smarter PR starts <span className='font-semibold text-[#FF6600]'>Here</span></p>
+          <p className='font-poppins text-[48px] text-center text-[#17053E]'>Smarter PR starts <span className='font-semibold text-[#FF6600]'>Here</span></p>
           <p className='text-[#17053E] text-center font-poppins'>
             VoxPR reimagines the way PR professionals work. 
             Our cutting edge audio intelligence technology gives you real-time 
             insughts and comprehensive media analysis you wont find elsewhere.
           </p>
-          <button type='button' className='bg-[#FF6600] cursor-pointer rounded-3xl w-[371px] p-2 flex items-center justify-center h-[67px]' onClick={start}>
+          <button type='button' className='bg-[#FF6600] cursor-pointer rounded-3xl w-[300px] xl:w-[371px] p-2 flex items-center justify-center h-[67px]' onClick={start}>
             <p className='text-[#FFF] font-poppins text-[20px] font-medium'>{voxData?.type === "webCall" ? "Conversation Started" : "Start Conversation"}</p>
           </button>
          
         </div>
-        <div className='absolute -bottom-6 right-14'>
+        <div className='absolute hidden xl:block -bottom-6 right-14'>
           <img src={Globe} alt='Globe' />
         </div>
       </div>
