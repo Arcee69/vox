@@ -98,24 +98,29 @@ const SentimentEngine = () => {
     };
 
 
-   
-    // :.
-    // : 
-    // :
-    // : 
-    //
-    
-    // 
-    // 
-    // 
-    // 
-
 
       
   return (
     <div className='mt-[100px] xl:mt-[45px] '>
         <div className='flex flex-col xl:flex-row justify-between px-[20px] xl:px-[100px]'>
             <div className='flex flex-col gap-[48px]'>
+
+                <div className='flex xl:hidden flex-col mt-10 xl:mt-0 gap-[32px]'>
+                    <div className='flex flex-col  xl:w-[600px] gap-2 xl:p-4'>
+                        <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Get Audio Insights Now</p>
+                        <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Upload your audio file and start analyzing</p>
+                        <p className='text-[#17053E] text-[22px] font-poppins font-medium'>We accept over 40 common audio file formats including MP3, WAV, FLAC, M4A and more.</p>
+                    </div>
+                    <div className='flex flex-col items-center gap-4'>
+                        <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>
+                        <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={textDeepgram}>
+                            <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Sentiment Decoder"}</p>
+                        </button>
+                    </div>
+
+                    <img src={Listen} alt='Listen' className='xl:w-[600px]'/>
+                </div>
+
                 <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[28px]'>Sentiment Decoder: Your Audio Analysis Powerhouse for PR</p>
                 
                 <p className='font-medium text-[#8F899C]  xl:w-[458px]'>
@@ -189,7 +194,8 @@ const SentimentEngine = () => {
                 </div>
 
             </div>
-            <div className='flex flex-col mt-10 xl:mt-0 gap-[32px]'>
+
+            <div className='xl:flex flex-col mt-10 hidden xl:mt-0 gap-[32px]'>
                 <div className='flex flex-col  xl:w-[600px] gap-2 xl:p-4'>
                     <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Get Audio Insights Now</p>
                     <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Upload your audio file and start analyzing</p>
@@ -204,6 +210,7 @@ const SentimentEngine = () => {
 
                 <img src={Listen} alt='Listen' className='xl:w-[600px]'/>
             </div>
+
         </div>
     
 
