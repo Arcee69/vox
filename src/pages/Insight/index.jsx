@@ -19,7 +19,7 @@ import ModalPop from '../../components/modalPop'
 import RequestForm from './RequestForm'
 
 
-const About = () => {
+const InsightEngine = () => {
     const [open, setOpen] = useState(false);
     const [callStatus, setCallStatus] = useState("inactive");
     const [voxData, setVoxData] = useState([])
@@ -51,7 +51,7 @@ const About = () => {
     <div className='mt-[100px] xl:mt-[45px] '>
         <div className='flex flex-col xl:flex-row justify-between px-[20px] xl:px-[100px]'>
         <div className='flex flex-col gap-[48px]'>
-            <p className='w-full text-center xl:text-left xl:w-[322px] text-[#17053E] text-[38px]'>Why Choose VoxPR?</p>
+            <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[38px]'>Why Choose VoxPR Insight Engine?</p>
 
             <div className='flex flex-col gap-4 xl:w-[458px]'>
             <img src={Monitor} alt='Monitor' className='w-6 h-6'/>
@@ -126,4 +126,4 @@ const About = () => {
   )
 }
 
-export default About
+export default InsightEngine

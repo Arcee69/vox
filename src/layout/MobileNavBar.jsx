@@ -15,7 +15,8 @@ const MobileNavBar = ({ handleClose}) => {
             </div>
             <ul class="mt-[32px] flex flex-col gap-y-[24px] pb-[16px]">
                 <li onClick={() => {navigate("/"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Home</li>
-                <li onClick={() => {navigate("/about"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">About us</li>
+                <li onClick={() => {navigate("/insight-engine"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Insight Engine</li>
+                <li onClick={() => {navigate("/sentiment-engine"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Sentiment Engine</li>
             </ul>
         </div>
     </div>

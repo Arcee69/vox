@@ -3,10 +3,19 @@ import React, { useState } from 'react'
 import { Form, Formik } from 'formik';
 import { CgSpinner } from 'react-icons/cg';
 import { IoClose } from "react-icons/io5";
+import { toast } from 'react-toastify';
 
 
 const RequestForm = ({ handleClose }) => {
   const [loading, setLoading] = useState(false)
+
+  const submitForm = (values, action) => {
+      toast(`Success`, {
+        position: "top-right",
+        autoClose: 5000,
+        closeOnClick: true,
+    })
+  }
 
   return (
     <div className='bg-[#fff] mt-[100px] xl:mt-[10px] h-[580px] w-full py-5 xl:w-[500px] px-5 '>

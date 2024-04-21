@@ -14,7 +14,8 @@ const Header = () => {
         <img src={Logo} alt='logo' onClick={() => navigate("/")} className='cursor-pointer'/>
         <div className='flex items-center gap-[48px]'>
             <p className='text-BLACK-_100 cursor-pointer font-poppins' onClick={() => navigate("/")}>Home</p>
-            <p className='text-BLACK-_100 cursor-pointer  font-poppins' onClick={() => navigate("/about")}>About us</p>
+            <p className='text-BLACK-_100 cursor-pointer  font-poppins' onClick={() => navigate("/insight-engine")}>Insight Engine</p>
+            <p className='text-BLACK-_100 cursor-pointer  font-poppins' onClick={() => navigate("/sentiment-engine")}>Sentiment Engine</p>
         </div>
         
     </div>
