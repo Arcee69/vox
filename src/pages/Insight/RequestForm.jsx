@@ -15,6 +15,7 @@ const RequestForm = ({ handleClose }) => {
         autoClose: 5000,
         closeOnClick: true,
     })
+    handleClose()
   }
 
   return (
