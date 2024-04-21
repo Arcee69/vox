@@ -107,7 +107,24 @@ const SentimentEngine = () => {
   return (
     <div className='mt-[100px] xl:mt-[45px] '>
         <div className='flex flex-col xl:flex-row justify-between px-[20px] mb-10 xl:px-[100px]'>
-            <div className='flex flex-col gap-4 w-[48%]'>
+            <div className='flex xl:hidden flex-col gap-4 w-full '>
+                <div className='border flex flex-col items-center text-center gap-2 border-blue-300 p-4'>
+                    <p>Get Audio Insights Now</p>
+                    <p>Upload your audio file and start analyzing</p>
+                    <p>We accept over 40 common audio file formats including MP3, WAV, FLAC, M4A and more.</p>
+                </div>
+
+                <div className='flex flex-col items-center gap-4'>
+                    <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>
+                    <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={textDeepgram}>
+                        <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Sentiment Decoder"}</p>
+                    </button>
+                </div>
+                <div>
+                    <img src={Decoder} alt='Decoder' className='h-[200px] w-full'/>
+                </div>
+            </div>
+            <div className='flex flex-col mt-4 xl:mt-0 gap-4 w-full xl:w-[48%]'>
                 <div className='border border-blue-300 p-4'>
                     <p>Sentiment Decoder: Your Audio Analysis Powerhouse for PR</p>
                 </div>
@@ -119,7 +136,7 @@ const SentimentEngine = () => {
                     </p>
                 </div>
                 <div className='border border-blue-300 p-4 flex flex-col'>
-                    <p>Features:</p>
+                    <p className='font-semibold'>Features:</p>
                     <ul className='list-disc p-3 gap-3 flex flex-col'>
                         <li>Summarization: Get the gist of conversations instantly.</li>
                         <li>Topic Detection: Pinpoint the key themes discussed.</li>
@@ -129,7 +146,7 @@ const SentimentEngine = () => {
                     </ul>
                 </div>
             </div>
-            <div className='flex flex-col gap-4 w-[48%]'>
+            <div className='hidden xl:flex flex-col gap-4 w-[48%]'>
                 <div className='border flex flex-col items-center text-center gap-2 border-blue-300 p-4'>
                     <p>Get Audio Insights Now</p>
                     <p>Upload your audio file and start analyzing</p>
