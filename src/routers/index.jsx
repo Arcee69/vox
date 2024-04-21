@@ -12,7 +12,7 @@ const Routers = () => {
       <Route element={<Layout />}>
         <Route path='/' element={<Home />} />
         <Route path='/insight-engine' element={<InsightEngine />} />
-        <Route path='/sentiment-engine' element={<SentimentEngine />} />
+        <Route path='/sentiment-decoder' element={<SentimentEngine />} />
       </Route>
     </Routes>
   )

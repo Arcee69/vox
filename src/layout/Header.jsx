@@ -15,7 +15,7 @@ const Header = () => {
         <div className='flex items-center gap-[48px]'>
             <p className='text-BLACK-_100 cursor-pointer font-poppins' onClick={() => navigate("/")}>Home</p>
             <p className='text-BLACK-_100 cursor-pointer  font-poppins' onClick={() => navigate("/insight-engine")}>Insight Engine</p>
-            <p className='text-BLACK-_100 cursor-pointer  font-poppins' onClick={() => navigate("/sentiment-engine")}>Sentiment Engine</p>
+            <p className='text-BLACK-_100 cursor-pointer  font-poppins' onClick={() => navigate("/sentiment-decoder")}> Sentiment Decoder</p>
         </div>
         
     </div>

@@ -44,7 +44,7 @@ const SentimentEngine = () => {
     
 
         // Replace 'YOUR_API_KEY' with your actual Deepgram API key
-        const apiKey = "e3d86a51a6e86980a36159fc4ba0554b3170782b";
+        const apiKey =  "480b0bf91968cf6cd1b46936dbac6fc1f005295a"; //"e3d86a51a6e86980a36159fc4ba0554b3170782b";
         
         // Construct the URL for Deepgram's transcription API endpoint
         const apiUrl = 'https://api.deepgram.com/v1/listen';
@@ -134,7 +134,7 @@ const SentimentEngine = () => {
                 <div className='flex flex-col gap-4'>
                     <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>
                     <button className='xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={textDeepgram}>
-                        <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Transcribe"}</p>
+                        <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Sentiment Decoder"}</p>
                     </button>
                     {transcription && <p>{transcription}</p>}
                 </div>
