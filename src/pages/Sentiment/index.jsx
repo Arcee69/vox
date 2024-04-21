@@ -15,11 +15,14 @@ import Notification from "../../assets/png/notification.svg"
 import NotificationB from "../../assets/png/notification-b.svg"
 import { toast } from 'react-toastify';
 import { CgSpinner } from 'react-icons/cg';
+import ModalPop from '../../components/modalPop';
+import Words from './Words';
 
 const SentimentEngine = () => {
-    const [transcription, setTranscription] = useState('');
+    const [transcription, setTranscription] = useState([]);
     const [file, setFile] = useState(null);
     const [loading, setLoading] = useState(false)
+    const [open, setOpen] = useState(false)
 
   
 
@@ -47,7 +50,7 @@ const SentimentEngine = () => {
         const apiKey =  "480b0bf91968cf6cd1b46936dbac6fc1f005295a"; //"e3d86a51a6e86980a36159fc4ba0554b3170782b";
         
         // Construct the URL for Deepgram's transcription API endpoint
-        const apiUrl = 'https://api.deepgram.com/v1/listen';
+        const apiUrl =  'https://api.deepgram.com/v1/listen?model=nova-2'; //'https://api.deepgram.com/v1/listen';
         
         // Construct the request body
         const formData = new FormData();
@@ -73,8 +76,8 @@ const SentimentEngine = () => {
                 autoClose: 5000,
                 closeOnClick: true,
             })
-            setTranscription(data?.results?.channels[0]?.alternatives[0]?.words)
-            setFile(null)
+            setTranscription(data?.results?.channels[0]?.alternatives[0]?.transcript)
+            setOpen(true)
         })
         .catch(error => {
             // Handle errors
@@ -89,45 +92,61 @@ const SentimentEngine = () => {
     };
 
 
+//     Headline: Sentiment Decoder: Your Audio Analysis Powerhouse for PR
+
+// Body:  Cut through the noise and understand the true impact of your communications. Our advanced AI tool analyzes audio and text to reveal sentiment, key topics, intent, and streamline transcription.
+
+// Features:
+
+// : 
+// : 
+// : 
+// Transcription: Turn presentations, podcasts, and media appearances into searchable text.
+// Smart Format: Ensure polished transcripts for reports and analysis.
+// Punctuation: Present professional, accurate outputs.
+// Utterances: Analyze conversations for insightful soundbites and key takeaways.
+// How PR Pros Benefit
+
+// Crisis Management: Quickly gauge public sentiment in a crisis.
+// Media Monitoring: Track the impact of press coverage and competitor activity.
+// Campaign Evaluation: Measure the emotional resonance of your messaging.
+// Stakeholder Insights: Understand the true needs and concerns of your audience.
       
   return (
     <div className='mt-[100px] xl:mt-[45px] '>
         <div className='flex flex-col xl:flex-row justify-between px-[20px] xl:px-[100px]'>
             <div className='flex flex-col gap-[48px]'>
-                <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[38px]'>Why Choose VoxPR Sentiment Engine?</p>
+                <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[38px]'>Why Choose VoxPR Sentiment Decoder?</p>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
                 <img src={Monitor} alt='Monitor' className='w-6 h-6'/>
-                <p className='text-[#17053E] text-[24px]'>Proactive Monitoring</p>
+                <p className='text-[#17053E] text-[24px]'>Summarization</p>
                 <p className='font-medium text-[#8F899C]'>
-                    Never miss a mention. VoxPR tracks conversations across traditional and social media 
-                    delivering instant alerts on what matters to you.
+                    Quickly grasp the core message of interviews, press mentions, and focus groups.
                 </p>
                 </div>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
                 <img src={Chart} alt='Monitor' className='w-6 h-6'/>
-                <p className='text-[#17053E] text-[24px]'>Insightful Sentimental Analysis</p>
+                <p className='text-[#17053E] text-[24px]'>Topic Detection</p>
                 <p className='font-medium text-[#8F899C]'>
-                    Uncover the true tone of coverage. 
-                    Know how your brand is perceived and track sentiment trend over time.
+                    Track how your brand or campaign is discussed across various media.
                 </p>
                 </div>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
                 <img src={Data} alt='Monitor' className='w-6 h-6'/>
-                <p className='text-[#17053E] text-[24px]'>Data Driven Reccomendations</p>
+                <p className='text-[#17053E] text-[24px]'>Intent Detection</p>
                 <p className='font-medium text-[#8F899C]'>
-                    Uncover the true tone of coverage. 
-                    Know how your brand is perceived and track sentiment trend over time.
+                    Discover the underlying motivations behind journalist questions or customer feedback.
                 </p>
                 </div>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
                 <img src={Reputation} alt='Monitor' className='w-6 h-6'/>
-                <p className='text-[#17053E] text-[24px]'>Reputation Management</p>
+                <p className='text-[#17053E] text-[24px]'>Sentiment Analysis</p>
                 <p className='font-medium text-[#8F899C]'>
-                    Stay ahead of potential crisis .nVoxPR helps you identify and respond to emerging narrative with agility.
+                    Measure the emotional tone of coverage, social mentions, and stakeholder communications.
                 </p>
                 </div>
 
@@ -136,13 +155,13 @@ const SentimentEngine = () => {
                     <button className='xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={textDeepgram}>
                         <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Sentiment Decoder"}</p>
                     </button>
-                    {transcription && <p>{transcription}</p>}
+                    {/* {transcription?.length === 0 ? <p className='text-[#000] font-poppins'>No Response Available</p> : <p>{transcription}</p>  } */}
                 </div>
             
 
             </div>
             <div className='flex flex-col mt-10 xl:mt-0 gap-[32px]'>
-                <p className='text-[32px] text-[#17053E] w-full text-center xl:text-left xl:w-[613px] font-medium'>VoxPR listens, analyzes and enhances your PR success.</p>
+                <p className='text-[32px] text-[#17053E] w-full text-center xl:text-left xl:w-[613px] font-medium'>Sentiment Decoder: Your Audio Analysis Powerhouse for PR</p>
                 <img src={Computer} alt='computer' className='xl:w-[600px]'/>
             </div>
         </div>
@@ -164,6 +183,11 @@ const SentimentEngine = () => {
                 <img src={NotificationB} alt='NotificationB' className='w-[446px] left-14 top-20 relative  ' />
             </div>
         </div>
+
+        <ModalPop isOpen={open}>
+            <Words handleClose={() => setOpen(false)} transcription={transcription}/>
+        </ModalPop>
+
     </div>
   )
 }

@@ -54,7 +54,7 @@ const Home = () => {
             <button type='button' className='bg-[#FF6600] cursor-pointer rounded-3xl w-[300px] xl:w-[371px] p-2 flex items-center justify-center h-[67px]' onClick={start}>
               <p className='text-[#FFF] font-poppins text-[20px] font-medium'>{voxData?.type === "webCall" ? "Conversation Started" : "Start Insight Engine"}</p>
             </button>
-            <button type='button' className='bg-[#17053E] xl:z-10 cursor-pointer rounded-3xl w-[300px] xl:w-[371px] p-2 flex items-center justify-center h-[67px]' onClick={() => navigate("/sentiment-engine")}>
+            <button type='button' className='bg-[#17053E] xl:z-10 cursor-pointer rounded-3xl w-[300px] xl:w-[371px] p-2 flex items-center justify-center h-[67px]' onClick={() => navigate("/sentiment-decoder")}>
               <p className='text-[#FFF] font-poppins text-[20px] font-medium'>Use Sentiment Decoder</p>
             </button>
           </div>
