@@ -10,7 +10,7 @@ const RequestForm = ({ handleClose }) => {
   const [loading, setLoading] = useState(false)
 
   const submitForm = (values, action) => {
-      toast(`Success`, {
+      toast(`Request Submitted Successfully`, {
         position: "top-right",
         autoClose: 5000,
         closeOnClick: true,

@@ -19,7 +19,7 @@ import ModalPop from '../../components/modalPop';
 
 import Words from './Words';
 
-import Decoder from "../../assets/png/decoder.jpg"
+import Listen from "../../assets/png/listen.jpg"
 
 
 const SentimentEngine = () => {
@@ -96,84 +96,127 @@ const SentimentEngine = () => {
     };
 
 
-
-	
-// •	Smart Format: Automatically format transcripts for clarity.
-// •	Punctuation: Add structure and professionalism to your output.
-// •	Utterances: Break down speech for focused analysis.
+   
+    // :.
+    // : 
+    // :
+    // : 
+    //
+    
+    // 
+    // 
+    // 
+    // 
 
 
       
   return (
     <div className='mt-[100px] xl:mt-[45px] '>
-        <div className='flex flex-col xl:flex-row justify-between px-[20px] mb-10 xl:px-[100px]'>
-            <div className='flex xl:hidden flex-col gap-4 w-full '>
-                <div className='border flex flex-col items-center text-center gap-2 border-blue-300 p-4'>
-                    <p>Get Audio Insights Now</p>
-                    <p>Upload your audio file and start analyzing</p>
-                    <p>We accept over 40 common audio file formats including MP3, WAV, FLAC, M4A and more.</p>
+        <div className='flex flex-col xl:flex-row justify-between px-[20px] xl:px-[100px]'>
+            <div className='flex flex-col gap-[48px]'>
+                <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[28px]'>Sentiment Decoder: Your Audio Analysis Powerhouse for PR</p>
+                
+                <p className='font-medium text-[#8F899C]  xl:w-[458px]'>
+                    Cut through the noise and understand the true impact of your communications. Our
+                    advanced AI tool analyzes audio and text to reveal sentiment, key topics, intent, and
+                    streamline transcription
+                </p>
+
+                <div className='flex flex-col gap-4 xl:w-[458px]'>
+                    <img src={Monitor} alt='Monitor' className='w-6 h-6'/>
+                    <p className='text-[#17053E] text-[24px]'>Summarization</p>
+                    <p className='font-medium text-[#8F899C]'>
+                        Quickly grasp the core message of interviews, press mentions, and focus groups.
+                    </p>
                 </div>
 
+                <div className='flex flex-col gap-4 xl:w-[458px]'>
+                    <img src={Chart} alt='Chart' className='w-6 h-6'/>
+                    <p className='text-[#17053E] text-[24px]'>Topic Detection</p>
+                    <p className='font-medium text-[#8F899C]'>
+                        Track how your brand or campaign is discussed across various media.
+                    </p>
+                </div>
+
+                <div className='flex flex-col gap-4 xl:w-[458px]'>
+                    <img src={Data} alt='Data' className='w-6 h-6'/>
+                    <p className='text-[#17053E] text-[24px]'>Intent Detection</p>
+                    <p className='font-medium text-[#8F899C]'>
+                        Discover the underlying motivations behind journalist questions or customer feedback.
+                    </p>
+                </div>
+
+                <div className='flex flex-col gap-4 xl:w-[458px]'>
+                    <img src={Reputation} alt='Monitor' className='w-6 h-6'/>
+                    <p className='text-[#17053E] text-[24px]'>Sentiment Analysis</p>
+                    <p className='font-medium text-[#8F899C]'>
+                        Measure the emotional tone of coverage, social mentions, and stakeholder communications.
+                    </p>
+                </div>
+
+                <div className='flex flex-col gap-4 xl:w-[458px]'>
+                    <img src={Monitor} alt='Monitor' className='w-6 h-6'/>
+                    <p className='text-[#17053E] text-[24px]'>Transcription</p>
+                    <p className='font-medium text-[#8F899C]'>
+                        Turn presentations, podcasts, and media appearances into searchable text
+                    </p>
+                </div>
+
+                <div className='flex flex-col gap-4 xl:w-[458px]'>
+                    <img src={Chart} alt='Chart' className='w-6 h-6'/>
+                    <p className='text-[#17053E] text-[24px]'>Punctuation</p>
+                    <p className='font-medium text-[#8F899C]'>
+                        Ensure polished transcripts for reports and analysis.
+                    </p>
+                </div>
+
+                <div className='flex flex-col gap-4 xl:w-[458px]'>
+                    <img src={Data} alt='Data' className='w-6 h-6'/>
+                    <p className='text-[#17053E] text-[24px]'>Smart Format</p>
+                    <p className='font-medium text-[#8F899C]'>
+                        Present professional, accurate outputs.
+                    </p>
+                </div>
+
+                <div className='flex flex-col gap-4 xl:w-[458px]'>
+                    <img src={Reputation} alt='Reputation' className='w-6 h-6'/>
+                    <p className='text-[#17053E] text-[24px]'>Utterances</p>
+                    <p className='font-medium text-[#8F899C]'>
+                        Analyze conversations for insightful soundbites and key takeaways.
+                    </p>
+                </div>
+
+            </div>
+            <div className='flex flex-col mt-10 xl:mt-0 gap-[32px]'>
+                <div className='flex flex-col  xl:w-[600px] gap-2 xl:p-4'>
+                    <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Get Audio Insights Now</p>
+                    <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Upload your audio file and start analyzing</p>
+                    <p className='text-[#17053E] text-[22px] font-poppins font-medium'>We accept over 40 common audio file formats including MP3, WAV, FLAC, M4A and more.</p>
+                </div>
                 <div className='flex flex-col items-center gap-4'>
                     <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>
                     <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={textDeepgram}>
                         <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Sentiment Decoder"}</p>
                     </button>
                 </div>
-                <div>
-                    <img src={Decoder} alt='Decoder' className='h-[200px] w-full'/>
-                </div>
-            </div>
-            <div className='flex flex-col mt-4 xl:mt-0 gap-4 w-full xl:w-[48%]'>
-                <div className='border border-blue-300 p-4'>
-                    <p>Sentiment Decoder: Your Audio Analysis Powerhouse for PR</p>
-                </div>
-                <div className='border border-blue-300 p-4'>
-                    <p>
-                        Cut through the noise and understand the true impact of your communications. Our
-                        advanced AI tool analyzes audio and text to reveal sentiment, key topics, intent, and
-                        streamline transcription
-                    </p>
-                </div>
-                <div className='border border-blue-300 p-4 flex flex-col'>
-                    <p className='font-semibold'>Features:</p>
-                    <ul className='list-disc p-3 gap-3 flex flex-col'>
-                        <li>Summarization: Get the gist of conversations instantly.</li>
-                        <li>Topic Detection: Pinpoint the key themes discussed.</li>
-                        <li>Intent Detection: Reveal the true purpose behind the words.</li>
-                        <li>Sentiment Analysis: Gauge emotions with precision.</li>
-                        <li>Transcription: Effortlessly convert spoken word into searchable data.</li>
-                    </ul>
-                </div>
-            </div>
-            <div className='hidden xl:flex flex-col gap-4 w-[48%]'>
-                <div className='border flex flex-col items-center text-center gap-2 border-blue-300 p-4'>
-                    <p>Get Audio Insights Now</p>
-                    <p>Upload your audio file and start analyzing</p>
-                    <p>We accept over 40 common audio file formats including MP3, WAV, FLAC, M4A and more.</p>
-                </div>
 
-                <div className='flex flex-col items-center gap-4'>
-                    <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>
-                    <button className='xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={textDeepgram}>
-                        <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Sentiment Decoder"}</p>
-                    </button>
-                </div>
-                <div>
-                    <img src={Decoder} alt='Decoder' className='h-[200px] w-full'/>
-                </div>
+                <img src={Listen} alt='Listen' className='xl:w-[600px]'/>
             </div>
         </div>
+    
 
-        {/* <div className='w-full flex flex-col xl:flex-row items-center mb-10 justify-between py-10 xl:py-0 xl:h-[480px] mt-[103px] px-[20px] xl:px-[100px] bg-[#FFF7F2]'>
+        <div className='w-full flex flex-col xl:flex-row items-center mb-10 justify-between py-10 xl:py-0 xl:h-[480px] mt-[103px] px-[20px] xl:px-[100px] bg-[#FFF7F2]'>
             <div className='flex flex-col gap-[6px]'>
-                <p className='text-2xl xl:text-[30px] text-[#17053E] font-medium xl:w-[673px]'>
-                    Our AI driven product helps you to stay ahead of your public 
-                    image by monitoring trends and helping you control your media narrative.
+                <p className=' flex flex-col gap-4  xl:w-[673px]'>
+                  <p className='text-2xl xl:text-[30px] text-[#17053E] font-semibold'> How PR Pros Benefit</p>
+                  <p className='text-base'><span className='font-medium'>Crisis Management:</span> Quickly gauge public sentiment in a crisis.</p>
+                  <p className='text-base'><span className='font-medium'>Media Monitoring:</span> Track the impact of press coverage and competitor activity.</p>
+                  <p className='text-base'><span className='font-medium'>Campaign Evaluation:</span> Measure the emotional resonance of your messaging.</p>
+                  <p className='text-base'><span className='font-medium'>Stakeholder Insights:</span> Understand the true needs and concerns of your audience.</p>
                 </p>
                 {/* <button type='button' className='xl:w-[371px] rounded-lg bg-[#17053E] p-4' onClick={() => setOpen(true)}>
                     <p className='text-[#fff]'>Request Free Consultation</p>
-                </button> 
+                    </button> */}
             </div>
             <div className='flex-col relative hidden xl:flex'>
                 <img src={Time} alt='Time' className='w-[208px]  absolute -top-24 '/>
@@ -181,7 +224,7 @@ const SentimentEngine = () => {
                 <img src={Insights} alt='Insights' className='w-[193px]  top-20 z-40 absolute'/>
                 <img src={NotificationB} alt='NotificationB' className='w-[446px] left-14 top-20 relative  ' />
             </div>
-        </div> */}
+        </div>
 
         <ModalPop isOpen={open}>
             <Words handleClose={() => setOpen(false)} transcription={transcription}/>
@@ -193,54 +236,61 @@ const SentimentEngine = () => {
 
 export default SentimentEngine
 
+{/* <div className='flex flex-col xl:flex-row justify-between px-[20px] mb-10 xl:px-[100px]'>
+<div className='flex xl:hidden flex-col gap-4 w-full '>
+    <div className='border flex flex-col items-center text-center gap-2 border-blue-300 p-4'>
+        <p>Get Audio Insights Now</p>
+        <p>Upload your audio file and start analyzing</p>
+        <p>We accept over 40 common audio file formats including MP3, WAV, FLAC, M4A and more.</p>
+    </div>
 
-{/* <div className='flex flex-col xl:flex-row justify-between px-[20px] xl:px-[100px]'>
-            <div className='flex flex-col gap-[48px]'>
-                <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[38px]'>Why Choose VoxPR Sentiment Decoder?</p>
+    <div className='flex flex-col items-center gap-4'>
+        <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>
+        <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={textDeepgram}>
+            <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Sentiment Decoder"}</p>
+        </button>
+    </div>
+    <div>
+        <img src={Decoder} alt='Decoder' className='h-[200px] w-full'/>
+    </div>
+</div>
+<div className='flex flex-col mt-4 xl:mt-0 gap-4 w-full xl:w-[48%]'>
+    <div className='border border-blue-300 p-4'>
+        <p>Sentiment Decoder: Your Audio Analysis Powerhouse for PR</p>
+    </div>
+    <div className='border border-blue-300 p-4'>
+        <p>
+            Cut through the noise and understand the true impact of your communications. Our
+            advanced AI tool analyzes audio and text to reveal sentiment, key topics, intent, and
+            streamline transcription
+        </p>
+    </div>
+    <div className='border border-blue-300 p-4 flex flex-col'>
+        <p className='font-semibold'>Features:</p>
+        <ul className='list-disc p-3 gap-3 flex flex-col'>
+            <li>Summarization: Get the gist of conversations instantly.</li>
+            <li>Topic Detection: Pinpoint the key themes discussed.</li>
+            <li>Intent Detection: Reveal the true purpose behind the words.</li>
+            <li>Sentiment Analysis: Gauge emotions with precision.</li>
+            <li>Transcription: Effortlessly convert spoken word into searchable data.</li>
+        </ul>
+    </div>
+</div>
+<div className='hidden xl:flex flex-col gap-4 w-[48%]'>
+    <div className='border flex flex-col items-center text-center gap-2 border-blue-300 p-4'>
+        <p>Get Audio Insights Now</p>
+        <p>Upload your audio file and start analyzing</p>
+        <p>We accept over 40 common audio file formats including MP3, WAV, FLAC, M4A and more.</p>
+    </div>
 
-                <div className='flex flex-col gap-4 xl:w-[458px]'>
-                <img src={Monitor} alt='Monitor' className='w-6 h-6'/>
-                <p className='text-[#17053E] text-[24px]'>Summarization</p>
-                <p className='font-medium text-[#8F899C]'>
-                    Quickly grasp the core message of interviews, press mentions, and focus groups.
-                </p>
-                </div>
-
-                <div className='flex flex-col gap-4 xl:w-[458px]'>
-                <img src={Chart} alt='Monitor' className='w-6 h-6'/>
-                <p className='text-[#17053E] text-[24px]'>Topic Detection</p>
-                <p className='font-medium text-[#8F899C]'>
-                    Track how your brand or campaign is discussed across various media.
-                </p>
-                </div>
-
-                <div className='flex flex-col gap-4 xl:w-[458px]'>
-                <img src={Data} alt='Monitor' className='w-6 h-6'/>
-                <p className='text-[#17053E] text-[24px]'>Intent Detection</p>
-                <p className='font-medium text-[#8F899C]'>
-                    Discover the underlying motivations behind journalist questions or customer feedback.
-                </p>
-                </div>
-
-                <div className='flex flex-col gap-4 xl:w-[458px]'>
-                <img src={Reputation} alt='Monitor' className='w-6 h-6'/>
-                <p className='text-[#17053E] text-[24px]'>Sentiment Analysis</p>
-                <p className='font-medium text-[#8F899C]'>
-                    Measure the emotional tone of coverage, social mentions, and stakeholder communications.
-                </p>
-                </div>
-
-                <div className='flex flex-col gap-4'>
-                    <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>
-                    <button className='xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={textDeepgram}>
-                        <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Sentiment Decoder"}</p>
-                    </button>
-                </div>
-            
-
-            </div>
-            <div className='flex flex-col mt-10 xl:mt-0 gap-[32px]'>
-                <p className='text-[32px] text-[#17053E] w-full text-center xl:text-left xl:w-[613px] font-medium'>Sentiment Decoder: Your Audio Analysis Powerhouse for PR</p>
-                <img src={Computer} alt='computer' className='xl:w-[600px]'/>
-            </div>
-        </div> */}
+    <div className='flex flex-col items-center gap-4'>
+        <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>
+        <button className='xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={textDeepgram}>
+            <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Sentiment Decoder"}</p>
+        </button>
+    </div>
+    <div>
+        <img src={Decoder} alt='Decoder' className='h-[200px] w-full'/>
+    </div>
+</div>
+</div> */}

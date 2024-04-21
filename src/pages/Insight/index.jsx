@@ -18,7 +18,7 @@ import NotificationB from "../../assets/png/notification-b.svg"
 import ModalPop from '../../components/modalPop'
 import RequestForm from './RequestForm'
 
-import Listen from "../../assets/png/listen.jpg"
+import Decoder from "../../assets/png/decoder.jpg"
 
 const InsightEngine = () => {
     const [open, setOpen] = useState(false);
@@ -97,7 +97,7 @@ const InsightEngine = () => {
         </div>
         <div className='flex flex-col mt-10 xl:mt-0 gap-[32px]'>
             <p className='text-[32px] text-[#17053E] w-full text-center xl:text-left xl:w-[613px] font-medium'>VoxPR listens, analyzes and enhances your PR success.</p>
-            <img src={Listen} alt='computer' className='xl:w-[600px]'/>
+            <img src={Decoder} alt='Decoder' className='xl:w-[600px]'/>
         </div>
         </div>
 
