@@ -20,6 +20,7 @@ import ModalPop from '../../components/modalPop';
 import Words from './Words';
 
 import Listen from "../../assets/png/listen.jpg"
+import RequestForm from '../Insight/RequestForm';
 
 
 const SentimentEngine = () => {
@@ -27,6 +28,7 @@ const SentimentEngine = () => {
     const [file, setFile] = useState(null);
     const [loading, setLoading] = useState(false)
     const [open, setOpen] = useState(false)
+    const [openForm, setOpenForm] = useState(false)
 
   
 
@@ -214,9 +216,9 @@ const SentimentEngine = () => {
                   <p className='text-base'><span className='font-medium'>Campaign Evaluation:</span> Measure the emotional resonance of your messaging.</p>
                   <p className='text-base'><span className='font-medium'>Stakeholder Insights:</span> Understand the true needs and concerns of your audience.</p>
                 </p>
-                {/* <button type='button' className='xl:w-[371px] rounded-lg bg-[#17053E] p-4' onClick={() => setOpen(true)}>
+                <button type='button' className='xl:w-[371px] mt-2 rounded-lg bg-[#17053E] p-4' onClick={() => setOpenForm(true)}>
                     <p className='text-[#fff]'>Request Free Consultation</p>
-                    </button> */}
+                </button>
             </div>
             <div className='flex-col relative hidden xl:flex'>
                 <img src={Time} alt='Time' className='w-[208px]  absolute -top-24 '/>
@@ -225,6 +227,11 @@ const SentimentEngine = () => {
                 <img src={NotificationB} alt='NotificationB' className='w-[446px] left-14 top-20 relative  ' />
             </div>
         </div>
+        
+
+        <ModalPop isOpen={openForm}>
+            <RequestForm handleClose={() => setOpenForm(false)} />
+        </ModalPop>
 
         <ModalPop isOpen={open}>
             <Words handleClose={() => setOpen(false)} transcription={transcription}/>
