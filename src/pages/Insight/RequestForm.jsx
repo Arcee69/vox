@@ -4,18 +4,42 @@ import { Form, Formik } from 'formik';
 import { CgSpinner } from 'react-icons/cg';
 import { IoClose } from "react-icons/io5";
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 
 const RequestForm = ({ handleClose }) => {
   const [loading, setLoading] = useState(false)
 
-  const submitForm = (values, action) => {
-      toast(`Request Submitted Successfully`, {
-        position: "top-right",
-        autoClose: 5000,
-        closeOnClick: true,
-    })
-    handleClose()
+  const submitForm = async (values, action) => {
+      setLoading(true)
+      const data = {
+          "full_name": values?.fullName,
+          "email": values?.email,
+          "phone": `+234${values?.phone}`,
+          "company_name": values?.companyName,
+          "message": values?.message
+      }
+      await axios.post("https://api.voxprinsight.com/api", data)
+      .then((res) => {
+        setLoading(false)
+        console.log(res, "res")
+        toast(`Request Submitted Successfully`, {
+          position: "top-right",
+          autoClose: 5000,
+          closeOnClick: true,
+        })     
+        handleClose()
+      })
+      .catch((err) => {
+        console.log(err, "err")
+        setLoading(false)
+        toast(`Error`, {
+          position: "top-right",
+          autoClose: 5000,
+          closeOnClick: true,
+        })  
+        handleClose()
+      })
   }
 
   return (
@@ -25,13 +49,13 @@ const RequestForm = ({ handleClose }) => {
       </div>
       <div className=' w-full '>
         <Formik
-        initialValues={{
-            fullName: "",
-            email: "",
-            phone: "",
-            companyName: "",
-            message: ""
-        }}
+          initialValues={{
+              fullName: "",
+              email: "",
+              phone: "",
+              companyName: "",
+              message: ""
+          }}
         // validationSchema={formValidationSchema}
             onSubmit={(values, action) => {
             window.scrollTo(0, 0);
