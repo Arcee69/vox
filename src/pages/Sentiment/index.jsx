@@ -56,7 +56,8 @@ const SentimentEngine = () => {
         const apiKey =  "480b0bf91968cf6cd1b46936dbac6fc1f005295a"; //"e3d86a51a6e86980a36159fc4ba0554b3170782b";
         
         // Construct the URL for Deepgram's transcription API endpoint
-        const apiUrl =  'https://api.deepgram.com/v1/listen?model=nova-2'; //'https://api.deepgram.com/v1/listen';
+        const apiUrl =  'https://api.deepgram.com/v1/listen?summarize=v2&topics=true&intents=true&smart_format=true&punctuate=true&utterances=true&sentiment=true&language=en&model=nova-2'; 
+        //'https://api.deepgram.com/v1/listen?model=nova-2'; "
         
         // Construct the request body
         const formData = new FormData();
@@ -82,7 +83,7 @@ const SentimentEngine = () => {
                 autoClose: 5000,
                 closeOnClick: true,
             })
-            setTranscription(data?.results?.channels[0]?.alternatives[0]?.transcript)
+            setTranscription(data?.results)
             setOpen(true)
         })
         .catch(error => {
