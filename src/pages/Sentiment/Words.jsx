@@ -1,6 +1,8 @@
 import React from 'react'
 import { IoClose } from 'react-icons/io5'
 
+import Logo from "../../assets/svg/logo.svg"
+
 const Words = ({handleClose, transcription}) => {
     console.log(transcription, "salam")
   return (
@@ -8,7 +10,8 @@ const Words = ({handleClose, transcription}) => {
         <div className='flex justify-end cursor-pointer' onClick={handleClose}>
             <IoClose className='text-lg'/>
         </div>
-        <p className='text-[#19373E] font-inter font-medium text-[24px] text-center'>Transcribed Audio</p>
+        <img src={Logo} alt='logo' className='w-[40px] h-[40px] cursor-pointer'/>
+        <p className='text-[#19373E] font-inter font-medium text-[20px] text-center'>Sentiment Decoder - Transcribed Audio Report</p>
 
         <div className='flex flex-col gap-3 items-center'>
 
