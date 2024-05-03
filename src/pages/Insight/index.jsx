@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Vapi from '@vapi-ai/web';
 
+import { VoiceClient,  createSocketConfig } from '@humeai/voice';
+import { fetchAccessToken } from '@humeai/voice';
+
 import Monitor from "../../assets/svg/monitor.svg"
 import Chart from "../../assets/svg/chart.svg"
 import Data from "../../assets/svg/data.svg"
@@ -22,30 +25,72 @@ import Decoder from "../../assets/png/decoder.jpg"
 
 const InsightEngine = () => {
     const [open, setOpen] = useState(false);
-    const [callStatus, setCallStatus] = useState("inactive");
     const [voxData, setVoxData] = useState([])
 
-  const vapi = new Vapi('5d3d4e5d-3f85-4af4-8dae-9d6527d525fc');
+//     const [callStatus, setCallStatus] = useState("inactive");
 
-  const start = async () => {
-    setCallStatus("loading");
-    const response = await vapi.start("1aa24789-cabd-46b4-a5a8-af5a819ac810");
-    setVoxData(response)
-    console.log(response, "brymo")
-    return response
-  };
+//   const vapi = new Vapi('5d3d4e5d-3f85-4af4-8dae-9d6527d525fc');
 
-  const stop = () => {
-    setCallStatus("loading");
-    vapi.stop();
-  };
+//   const start = async () => {
+//     setCallStatus("loading");
+//     const response = await vapi.start("1aa24789-cabd-46b4-a5a8-af5a819ac810");
+//     setVoxData(response)
+//     console.log(response, "brymo")
+//     return response
+//   };
 
-  useEffect(() => {
-    vapi.on("call-start", () => setCallStatus("active"));
-    vapi.on("call-end", () => setCallStatus('inactive'));
+//   const stop = () => {
+//     setCallStatus("loading");
+//     vapi.stop();
+//   };
+
+//   useEffect(() => {
+//     vapi.on("call-start", () => setCallStatus("active"));
+//     vapi.on("call-end", () => setCallStatus('inactive'));
     
-    return () => vapi.removeAllListeners();
-  }, [])
+//     return () => vapi.removeAllListeners();
+//   }, [])
+
+            let accessToken;
+            // fetch and set the access token
+            (async () => {
+                try {
+                    accessToken = await fetchAccessToken(
+                        import.meta.env.VITE_HUME_API_KEY,
+                        import.meta.env.VITE_HUME_CLIENT_SECRET
+                    );
+                    console.log(accessToken, "pablo");
+            
+                    // Define EVI configuration
+                    const config = createSocketConfig({
+                        auth: { type: 'accessToken', value: accessToken },
+                    });
+            
+                    // Instantiate client with configuration
+                    const client = VoiceClient.create(config);
+            
+                    // Setup event handlers for WebSocket
+                    client.on('open', () => {
+                        console.log('WebSocket connection opened');
+                    });
+                    client.on('message', (message) => {
+                        console.log(message);
+                    });
+                    client.on('close', () => {
+                        console.log('WebSocket connection closed');
+                    });
+            
+                    // Establish an authenticated WebSocket connection
+                    client.connect().then(() => {
+                        /* handle success */
+                    }).catch(() => {
+                        /* handle error */
+                    });
+                } catch (error) {
+                    console.error('Error fetching access token:', error);
+                }
+            })();
+            
 
 
   return (
