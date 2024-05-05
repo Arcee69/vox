@@ -16,11 +16,14 @@ import Insights from "../../assets/png/insight.svg"
 import Notification from "../../assets/png/notification.svg"
 import NotificationB from "../../assets/png/notification-b.svg"
 import ModalPop from '../../components/modalPop';
+import Login from '../Auth/Login';
+import SignUp from '../Auth/SignUp';
 
 import Words from './Words';
 
 import Listen from "../../assets/png/listen.jpg"
 import RequestForm from '../Insight/RequestForm';
+import { isObjectEmpty } from '../../utils/CheckLoginData';
 
 
 const SentimentEngine = () => {
@@ -29,6 +32,8 @@ const SentimentEngine = () => {
     const [loading, setLoading] = useState(false)
     const [open, setOpen] = useState(false)
     const [openForm, setOpenForm] = useState(false)
+    const [openLogin, setOpenLogin] = useState(false)
+    const [openSignUp, setOpenSignUp] = useState(false)
 
 
 
@@ -98,7 +103,23 @@ const SentimentEngine = () => {
         });
     };
 
+    const isAuthed = isObjectEmpty(JSON.parse(localStorage.getItem("userObj")))
 
+    console.log(isAuthed, "isAuthed")
+
+    const showModal = () => {
+        if(!isAuthed) {
+            textDeepgram()
+        } else {
+            setOpenLogin(true)
+        }
+    }
+
+
+    const showOpenSignUpModal = () => {
+        setOpenLogin(false)
+        setOpenSignUp(true)  
+    }
 
       
   return (
@@ -204,7 +225,7 @@ const SentimentEngine = () => {
                 </div>
                 <div className='flex flex-col items-center gap-4'>
                     <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>
-                    <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={textDeepgram}>
+                    <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={() => showModal()}> {/*{textDeepgram} */}
                         <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Sentiment Decoder"}</p>
                     </button>
                 </div>
@@ -244,6 +265,14 @@ const SentimentEngine = () => {
         <ModalPop isOpen={open}>
             <Words handleClose={() => setOpen(false)} transcription={transcription}/>
         </ModalPop>
+
+        <ModalPop isOpen={openLogin}>
+            <Login handleClose={() => setOpenLogin(false)} showOpenSignUpModal={showOpenSignUpModal}/>
+        </ModalPop>
+
+      <ModalPop isOpen={openSignUp}>
+        <SignUp handleClose={() => setOpenSignUp(false)}/>
+      </ModalPop>
 
     </div>
   )

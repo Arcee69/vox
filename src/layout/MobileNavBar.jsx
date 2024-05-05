@@ -5,36 +5,59 @@ import { CgSpinner } from 'react-icons/cg';
 
 import Logo from "../assets/svg/logo.svg"
 import Close from "../assets/svg/closeIcon.svg"
+import { isObjectEmpty } from '../utils/CheckLoginData';
 
 const MobileNavBar = ({ handleClose}) => {
-    const [voxData, setVoxData] = useState([]);
-    const [loading, setLoading] = useState(false)
+    const [userName, setUserName] = useState("")
+  //   const [voxData, setVoxData] = useState([]);
+  //   const [loading, setLoading] = useState(false)
 
-    const navigate = useNavigate()
+  //   const navigate = useNavigate()
 
-  const vapi = new Vapi('5d3d4e5d-3f85-4af4-8dae-9d6527d525fc');
+  // const vapi = new Vapi('5d3d4e5d-3f85-4af4-8dae-9d6527d525fc');
 
-  const start = async () => {
-    setCallStatus("loading");
-    setLoading(true);
-    const response = await vapi.start("1aa24789-cabd-46b4-a5a8-af5a819ac810");
-    setLoading(false);
-    setVoxData(response)
-    console.log(response.status, "brymo")
-    return response
-  };
+  // const start = async () => {
+  //   setCallStatus("loading");
+  //   setLoading(true);
+  //   const response = await vapi.start("1aa24789-cabd-46b4-a5a8-af5a819ac810");
+  //   setLoading(false);
+  //   setVoxData(response)
+  //   console.log(response.status, "brymo")
+  //   return response
+  // };
 
-  const stop = () => {
-    setCallStatus("loading");
-    vapi.stop();
-  };
+  // const stop = () => {
+  //   setCallStatus("loading");
+  //   vapi.stop();
+  // };
 
-  useEffect(() => {
-    vapi.on("call-start", () => setCallStatus("active"));
-    vapi.on("call-end", () => setCallStatus('inactive'));
+  // useEffect(() => {
+  //   vapi.on("call-start", () => setCallStatus("active"));
+  //   vapi.on("call-end", () => setCallStatus('inactive'));
     
-    return () => vapi.removeAllListeners();
-  }, [])
+  //   return () => vapi.removeAllListeners();
+  // }, [])
+
+  const logOut = () => {
+    localStorage.removeItem("token")
+    localStorage.removeItem("userObj")
+    navigate("/")
+}
+
+const getUserName = () => {
+  const userData = JSON.parse(localStorage.getItem("userObj"))
+  console.log(userData, "userData")
+  setUserName(userData)
+}
+
+useEffect(() => {
+  getUserName()
+}, [userName])
+
+
+
+const isAuthed = isObjectEmpty(JSON.parse(localStorage.getItem("userObj")))
+
   return (
     <div className="fixed top-0 w-[100%] left-0 h-[100vh] animate__animated  animate__bounceInDown animate__slow" style={{zIndex: 9999}}>
         <div className="bg-[#fff] w-[100%] h-full absolute pl-[29px] pr-[13px] py-[32px] right-0 top-0">
@@ -46,15 +69,21 @@ const MobileNavBar = ({ handleClose}) => {
                 <li onClick={() => {navigate("/"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Home</li>
                 <li onClick={() => {navigate("/insight-engine"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Insight Engine</li>
                 <li onClick={() => {navigate("/sentiment-decoder"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Sentiment Decoder</li>
+                {!isAuthed ? <li onClick={() => logOut()} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Logout</li> : null}
             </ul>
-            <button type='button' className='bg-[#FF6600] cursor-pointer rounded-lg w-full mt-4 border border-[#000] p-2 flex items-center justify-center h-[67px]' onClick={start}>
+            <div
+              className='bg-[#FF6600] cursor-pointer rounded-lg w-full mt-4 border border-[#000] p-2 flex items-center justify-center h-[67px]'
+            >
+                <p className='text-[#FFF] font-poppins text-[20px] font-medium'>{userName ? `Hi ${userName?.data?.name.slice(0, 5)}` : "Get In Touch"}</p>
+            </div>
+            {/* <button type='button' className='bg-[#FF6600] cursor-pointer rounded-lg w-full mt-4 border border-[#000] p-2 flex items-center justify-center h-[67px]' onClick={start}>
               {
                 loading ? 
                   <CgSpinner className='animate-spin text-2xl text-[#fff]' /> 
                   : 
                   <p className='text-[#FFF] font-poppins text-[20px] font-medium'>{voxData?.type === "webCall" ? "Conversation Started" : "Try For Free" }</p>
               }
-            </button>
+            </button> */}
         </div>
     </div>
   )

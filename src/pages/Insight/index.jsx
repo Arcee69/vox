@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Vapi from '@vapi-ai/web';
 import { useVoice } from '@humeai/voice-react';
+import { CgSpinner } from 'react-icons/cg';
 
 import Monitor from "../../assets/svg/monitor.svg"
 import Chart from "../../assets/svg/chart.svg"
@@ -14,15 +15,43 @@ import NotificationB from "../../assets/png/notification-b.svg"
 
 import ModalPop from '../../components/modalPop';
 import RequestForm from './RequestForm';
+import Login from '../Auth/Login';
+import SignUp from '../Auth/SignUp';
 
 import Decoder from "../../assets/png/decoder.jpg"
+import { isObjectEmpty } from '../../utils/CheckLoginData';
 
 
 const InsightEngine = () => {
     const [open, setOpen] = useState(false);
     const [messages, setMessages] = useState([]);
+    const [loading, setLoading] = useState(false)
+    const [openLogin, setOpenLogin] = useState(false)
+    const [openSignUp, setOpenSignUp] = useState(false)
 
     const { connect } = useVoice()
+
+    const isAuthed = isObjectEmpty(JSON.parse(localStorage.getItem("userObj")))
+
+    console.log(isAuthed, "isAuthed")
+
+    const showModal = () => {
+        if(!isAuthed) {
+            setLoading(true)
+            setTimeout(() => {
+                setLoading(false)
+            }, 1500)
+            connect()
+        } else {
+            setOpenLogin(true)
+        }
+    }
+
+    const showOpenSignUpModal = () => {
+        setOpenLogin(false)
+        setOpenSignUp(true)  
+    }
+    
   
 
 
@@ -67,8 +96,8 @@ const InsightEngine = () => {
             </p>
             </div>
 
-            <button className='xl:w-[371px] rounded-lg p-4 bg-[#17053E]' onClick={connect}>
-                <p className='text-[#fff]'>Start </p>
+            <button className='xl:w-[371px] flex items-center justify-center rounded-lg p-4 bg-[#17053E]' onClick={() => showModal()}>
+                <p className='text-[#fff]'>{loading ? <CgSpinner className=" animate-spin text-xl " /> : "Start"} </p>
             </button>
            
 
@@ -101,6 +130,15 @@ const InsightEngine = () => {
         <ModalPop isOpen={open}>
             <RequestForm handleClose={() => setOpen(false)} />
         </ModalPop>
+
+        <ModalPop isOpen={openLogin}>
+            <Login handleClose={() => setOpenLogin(false)} showOpenSignUpModal={showOpenSignUpModal}/>
+        </ModalPop>
+
+      <ModalPop isOpen={openSignUp}>
+        <SignUp handleClose={() => setOpenSignUp(false)}/>
+      </ModalPop>
+
     </div>
   )
 }

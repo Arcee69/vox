@@ -12,6 +12,10 @@ const Pricing = () => {
     
 
             <div className='flex flex-col gap-4 xl:w-[458px]'>
+                <p className='text-3xl font-inter font-medium leading-[45px]'>
+                    Enjoy a free access to our VoxPR tools for the first 2 weeks when you sign up and suscribe to us
+                    monthly for ₦5000
+                </p>
         
             </div>
 
