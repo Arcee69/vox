@@ -2,41 +2,43 @@ import React, { useState, useEffect } from 'react'
 import Vapi from '@vapi-ai/web';
 import { useNavigate } from 'react-router-dom';
 import { CgSpinner } from 'react-icons/cg';
+import { useVoice } from '@humeai/voice-react';
 
 import Globe from "../../assets/svg/globe.svg"
 import Cone from "../../assets/svg/cone.svg"
 
 const Home = () => {
-  const [callStatus, setCallStatus] = useState("inactive");
-  const [voxData, setVoxData] = useState([]);
-  const [loading, setLoading] = useState(false)
+  // const [callStatus, setCallStatus] = useState("inactive");
+  // const [voxData, setVoxData] = useState([]);
+  // const [loading, setLoading] = useState(false)
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
-  const vapi = new Vapi('5d3d4e5d-3f85-4af4-8dae-9d6527d525fc');
+  // const vapi = new Vapi('5d3d4e5d-3f85-4af4-8dae-9d6527d525fc');
 
-  const start = async () => {
-    setCallStatus("loading");
-    setLoading(true);
-    const response = await vapi.start("1aa24789-cabd-46b4-a5a8-af5a819ac810");
-    setLoading(false);
-    setVoxData(response)
-    console.log(response.status, "brymo")
-    return response
-  };
+  // const start = async () => {
+  //   setCallStatus("loading");
+  //   setLoading(true);
+  //   const response = await vapi.start("1aa24789-cabd-46b4-a5a8-af5a819ac810");
+  //   setLoading(false);
+  //   setVoxData(response)
+  //   console.log(response.status, "brymo")
+  //   return response
+  // };
 
-  const stop = () => {
-    setCallStatus("loading");
-    vapi.stop();
-  };
+  // const stop = () => {
+  //   setCallStatus("loading");
+  //   vapi.stop();
+  // };
 
-  useEffect(() => {
-    vapi.on("call-start", () => setCallStatus("active"));
-    vapi.on("call-end", () => setCallStatus('inactive'));
+  // useEffect(() => {
+  //   vapi.on("call-start", () => setCallStatus("active"));
+  //   vapi.on("call-end", () => setCallStatus('inactive'));
     
-    return () => vapi.removeAllListeners();
-  }, [])
+  //   return () => vapi.removeAllListeners();
+  // }, [])
 
+  const { connect } = useVoice()
  
 
   return (
@@ -52,7 +54,7 @@ const Home = () => {
             Our Insight Engine reveals what's being said. Our Sentiment Decoder uncovers how people feel.
           </p>
           <div className='flex flex-col xl:flex-row gap-5 items-center'>
-            <button type='button' className='bg-[#FF6600] cursor-pointer rounded-3xl w-[300px] xl:w-[371px] p-2 flex items-center justify-center h-[67px]'>
+            <button type='button' className='bg-[#FF6600] cursor-pointer rounded-3xl w-[300px] xl:w-[371px] p-2 flex items-center justify-center h-[67px]' onClick={connect}>
               <p className='text-[#FFF] font-poppins text-[20px] font-medium'>Start Insight Engine</p>
             </button>
             <button type='button' className='bg-[#17053E] xl:z-10 cursor-pointer rounded-3xl w-[300px] xl:w-[371px] p-2 flex items-center justify-center h-[67px]' onClick={() => navigate("/sentiment-decoder")}>

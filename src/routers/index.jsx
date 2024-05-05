@@ -4,6 +4,7 @@ import Layout from '../layout'
 import Home from '../pages/Home'
 import InsightEngine from '../pages/Insight'
 import SentimentEngine from '../pages/Sentiment'
+import Pricing from '../pages/Pricing'
 
 
 
@@ -14,6 +15,7 @@ const Routers = () => {
         <Route path='/' element={<Home />} />
         <Route path='/insight-engine' element={<InsightEngine />} />
         <Route path='/sentiment-decoder' element={<SentimentEngine />} />
+        <Route path='/pricing' element={<Pricing />} />
       </Route>
     </Routes>
   )

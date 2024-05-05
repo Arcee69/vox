@@ -34,7 +34,7 @@ useEffect(() => {
           auth= {{type: 'accessToken', value: token }}
           // hostname='wss://api.hume.ai/v0/evi/chat'
           configId='c2a5ce87-92af-4cf5-9c9f-004295ebd772'
-          onToolCall={(message) => console.log(message, "message")}
+          // onToolCall={(message) => console.log(message, "message")}
           // debug
       >
         <Routers />
