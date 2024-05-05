@@ -1,96 +1,29 @@
 import React, { useState, useEffect } from 'react'
 import Vapi from '@vapi-ai/web';
-
-import { VoiceClient,  createSocketConfig } from '@humeai/voice';
-import { fetchAccessToken } from '@humeai/voice';
+import { useVoice } from '@humeai/voice-react';
 
 import Monitor from "../../assets/svg/monitor.svg"
 import Chart from "../../assets/svg/chart.svg"
 import Data from "../../assets/svg/data.svg"
 import Reputation from "../../assets/svg/reputation.svg"
 
-import Chat from "../../assets/png/chat.png"
-import Analytics from "../../assets/png/analytics.png"
-import DataB from "../../assets/png/data.png"
-import Computer from "../../assets/png/computer.png"
-
 import Time from "../../assets/png/time.svg"
 import Insights from "../../assets/png/insight.svg"
 import Notification from "../../assets/png/notification.svg"
 import NotificationB from "../../assets/png/notification-b.svg"
-import ModalPop from '../../components/modalPop'
-import RequestForm from './RequestForm'
+
+import ModalPop from '../../components/modalPop';
+import RequestForm from './RequestForm';
 
 import Decoder from "../../assets/png/decoder.jpg"
 
+
 const InsightEngine = () => {
     const [open, setOpen] = useState(false);
-    const [voxData, setVoxData] = useState([])
+    const [messages, setMessages] = useState([]);
 
-//     const [callStatus, setCallStatus] = useState("inactive");
-
-//   const vapi = new Vapi('5d3d4e5d-3f85-4af4-8dae-9d6527d525fc');
-
-//   const start = async () => {
-//     setCallStatus("loading");
-//     const response = await vapi.start("1aa24789-cabd-46b4-a5a8-af5a819ac810");
-//     setVoxData(response)
-//     console.log(response, "brymo")
-//     return response
-//   };
-
-//   const stop = () => {
-//     setCallStatus("loading");
-//     vapi.stop();
-//   };
-
-//   useEffect(() => {
-//     vapi.on("call-start", () => setCallStatus("active"));
-//     vapi.on("call-end", () => setCallStatus('inactive'));
-    
-//     return () => vapi.removeAllListeners();
-//   }, [])
-
-            let accessToken;
-            // fetch and set the access token
-            (async () => {
-                try {
-                    accessToken = await fetchAccessToken(
-                        import.meta.env.VITE_HUME_API_KEY,
-                        import.meta.env.VITE_HUME_CLIENT_SECRET
-                    );
-                    console.log(accessToken, "pablo");
-            
-                    // Define EVI configuration
-                    const config = createSocketConfig({
-                        auth: { type: 'accessToken', value: accessToken },
-                    });
-            
-                    // Instantiate client with configuration
-                    const client = VoiceClient.create(config);
-            
-                    // Setup event handlers for WebSocket
-                    client.on('open', () => {
-                        console.log('WebSocket connection opened');
-                    });
-                    client.on('message', (message) => {
-                        console.log(message);
-                    });
-                    client.on('close', () => {
-                        console.log('WebSocket connection closed');
-                    });
-            
-                    // Establish an authenticated WebSocket connection
-                    client.connect().then(() => {
-                        /* handle success */
-                    }).catch(() => {
-                        /* handle error */
-                    });
-                } catch (error) {
-                    console.error('Error fetching access token:', error);
-                }
-            })();
-            
+    const { connect } = useVoice()
+  
 
 
   return (
@@ -134,8 +67,8 @@ const InsightEngine = () => {
             </p>
             </div>
 
-            <button className='xl:w-[371px] rounded-lg p-4 bg-[#17053E]' onClick={start}>
-                <p className='text-[#fff]'>{voxData?.type === "webCall" ? "Conversation Started" : "Experience the VoxPR Advantage"} </p>
+            <button className='xl:w-[371px] rounded-lg p-4 bg-[#17053E]' onClick={connect}>
+                <p className='text-[#fff]'>Start </p>
             </button>
            
 
