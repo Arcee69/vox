@@ -1,11 +1,49 @@
 import React from 'react'
+import { usePaystackPayment } from 'react-paystack';
+import { useNavigate } from 'react-router-dom';
 
 import Decoder from "../../assets/png/decoder.jpg"
+import { api } from '../../services/api';
+import { appUrls } from '../../services/urls';
 
 const Pricing = () => {
+    
+    const navigate = useNavigate()
+
+    const userData = JSON.parse(localStorage.getItem("userObj"))
+    console.log(userData, "userData")
+
+    const config = {
+        reference: (new Date()).getTime().toString(),
+        email: userData?.data?.email,
+        amount: 500000, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
+        publicKey: 'pk_test_58043fcdc746c1d60622e808c7e1cd57dd810aa5',
+    };
+
+    // you can call this function anything
+  const onSuccess = async (reference) => {
+    // Implementation for whatever you want to do with reference and after success call.
+    console.log(reference);
+    await api.get(appUrls?.PAYMENT_URL + `?ref=${reference}&total=5000`)
+    .then((res) => {
+        console.log(res, "res")
+    })
+
+  };
+
+  // you can call this function anything
+  const onClose = () => {
+    // implementation for  whatever you want to do when the Paystack dialog closed.
+    console.log('closed')
+    navigate("/pricing")
+  }
+
+  const initializePayment = usePaystackPayment(config);
+
+
   return (
-    <div className='mt-[100px] xl:mt-[45px] '>
-    <div className='flex flex-col xl:flex-row justify-between px-[20px] xl:px-[100px]'>
+    <div className='mt-[100px] xl:mt-[45px]  '>
+    <div className='flex flex-col xl:flex-row justify-between px-[20px] xl:px-[100px] mb-40'>
         <div className='flex flex-col gap-[48px]'>
             <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[38px]'>Pricing</p>
 
@@ -23,17 +61,16 @@ const Pricing = () => {
         
             </div>
 
-            <div className='flex flex-col gap-4 xl:w-[458px]'>
-        
-            </div>
+           
 
-            <div className='flex flex-col gap-4 xl:w-[458px]'>
-        
-            </div>
-
-            {/* <button className='xl:w-[371px] rounded-lg p-4 bg-[#17053E]'>
+            <button 
+                className='xl:w-[371px] rounded-lg p-4 bg-[#17053E]'
+                onClick={() => {
+                    initializePayment(onSuccess, onClose)
+                }}
+            >
                 <p className='text-[#fff]'>Make Payment </p>
-            </button> */}
+            </button>
         
 
         </div>

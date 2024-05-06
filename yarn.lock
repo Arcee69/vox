@@ -3170,6 +3170,11 @@ react-is@^18.2.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.3.1.tgz#e83557dc12eae63a99e003a46388b1dcbb44db7e"
   integrity sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==
 
+react-paystack@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/react-paystack/-/react-paystack-5.0.0.tgz#dbe47a7a55098154e7077b3aa917d4a1e19ce345"
+  integrity sha512-d7oA+ksX0GES2Uyh9H6E8Oq4yD/r3CDVfhKpZCjcztW2IIVf6pldscRs6+gFfGWWk9IvEK2G6QqZmaGKlbGHhw==
+
 react-refresh@^0.14.0:
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.14.0.tgz#4e02825378a5f227079554d4284889354e5f553e"
