@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { usePaystackPayment } from 'react-paystack';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,6 +7,7 @@ import { api } from '../../services/api';
 import { appUrls } from '../../services/urls';
 
 const Pricing = () => {
+    const [showRef, setShowRef] = useState("")
     
     const navigate = useNavigate()
 
@@ -23,18 +24,22 @@ const Pricing = () => {
     // you can call this function anything
   const onSuccess = async (reference) => {
     // Implementation for whatever you want to do with reference and after success call.
-    console.log(reference);
-    await api.get(appUrls?.PAYMENT_URL + `?ref=${reference}&total=5000`)
-    .then((res) => {
-        console.log(res, "res")
-    })
+    setShowRef(reference)  
 
   };
 
+  console.log(showRef, "pablo");
+
   // you can call this function anything
-  const onClose = () => {
+  const onClose = async () => {
     // implementation for  whatever you want to do when the Paystack dialog closed.
     console.log('closed')
+    try {
+        const res = await api.get(appUrls?.PAYMENT_URL + `?ref=${showRef}&total=5000`)
+        console.log(res, "res")
+    } catch (error) {
+        console.log(error, "err")
+    }
     navigate("/pricing")
   }
 

@@ -12,7 +12,7 @@ const MobileNavBar = ({ handleClose}) => {
   //   const [voxData, setVoxData] = useState([]);
   //   const [loading, setLoading] = useState(false)
 
-  //   const navigate = useNavigate()
+    const navigate = useNavigate()
 
   // const vapi = new Vapi('5d3d4e5d-3f85-4af4-8dae-9d6527d525fc');
 
