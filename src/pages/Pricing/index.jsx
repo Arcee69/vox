@@ -74,7 +74,7 @@ const Pricing = () => {
                     initializePayment(onSuccess, onClose)
                 }}
             >
-                <p className='text-[#fff]'>Make Payment </p>
+                <p className='text-[#fff]'>Get Access </p>
             </button>
         
 
