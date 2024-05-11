@@ -92,14 +92,16 @@ const Home = () => {
           <p className='text-[#404040] text-center font-medium font-poppins text-[20px]'>VoxPR: Your AI-Powered PR Partner</p>
           <p className='font-poppins text-[48px] text-center text-[#17053E]'>Control Your Brand's<span className='font-semibold text-[#FF6600]'> Narrative.</span></p>
           <p className='text-[#17053E] text-center font-poppins'>
-            Our Insight Engine reveals what's being said. Our Sentiment Decoder uncovers how people feel.
+            VoxPR reimagines the way PR professionals work. 
+            Our cutting edge audio intelligence technology gives you real-time 
+            insights and comprehensive media analysis you wont find elsewhere.
           </p>
           <div className='flex flex-col xl:flex-row gap-5 items-center'>
-            <button type='button' className='bg-[#FF6600] cursor-pointer rounded-3xl w-[300px] xl:w-[371px] p-2 flex items-center justify-center h-[67px]' onClick={() => showModal()}>
-              <p className='text-[#FFF] font-poppins text-[20px] font-medium'>{loading ? <CgSpinner className=" animate-spin text-xl " /> : "Start Insight Engine"} </p>
+            <button type='button' className='bg-[#FF6600] cursor-pointer rounded-3xl w-[200px]  p-2 flex items-center justify-center h-[67px]' > {/* onClick={() => showModal()} */}
+              <p className='text-[#FFF] font-poppins text-[20px] font-medium'>{loading ? <CgSpinner className=" animate-spin text-xl " /> : "Get Started"}</p>
             </button>
-            <button type='button' className='bg-[#17053E] xl:z-10 cursor-pointer rounded-3xl w-[300px] xl:w-[371px] p-2 flex items-center justify-center h-[67px]' onClick={() => showSecondModal()}>
-              <p className='text-[#FFF] font-poppins text-[20px] font-medium'>Use Sentiment Decoder</p>
+            <button type='button' className='bg-[#F4DCD3] xl:z-10 cursor-pointer rounded-3xl w-[272px] p-2 flex items-center justify-center h-[67px]'>
+              <p className='text-[#FF6600] font-poppins text-[20px] font-medium'>Watch Demo Video</p>
             </button>
           </div>
          

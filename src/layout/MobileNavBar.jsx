@@ -7,7 +7,7 @@ import Logo from "../assets/svg/logo.svg"
 import Close from "../assets/svg/closeIcon.svg"
 import { isObjectEmpty } from '../utils/CheckLoginData';
 
-const MobileNavBar = ({ handleClose}) => {
+const MobileNavBar = ({ handleClose }) => {
     const [userName, setUserName] = useState("")
   //   const [voxData, setVoxData] = useState([]);
   //   const [loading, setLoading] = useState(false)

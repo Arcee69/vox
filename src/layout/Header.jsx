@@ -1,23 +1,46 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Vapi from '@vapi-ai/web';
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { CgSpinner } from 'react-icons/cg';
+import { Listbox, Transition} from '@headlessui/react'
+import { IoIosArrowDown } from 'react-icons/io';
+
 
 import Logo from "../assets/svg/logo.svg"
 import ModalPop from '../components/modalPop';
 import RequestForm from '../pages/Insight/RequestForm';
 import { isObjectEmpty } from '../utils/CheckLoginData';
+import SignUp from '../pages/Auth/SignUp';
+import Login from '../pages/Auth/Login';
+
+const solutions = [
+  { name: 'Insight Engine', link:"/insight-engine" },
+  { name: 'Sentiment Decoder', link:"/sentiment-decoder" },
+  { name: 'VoxScribe', link:"#" },
+  { name: 'VoxRelease', link:"#" },
+  { name: 'SpinChecker', link:"#" },
+ 
+]
 
 const Header = () => {
   const [openConsultModal, setOpenConsultModal] = useState(false);
+  const [openLogin, setOpenLogin] = useState(false)
+  const [openSignUp, setOpenSignUp] = useState(false)
   const [anchorEl, setAnchorEl] = useState(null);
-  const [userName, setUserName] = useState("")
+  const [userName, setUserName] = useState("");
+  const [selected, setSelected] = useState(solutions[0])
 
   // const [callStatus, setCallStatus] = useState('inactive')
   // const [voxData, setVoxData] = useState([]);
   // const [loading, setLoading] = useState(false)
+
+  const showOpenSignUpModal = () => {
+    setOpenLogin(false)
+    setOpenSignUp(true)  
+}
+
 
   const navigate = useNavigate()
 
@@ -88,18 +111,64 @@ const Header = () => {
         <img src={Logo} alt='logo' onClick={() => navigate("/")} className='cursor-pointer'/>
         <div className='flex items-center gap-[48px]'>
             <p className='text-BLACK-_100 cursor-pointer font-poppins' onClick={() => navigate("/")}>Home</p>
-            <p className='text-BLACK-_100 cursor-pointer  font-poppins' onClick={() => navigate("/insight-engine")}>Insight Engine</p>
-            <p className='text-BLACK-_100 cursor-pointer  font-poppins' onClick={() => navigate("/sentiment-decoder")}> Sentiment Decoder</p>
             <p className='text-BLACK-_100 cursor-pointer  font-poppins' onClick={() => navigate("/pricing")}> Pricing</p>
+            <Listbox value={selected} onChange={setSelected}>
+                <div className="relative">
+                    <Listbox.Button className="relative w-[150px] cursor-default flex items-center gap-2   py-2 pl-3 pr-10 text-left outline-none sm:text-sm">
+                        <span className="block truncate w-full text-[#FF6600]">Our Solutions</span>
+                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                            <IoIosArrowDown
+                                className="h-5 w-5 text-[#FF6600]"
+                                aria-hidden="true"
+                            />
+                        </span>
+                    </Listbox.Button>
+                    <Transition
+                        as={Fragment}
+                        leave="transition ease-in duration-100"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                    >
+                        <Listbox.Options className="absolute z-10 mt-1 w-[200px] max-h-60  overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+                            {solutions.map((item, index) => (
+                                <Listbox.Option
+                                    key={index}
+                                    className={({ active }) =>
+                                        `relative cursor-default select-none py-2 pl-4 pr-4 ${
+                                        active ? 'bg-[#E6F6F4] text-[#052011]' : 'text-[#052011]'
+                                        }`
+                                    }
+                                    value={item}
+                                >
+                                {({ selected }) => (
+                                    <>
+                                        <span
+                                            className={`block truncate ${
+                                            selected ? 'font-medium' : 'font-normal'
+                                            } text-[#052011]`}
+                                            onClick={() => navigate(item?.link)}
+                                        >
+                                            {item.name}
+                                        </span>
+                                    </>
+                                )}
+                                </Listbox.Option>
+                            ))}
+                        </Listbox.Options>
+                    </Transition>
+                </div>
+            </Listbox>
+            <p className='text-BLACK-_100 cursor-pointer  font-poppins' onClick={() => navigate("/pricing")}>Contact Us</p>
+
             <div 
               id="header-menu" 
               aria-controls={open ? "header-menu" : undefined}
               aria-haspopup="true"
               aria-expanded={open ? "true" : undefined}
-              className='bg-[#FF6600] cursor-pointer rounded-3xl w-[200px]  p-2 flex items-center justify-center h-[54px]' 
-              onClick={(event) => {!isAuthed ? handleClick(event) : setOpenConsultModal(true)}}
+              className={`${userName ? "h-[50px] w-[50px]" : " w-[200px] h-[54px]"} bg-[#FF6600] cursor-pointer rounded-3xl  p-2 flex items-center justify-center`}
+              onClick={(event) => {!isAuthed ? handleClick(event) : setOpenLogin(true)}}
             >
-              <p className='text-[#FFF] font-poppins text-[20px] font-medium'>{userName ? `Hi ${userName?.slice(0, 5)}` : "Get In Touch"}</p>
+              <p className='text-[#FFF] font-poppins text-[20px] font-medium'>{userName ? `${userName?.slice(0, 1)}` : "Login"}</p>
             </div>
             <Menu
                 id="header-menu"
@@ -107,6 +176,11 @@ const Header = () => {
                 open={open}
                 onClose={handleClose}
             >
+                <MenuItem
+                    onClick={() => navigate("/settings")}
+                >
+                    Settings
+                </MenuItem>
                 <MenuItem
                     onClick={() => logOut()}
                 >
@@ -118,6 +192,15 @@ const Header = () => {
         <ModalPop isOpen={openConsultModal}>
           <RequestForm  handleClose={() => setOpenConsultModal(false)}/>
         </ModalPop>
+
+        
+      <ModalPop isOpen={openLogin}>
+        <Login handleClose={() => setOpenLogin(false)} showOpenSignUpModal={showOpenSignUpModal}/>
+      </ModalPop>
+
+      <ModalPop isOpen={openSignUp}>
+        <SignUp handleClose={() => setOpenSignUp(false)}/>
+      </ModalPop>
     </div>
   )
 }
