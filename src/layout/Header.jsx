@@ -18,7 +18,7 @@ import Login from '../pages/Auth/Login';
 const solutions = [
   { name: 'Insight Engine', link:"/insight-engine" },
   { name: 'Sentiment Decoder', link:"/sentiment-decoder" },
-  { name: 'VoxScribe', link:"#" },
+  { name: 'VoxScribe', link:"/voxscribe" },
   { name: 'VoxRelease', link:"#" },
   { name: 'SpinChecker', link:"#" },
  
@@ -111,10 +111,9 @@ const Header = () => {
         <img src={Logo} alt='logo' onClick={() => navigate("/")} className='cursor-pointer'/>
         <div className='flex items-center gap-[48px]'>
             <p className='text-BLACK-_100 cursor-pointer font-poppins' onClick={() => navigate("/")}>Home</p>
-            <p className='text-BLACK-_100 cursor-pointer  font-poppins' onClick={() => navigate("/pricing")}> Pricing</p>
             <Listbox value={selected} onChange={setSelected}>
                 <div className="relative">
-                    <Listbox.Button className="relative w-[150px] cursor-default flex items-center gap-2   py-2 pl-3 pr-10 text-left outline-none sm:text-sm">
+                    <Listbox.Button className="relative w-[150px] cursor-default flex items-center gap-2 py-2 pl-3 pr-10 text-left outline-none sm:text-sm" onClick={() => navigate("/solutions")}>
                         <span className="block truncate w-full text-[#FF6600]">Our Solutions</span>
                         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                             <IoIosArrowDown
@@ -158,6 +157,7 @@ const Header = () => {
                     </Transition>
                 </div>
             </Listbox>
+            <p className='text-BLACK-_100 cursor-pointer  font-poppins' onClick={() => navigate("/pricing")}> Pricing</p>
             <p className='text-BLACK-_100 cursor-pointer  font-poppins' onClick={() => navigate("/pricing")}>Contact Us</p>
 
             <div 

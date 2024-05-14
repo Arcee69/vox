@@ -6,6 +6,8 @@ import InsightEngine from '../pages/Insight'
 import SentimentEngine from '../pages/Sentiment'
 import Pricing from '../pages/Pricing'
 import Settings from '../pages/Settings'
+import Solutions from '../pages/Solutions'
+import Scribe from '../pages/Scribe'
 
 
 
@@ -19,6 +21,8 @@ const Routers = () => {
         <Route path='/sentiment-decoder' element={<SentimentEngine />} />
         <Route path='/pricing' element={<Pricing />} />
         <Route path='/settings' element={<Settings />} />
+        <Route path='/solutions' element={<Solutions />} />
+        <Route path='/voxscribe' element={<Scribe />} />
       </Route>
     </Routes>
   )
