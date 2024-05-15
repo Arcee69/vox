@@ -65,16 +65,19 @@ const isAuthed = isObjectEmpty(JSON.parse(localStorage.getItem("userObj")))
                 <img src={Logo} alt='logo' className='invisible h-[25px]' onClick={() => {navigate("/"); window.scrollTo(0,0); handleClose()}} />
                 <img src={Close} alt="close" className="cursor-pointer" onClick={handleClose}/>
             </div>
-            <ul class="mt-[32px] flex flex-col gap-y-[24px] pb-[16px]">
-                <li onClick={() => {navigate("/"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Home</li>
-                <li onClick={() => {navigate("/insight-engine"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Insight Engine</li>
-                <li onClick={() => {navigate("/sentiment-decoder"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Sentiment Decoder</li>
-                {!isAuthed ? <li onClick={() => logOut()} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Logout</li> : null}
-            </ul>
+            <div className="mt-[32px] flex flex-col gap-y-[24px] pb-[16px]">
+                <p onClick={() => {navigate("/"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Home</p>
+                <p onClick={() => {navigate("/solutions"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#FF6600]">Our Solutions</p>
+                <p onClick={() => {navigate("/pricing"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Pricing</p>
+                <p onClick={() => {navigate("#"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Contact Us</p>
+                {/* <p onClick={() => {navigate("/insight-engine"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Insight Engine</p>
+                <p onClick={() => {navigate("/sentiment-decoder"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Sentiment Decoder</p> */}
+                {!isAuthed ? <p onClick={() => logOut()} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Logout</p> : null}
+            </div>
             <div
               className='bg-[#FF6600] cursor-pointer rounded-lg w-full mt-4 border border-[#000] p-2 flex items-center justify-center h-[67px]'
             >
-                <p className='text-[#FFF] font-poppins text-[20px] font-medium'>{userName ? `Hi ${userName?.data?.name.slice(0, 5)}` : "Get In Touch"}</p>
+                <p className='text-[#FFF] font-poppins text-[20px] font-medium'>{userName ? `Hi ${userName?.data?.name.slice(0, 5)}` : "Get Started"}</p>
             </div>
             {/* <button type='button' className='bg-[#FF6600] cursor-pointer rounded-lg w-full mt-4 border border-[#000] p-2 flex items-center justify-center h-[67px]' onClick={start}>
               {

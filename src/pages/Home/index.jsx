@@ -97,7 +97,7 @@ const Home = () => {
             insights and comprehensive media analysis you wont find elsewhere.
           </p>
           <div className='flex flex-col xl:flex-row gap-5 items-center'>
-            <button type='button' className='bg-[#FF6600] cursor-pointer rounded-3xl w-[200px]  p-2 flex items-center justify-center h-[67px]' > {/* onClick={() => showModal()} */}
+            <button type='button' className='bg-[#FF6600] cursor-pointer rounded-3xl w-[200px]  p-2 flex items-center justify-center h-[67px]'  onClick={() => showModal()}> {/* */}
               <p className='text-[#FFF] font-poppins text-[20px] font-medium'>{loading ? <CgSpinner className=" animate-spin text-xl " /> : "Get Started"}</p>
             </button>
             <button type='button' className='bg-[#F4DCD3] xl:z-10 cursor-pointer rounded-3xl w-[272px] p-2 flex items-center justify-center h-[67px]'>

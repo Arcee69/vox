@@ -5,9 +5,17 @@ import { useNavigate } from 'react-router-dom';
 import Decoder from "../../assets/png/decoder.jpg"
 import { api } from '../../services/api';
 import { appUrls } from '../../services/urls';
+import { isObjectEmpty } from '../../utils/CheckLoginData';
+
+import ModalPop from '../../components/modalPop';
+import Login from '../Auth/Login';
+import SignUp from '../Auth/SignUp';
 
 const Pricing = () => {
     const [showRef, setShowRef] = useState("")
+    const [openLogin, setOpenLogin] = useState(false)
+    const [openSignUp, setOpenSignUp] = useState(false)
+    const [loading, setLoading] = useState(false)
     
     const navigate = useNavigate()
 
@@ -43,7 +51,29 @@ const Pricing = () => {
     navigate("/pricing")
   }
 
+  
   const initializePayment = usePaystackPayment(config);
+
+  const isAuthed = isObjectEmpty(JSON.parse(localStorage.getItem("userObj")))
+
+  console.log(isAuthed, "isAuthed")
+
+  const showModal = () => {
+    if(!isAuthed) {
+      setLoading(true)
+      setTimeout(() => {
+        setLoading(false)
+      }, 1500)
+      initializePayment(onSuccess, onClose)
+    } else {
+      setOpenLogin(true)
+    }
+  }
+
+  const showOpenSignUpModal = () => {
+    setOpenLogin(false)
+    setOpenSignUp(true)  
+}
 
 
   return (
@@ -70,9 +100,7 @@ const Pricing = () => {
 
             <button 
                 className='xl:w-[371px] rounded-lg p-4 bg-[#17053E]'
-                onClick={() => {
-                    initializePayment(onSuccess, onClose)
-                }}
+                onClick={() => showModal()}
             >
                 <p className='text-[#fff]'>Get Access</p>
             </button>
@@ -104,7 +132,13 @@ const Pricing = () => {
         </div>
     </div> */}
 
-  
+        <ModalPop isOpen={openLogin}>
+            <Login handleClose={() => setOpenLogin(false)} showOpenSignUpModal={showOpenSignUpModal}/>
+        </ModalPop>
+
+        <ModalPop isOpen={openSignUp}>
+            <SignUp handleClose={() => setOpenSignUp(false)}/>
+        </ModalPop>
     </div>
   )
 }
