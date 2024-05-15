@@ -15,13 +15,13 @@ const Settings = () => {
     }
 
   return (
-    <div className='flex gap-[40px] px-[172px] mt-[72px] mb-[79px]'>
-        <div className='w-[272px] h-[160px] flex flex-col'>
+    <div className='flex flex-col lg:flex-row gap-[40px] px-5 lg:px-[172px] mt-[72px] mb-[79px]'>
+        <div className='w-full lg:w-[272px] lg:h-auto flex flex-row lg:flex-col overflow-auto'>
             <div onClick={() => handleActive("Profile")} className={`${active === "Profile" ? "bg-[#D0D7DE3D] rounded-[6px]" : ""}  flex items-center cursor-pointer p-3 gap-2 hover:bg-[#D0D7DE3D] hover:rounded-[6px]`}>
                 <FiUser className='text-base text-[#24292F]' />
                 <p className='font-poppins text-[#24292F] font-medium'>Profile</p>
             </div>
-            <div onClick={() => handleActive("Password")} className={`${active === "Password" ? "bg-[#D0D7DE3D] rounded-[6px]" : ""}  flex items-center cursor-pointer p-3 gap-2 hover:bg-[#D0D7DE3D] hover:rounded-[6px]`}>
+            <div onClick={() => handleActive("Password")} className={`${active === "Password" ? "bg-[#D0D7DE3D] rounded-[6px]" : ""}   flex items-center cursor-pointer p-3 gap-2 hover:bg-[#D0D7DE3D] hover:rounded-[6px]`}>
                 <LuShieldAlert className='text-base text-[#24292F]' />
                 <p className='font-poppins text-[#24292F] text-sm font-medium'>Password and authentication</p>
             </div>

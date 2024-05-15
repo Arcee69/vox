@@ -8,7 +8,7 @@ const Password = () => {
         <div className='flex flex-col gap-[8px]'>
             <label htmlFor='Current Password' className='text-[#24292F] font-semibold text-sm'>Current Password</label>
             <input 
-                className='w-[440px] h-[48px] p-2 rounded-lg bg-[#D8DEE4] outline-none text-[#000]'
+                className='lg:w-[440px] h-[48px] p-2 rounded-lg bg-[#D8DEE4] outline-none text-[#000]'
                 placeholder='******'
                 name='currentPassword'
                 type='password'
@@ -19,7 +19,7 @@ const Password = () => {
         <div className='flex flex-col gap-[8px]'>
             <label htmlFor='New Password' className='text-[#24292F] font-semibold text-sm text-[#000]'>New Password</label>
             <input 
-                className='w-[440px] h-[48px] p-2 rounded-lg bg-[#D8DEE4] outline-none'
+                className='lg:w-[440px] h-[48px] p-2 rounded-lg bg-[#D8DEE4] outline-none'
                 placeholder='******'
                 name='newPassword'
                 type='text'
@@ -30,7 +30,7 @@ const Password = () => {
         <div className='flex flex-col gap-[8px]'>
             <label htmlFor='Confirm Password' className='text-[#24292F] font-semibold text-sm text-[#000]'>Confirm Password</label>
             <input 
-                className='w-[440px] h-[48px] p-2 rounded-lg bg-[#D8DEE4] outline-none'
+                className='lg:w-[440px] h-[48px] p-2 rounded-lg bg-[#D8DEE4] outline-none'
                 placeholder='******'
                 name='confirmPassword'
                 type='text'

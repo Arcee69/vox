@@ -14,7 +14,7 @@ const Profile = () => {
         <div className='flex flex-col gap-[8px]'>
             <label htmlFor='Name' className='text-[#24292F] font-semibold text-sm'>Name</label>
             <input 
-                className='w-[440px] h-[48px] p-2 rounded-lg bg-[#D8DEE4] outline-none text-[#000]'
+                className='lg:w-[440px] h-[48px] p-2 rounded-lg bg-[#D8DEE4] outline-none text-[#000]'
                 placeholder={userData?.data?.name}
                 name='user'
                 type='text'
@@ -25,7 +25,7 @@ const Profile = () => {
         <div className='flex flex-col gap-[8px]'>
             <label htmlFor='Email' className='text-[#24292F] font-semibold text-sm text-[#000]'>Email</label>
             <input 
-                className='w-[440px] h-[48px] p-2 rounded-lg bg-[#D8DEE4] outline-none'
+                className='lg:w-[440px] h-[48px] p-2 rounded-lg bg-[#D8DEE4] outline-none'
                 placeholder={userData?.data?.email}
                 name='email'
                 type='text'
