@@ -95,15 +95,14 @@ const InsightEngine = () => {
                 Stay ahead of potential crisis .nVoxPR helps you identify and respond to emerging narrative with agility.
             </p>
             </div>
-
-            <button className='xl:w-[371px] flex items-center justify-center rounded-lg p-4 bg-[#17053E]' onClick={() => showModal()}>
-                <p className='text-[#fff]'>{loading ? <CgSpinner className=" animate-spin text-xl " /> : "Start"} </p>
-            </button>
            
 
         </div>
         <div className='flex flex-col mt-10 xl:mt-0 gap-[32px]'>
             <p className='text-[32px] text-[#17053E] w-full text-center xl:text-left xl:w-[613px] font-medium'>VoxPR listens, analyzes and enhances your PR success.</p>
+            <button className='xl:w-[371px] mx-auto flex items-center justify-center rounded-lg p-4 bg-[#17053E]' onClick={() => showModal()}>
+                <p className='text-[#fff]'>{loading ? <CgSpinner className=" animate-spin text-xl " /> : "Get Insight"} </p>
+            </button>
             <img src={Decoder} alt='Decoder' className='xl:w-[600px]'/>
         </div>
         </div>

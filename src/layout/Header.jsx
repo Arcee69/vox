@@ -158,7 +158,7 @@ const Header = () => {
                 </div>
             </Listbox>
             <p className='text-BLACK-_100 cursor-pointer  font-poppins' onClick={() => navigate("/pricing")}> Pricing</p>
-            <p className='text-BLACK-_100 cursor-pointer  font-poppins' onClick={() => navigate("/pricing")}>Contact Us</p>
+            <p className='text-BLACK-_100 cursor-pointer  font-poppins' onClick={() => setOpenConsultModal(true)}>Contact Us</p>
 
             <div 
               id="header-menu" 

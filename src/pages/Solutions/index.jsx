@@ -72,20 +72,20 @@ const Solutions = () => {
 
   return (
     <div className='w-full'>
-        <div className='w-full pb-[120px] flex justify-center items-center relative'>
-            <div className='absolute hidden xl:block -top-10 left-14'>
+        <div className='w-full pb-[20px] flex justify-center items-center relative'>
+            <div className='absolute hidden xl:block top-10 left-14'>
                 <img src={Cone} alt='Cone' />
             </div>
-            <div className='w-[300px] md:w-[500px] xl:w-[844px] mt-24 xl:mt-10 flex flex-col gap-6 items-center justify-center'>
+            <div className='w-[300px] md:w-[500px] xl:w-[844px] mt-24 xl:mt-2 flex flex-col gap-4 items-center justify-center'>
                 <p className='text-[#404040] text-center font-medium font-poppins text-[20px]'>Our solutions</p>
                 <p className='font-poppins text-[48px] text-center text-[#17053E]'>Vox PR<span className='font-semibold text-[#FF6600]'> Tools.</span></p>
             </div>
-            <div className='absolute hidden xl:block  -bottom-6 right-14'>
+            <div className='absolute hidden xl:block  top-10 right-14'>
                 <img src={Globe} alt='Globe' />
             </div>
         </div>
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-[28px] mx-[20px] lg:mx-[64px] items-center'>
-            <div className='w-full lg:w-[388px] p-[28px] flex flex-col gap-6 bg-[#F9F8F8] rounded-lg border cursor-pointer border-[#E0E6ED]' onClick={() => showModal()}>
+            <div className='w-full lg:w-[388px] p-[28px] flex flex-col gap-6 z-50 bg-[#F9F8F8] rounded-lg border cursor-pointer border-[#E0E6ED]' onClick={() => showModal()}>
                 <img src={Logo} alt='Logo' className='w-[60px] h-[60px]'/>
                 <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Insight Engine</p>
                 <p className='text-[#3B3F5C] font-poppins text-base opacity-50'>Recording Module</p>
