@@ -19,7 +19,7 @@ const solutions = [
   { name: 'Insight Engine', link:"/insight-engine" },
   { name: 'Sentiment Decoder', link:"/sentiment-decoder" },
   { name: 'VoxScribe', link:"/voxscribe" },
-  { name: 'VoxRelease', link:"#" },
+  { name: 'VoxRelease', link:"/voxrelease" },
   { name: 'SpinChecker', link:"#" },
  
 ]

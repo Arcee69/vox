@@ -4,6 +4,7 @@ import { Form, Formik } from 'formik';
 import { CgSpinner } from 'react-icons/cg';
 import { IoClose } from "react-icons/io5";
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { api } from '../../services/api';
 import { appUrls } from '../../services/urls';
@@ -12,6 +13,8 @@ import PasswordField from '../../components/PasswordField';
 const Login = ({ handleClose, showOpenSignUpModal }) => {
     const [loading, setLoading] = useState(false)
     const [openSignUp, setOpenSignUp] = useState(false)
+
+    const navigate = useNavigate()
 
     const submitForm = async (values, action) => {
         setLoading(true)
@@ -34,6 +37,7 @@ const Login = ({ handleClose, showOpenSignUpModal }) => {
             });
         }    
           handleClose()
+          navigate("/solutions")
         })
         .catch((err) => {
           console.log(err, "err")

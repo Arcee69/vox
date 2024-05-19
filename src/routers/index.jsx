@@ -8,8 +8,7 @@ import Pricing from '../pages/Pricing'
 import Settings from '../pages/Settings'
 import Solutions from '../pages/Solutions'
 import Scribe from '../pages/Scribe'
-
-
+import Release from '../pages/Release'
 
 
 const Routers = () => {
@@ -23,6 +22,7 @@ const Routers = () => {
         <Route path='/settings' element={<Settings />} />
         <Route path='/solutions' element={<Solutions />} />
         <Route path='/voxscribe' element={<Scribe />} />
+        <Route path='/voxrelease' element={<Release />} />
       </Route>
     </Routes>
   )

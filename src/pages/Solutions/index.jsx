@@ -63,6 +63,19 @@ const Solutions = () => {
     }
   }
 
+  const showFourthModal = () => {
+    if(!isAuthed) {
+      setLoading(true)
+      setTimeout(() => {
+        setLoading(false)
+      }, 1500)
+      navigate("/voxrelease"); 
+      window.scrollTo(0, 0)
+    } else {
+      setOpenLogin(true)
+    }
+  }
+
   const showOpenSignUpModal = () => {
     setOpenLogin(false)
     setOpenSignUp(true)  
@@ -77,7 +90,7 @@ const Solutions = () => {
                 <img src={Cone} alt='Cone' />
             </div>
             <div className='w-[300px] md:w-[500px] xl:w-[844px] mt-24 xl:mt-2 flex flex-col gap-4 items-center justify-center'>
-                <p className='text-[#404040] text-center font-medium font-poppins text-[20px]'>Our solutions</p>
+                <p className='text-[#404040] w-[400px] text-center font-medium font-poppins text-[20px]'>Intelligent AI Solutions to Streamline PR and Communication Workflow</p>
                 <p className='font-poppins text-[48px] text-center text-[#17053E]'>Vox PR<span className='font-semibold text-[#FF6600]'> Tools.</span></p>
             </div>
             <div className='absolute hidden xl:block  top-10 right-14'>
@@ -85,34 +98,38 @@ const Solutions = () => {
             </div>
         </div>
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-[28px] mx-[20px] lg:mx-[64px] items-center'>
-            <div className='w-full lg:w-[388px] p-[28px] flex flex-col gap-6 z-50 bg-[#F9F8F8] rounded-lg border cursor-pointer border-[#E0E6ED]' onClick={() => showModal()}>
+            <div className='w-full lg:w-[388px] h-full p-[28px] flex flex-col gap-6 z-50 bg-[#F9F8F8] rounded-lg border cursor-pointer border-[#E0E6ED]' onClick={() => showModal()}>
                 <img src={Logo} alt='Logo' className='w-[60px] h-[60px]'/>
                 <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Insight Engine</p>
-                <p className='text-[#3B3F5C] font-poppins text-base opacity-50'>Recording Module</p>
+                <p className='text-[#3B3F5C] font-poppins text-base opacity-50'>Your 24/7 Audio Reputation Advisor</p>
                 <p className='text-[#3B3F5C] font-poppins opacity-80 text-base'>Never miss a mention. VoxPR tracks conversations across traditional and social media delivering instant alerts on what matters to you.</p>
             </div>
-            <div className='w-full lg:w-[388px] p-[28px] flex flex-col gap-6 bg-[#F9F8F8] rounded-lg border cursor-pointer border-[#E0E6ED]' onClick={() => showSecondModal()}>
+            <div className='w-full lg:w-[388px] h-full p-[28px] flex flex-col gap-6 bg-[#F9F8F8] rounded-lg border cursor-pointer border-[#E0E6ED]' onClick={() => showSecondModal()}>
                 <img src={Logo} alt='Logo' className='w-[60px] h-[60px]'/>
                 <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Sentiment Decoder</p>
                 <p className='text-[#3B3F5C] font-poppins text-base opacity-50'>Sentiment Analysis Tool</p>
-                <p className='text-[#3B3F5C] font-poppins opacity-80 text-base'>Our advanced AI tool analyzes and trascribes both audio and text to reveal sentiment, key topics, intent, and streamline transcription.</p>
+                <p className='text-[#3B3F5C] font-poppins opacity-80 text-base'>Uncover hidden meanings in both audio and text to inform your strategies</p>
             </div>
-            <div className='w-full lg:w-[388px] p-[28px] flex flex-col gap-6 z-50 bg-[#F9F8F8] rounded-lg cursor-pointer border border-[#E0E6ED]'  onClick={() => showThirdModal()}>
+            <div className='w-full lg:w-[388px] h-full p-[28px] flex flex-col gap-6 z-50 bg-[#F9F8F8] rounded-lg cursor-pointer border border-[#E0E6ED]'  onClick={() => showThirdModal()}>
                 <img src={Logo} alt='Logo' className='w-[60px] h-[60px]'/>
                 <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Voxscribe</p>
-                <p className='text-[#3B3F5C] font-poppins text-base opacity-50'>Live Transcription tool</p>
-                <p  className='text-[#3B3F5C] font-poppins opacity-80 text-base'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at enim a arcu bibendum posuere ut eget elit. Etiam vitae ipsum</p>
+                <p className='text-[#3B3F5C] font-poppins text-base opacity-50'>Live Transcription and Press Release Automation Tool</p>
+                <p  className='text-[#3B3F5C] font-poppins opacity-80 text-base'>
+                  Tired of tedious manual transcription and struggling to craft impactful press releases? 
+                  VoxScribe is your one-stop solution for turning spoken words into valuable content, instantly. 
+                  It offers a near-zero-percent error rate.
+                </p>
             </div>
-            <div className='w-full lg:w-[388px] p-[38px] flex flex-col gap-6 bg-[#F9F8F8] rounded-lg border border-[#E0E6ED]'>
+            <div className='w-full lg:w-[388px] h-full p-[38px] flex flex-col gap-6 bg-[#F9F8F8] rounded-lg border border-[#E0E6ED]' onClick={() => showFourthModal()}>
               <div className='flex justify-between'>
                 <img src={Logo} alt='Logo' className='w-[60px] h-[60px]'/>
-                <p className='font-poppins text-base text-[#3B3F5C]'>Coming Soon</p>
+                {/* <p className='font-poppins text-base text-[#3B3F5C]'>Coming Soon</p> */}
               </div>
                 <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Vox Release</p>
                 <p className='text-[#3B3F5C] font-poppins text-base opacity-50'>Press Release Automation tool</p>
                 <p className='text-[#3B3F5C] font-poppins opacity-80 text-base'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at enim a arcu bibendum posuere ut eget elit. Etiam vitae ipsum</p>
             </div>
-            <div className='w-full lg:w-[388px] p-[38px] flex flex-col gap-6 bg-[#F9F8F8] rounded-lg border border-[#E0E6ED]'>
+            <div className='w-full lg:w-[388px] h-full p-[38px] flex flex-col gap-6 bg-[#F9F8F8] rounded-lg border border-[#E0E6ED]'>
               <div className='flex justify-between'>
                 <img src={Logo} alt='Logo' className='w-[60px] h-[60px]'/>
                 <p className='font-poppins text-base text-[#3B3F5C]'>Coming Soon</p>

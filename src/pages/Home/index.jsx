@@ -89,13 +89,12 @@ const Home = () => {
           <img src={Cone} alt='Cone' />
         </div>
         <div className='w-[300px] md:w-[500px] xl:w-[844px] mt-24 xl:mt-10 flex flex-col gap-6 items-center justify-center'>
-          <p className='text-[#404040] text-center font-medium font-poppins text-[20px]'>VoxPR: Your AI-Powered PR Partner</p>
-          <p className='font-poppins text-[48px] text-center text-[#17053E]'>Control Your Brand's<span className='font-semibold text-[#FF6600]'> Narrative.</span></p>
-          <p className='text-[#17053E] text-center font-poppins'>
-            VoxPR reimagines the way PR professionals work. 
-            Our cutting edge audio intelligence technology gives you real-time 
-            insights and comprehensive media analysis you wont find elsewhere.
+          <p className='text-[#404040] text-center font-medium font-poppins text-[20px]'>VoxPR: Control Your Brand's Narrative with <span className='font-semibold text-[#FF6600]'>AI-Powered PR.</span></p>
+          <p className='font-poppins text-[28px] text-center text-[#17053E]'>
+            Revolutionize your PR workflow with real-time reputation management, sentiment analysis, live transcription, and press release automation.
+            {/* <span className='font-semibold text-[#FF6600]'> Narrative.</span> */}
           </p>
+        
           <div className='flex flex-col xl:flex-row gap-5 items-center'>
             <button type='button' className='bg-[#FF6600] cursor-pointer rounded-3xl w-[200px]  p-2 flex items-center justify-center h-[67px]'  onClick={() => showModal()}> {/* */}
               <p className='text-[#FFF] font-poppins text-[20px] font-medium'>{loading ? <CgSpinner className=" animate-spin text-xl " /> : "Get Started"}</p>

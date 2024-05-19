@@ -140,47 +140,49 @@ const Scribe = () => {
                     
                 </div>
 
-                <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[28px]'>VoxScribe: Your Audio Transcription Powerhouse for PR</p>
+                <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[28px]'>VoxScribe (Live Transcription and Press Release Automation Tool): </p>
                 
                 <p className='font-medium text-[#8F899C]  xl:w-[458px]'>
-                    Cut through the noise and understand the true impact of your communications. Our
-                    advanced AI tool analyzes audio and text to reveal sentiment, key topics, intent, and
-                    streamline transcription
+                    Tired of tedious manual transcription and struggling to craft impactful press releases? 
+                    VoxScribe is your one-stop solution for turning spoken words into valuable content, instantly. 
+                    It offers a near-zero-percent error rate.
                 </p>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
                     <img src={Monitor} alt='Monitor' className='w-6 h-6'/>
-                    <p className='text-[#17053E] text-[24px]'>Summarization</p>
+                    <p className='text-[#17053E] text-[24px]'>Live Transcription:</p>
                     <p className='font-medium text-[#8F899C]'>
-                        Quickly grasp the core message of interviews, press mentions, and focus groups.
+                        Capture every word of interviews, meetings, events, and press conferences in 
+                        real-time with unparalleled accuracy. 
                     </p>
                 </div>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
                     <img src={Chart} alt='Chart' className='w-6 h-6'/>
-                    <p className='text-[#17053E] text-[24px]'>Topic Detection</p>
+                    <p className='text-[#17053E] text-[24px]'>Multi-Language Support: </p>
                     <p className='font-medium text-[#8F899C]'>
-                        Track how your brand or campaign is discussed across various media.
+                        Transcribe conversations in multiple languages effortlessly, removing communication barriers. 
                     </p>
                 </div>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
                     <img src={Data} alt='Data' className='w-6 h-6'/>
-                    <p className='text-[#17053E] text-[24px]'>Intent Detection</p>
+                    <p className='text-[#17053E] text-[24px]'>Speaker Identification: </p>
                     <p className='font-medium text-[#8F899C]'>
-                        Discover the underlying motivations behind journalist questions or customer feedback.
+                        Easily distinguish between different speakers for clear and organized transcripts. 
                     </p>
                 </div>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
                     <img src={Reputation} alt='Monitor' className='w-6 h-6'/>
-                    <p className='text-[#17053E] text-[24px]'>Sentiment Analysis</p>
+                    <p className='text-[#17053E] text-[24px]'>Keyword Highlighting:</p>
                     <p className='font-medium text-[#8F899C]'>
-                        Measure the emotional tone of coverage, social mentions, and stakeholder communications.
+                        Aptly identify key topics and themes within your transcripts to 
+                        save time and to help focus on your analysis.
                     </p>
                 </div>
 
-                <div className='flex flex-col gap-4 xl:w-[458px]'>
+                {/* <div className='flex flex-col gap-4 xl:w-[458px]'>
                     <img src={Monitor} alt='Monitor' className='w-6 h-6'/>
                     <p className='text-[#17053E] text-[24px]'>Transcription</p>
                     <p className='font-medium text-[#8F899C]'>
@@ -210,7 +212,7 @@ const Scribe = () => {
                     <p className='font-medium text-[#8F899C]'>
                         Analyze conversations for insightful soundbites and key takeaways.
                     </p>
-                </div>
+                </div> */}
 
             </div>
 

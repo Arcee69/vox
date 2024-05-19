@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { toast } from 'react-toastify';
 import { CgSpinner } from 'react-icons/cg';
 import axios from 'axios';
-import { createClient } from "@deepgram/sdk";
+import { AssemblyAI } from 'assemblyai'
 
 import Monitor from "../../assets/svg/monitor.svg"
 import Chart from "../../assets/svg/chart.svg"
@@ -19,14 +19,14 @@ import ModalPop from '../../components/modalPop';
 import Login from '../Auth/Login';
 import SignUp from '../Auth/SignUp';
 
-import Words from './Words';
+
 
 import Listen from "../../assets/png/listen.jpg"
 import RequestForm from '../Insight/RequestForm';
 import { isObjectEmpty } from '../../utils/CheckLoginData';
 
 
-const SentimentEngine = () => {
+const Release = () => {
     const [transcription, setTranscription] = useState([]);
     const [file, setFile] = useState(null);
     const [loading, setLoading] = useState(false)
@@ -42,66 +42,43 @@ const SentimentEngine = () => {
         setFile(selectedFile);
       };
 
+      const client = new AssemblyAI({
+        apiKey: `e2e85fbc06704e94bf249dc576d1145a` 
+      })
 
-    const textDeepgram = () => {
-        setLoading(true)
-        if (!file) {
-            setLoading(false)
-            toast(`No file selected`, {
-                position: "top-right",
-                autoClose: 5000,
-                closeOnClick: true,
-            })
-            console.error('No file selected');
-            return;
+    const audioUrl = file
+
+    const run = async () => {
+        // Step 1: Transcribe an audio file.
+        const transcript = await client.transcripts.transcribe({ audio: audioUrl })
+      
+        // Step 2: Define a prompt to generate content.
+        const prompt = 'Write a SEO-optimized article based on the audio transcript.'
+      
+        // Step 3: Apply LeMUR.
+        const data = {
+            transcript_ids: [transcript.id],
+            prompt
         }
-    
-
-        // Replace 'YOUR_API_KEY' with your actual Deepgram API key
-        const apiKey =  "480b0bf91968cf6cd1b46936dbac6fc1f005295a"; //"e3d86a51a6e86980a36159fc4ba0554b3170782b";
-        
-        // Construct the URL for Deepgram's transcription API endpoint
-        const apiUrl =  'https://api.deepgram.com/v1/listen?summarize=v2&topics=true&intents=true&smart_format=true&punctuate=true&utterances=true&sentiment=true&language=en&model=nova-2'; 
-        //'https://api.deepgram.com/v1/listen?model=nova-2'; "
-        
-        // Construct the request body
-        const formData = new FormData();
-        formData.append('content', file);
-        formData.append('language', 'en-US'); // Adjust language code as needed
-        formData.append('punctuate', 'true'); // Add punctuation to the transcript
-
-        // Make the HTTP POST request to the Deepgram API
-        fetch(apiUrl, {
-            method: 'POST',
+        const response = axios.post("https://api.assemblyai.com/lemur/v3/generate/task", data, {
             headers: {
-                'Authorization': `Token ${apiKey}`,
-            },
-            body: formData,
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Handle the response data here
-            console.log(data);
-            setLoading(false)
-            toast(`Audio Transcribe Successfully`, {
-                position: "top-right",
-                autoClose: 5000,
-                closeOnClick: true,
-            })
-            setTranscription(data?.results)
-            setOpen(true)
-        })
-        .catch(error => {
-            // Handle errors
-            setLoading(false)
-            toast(`Error`, {
-                position: "top-right",
-                autoClose: 5000,
-                closeOnClick: true,
-            })
-            console.error('Error:', error);
-        });
-    };
+                "Authorization": `e2e85fbc06704e94bf249dc576d1145a`,
+                "Content-Type": 'application/json',
+                "Access-Control-Allow-Methods": "*",
+                "Access-Control-Allow-Credentials": true,
+                "Access-Control-Allow-Origin":  "https://api.assemblyai.com"
+            }
+
+        }
+        )
+        // const { response } = await client.lemur.task({
+        //   transcript_ids: [transcript.id],
+        //   prompt,
+        // })
+      
+        console.log(response)
+      }
+
 
     const isAuthed = isObjectEmpty(JSON.parse(localStorage.getItem("userObj")))
 
@@ -109,7 +86,7 @@ const SentimentEngine = () => {
 
     const showModal = () => {
         if(!isAuthed) {
-            textDeepgram()
+            run()
         } else {
             setOpenLogin(true)
         }
@@ -135,7 +112,7 @@ const SentimentEngine = () => {
                     </div>
                     <div className='flex flex-col items-center gap-4'>
                         <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>
-                        <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={textDeepgram}>
+                        <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={() => run()}>
                             <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Sentiment Decoder"}</p>
                         </button>
                     </div>
@@ -143,49 +120,48 @@ const SentimentEngine = () => {
                     <img src={Listen} alt='Listen' className='xl:w-[600px]'/>
                 </div>
 
-                <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[28px]'>Sentiment Decoder (Sentiment Analysis Tool): </p>
+                <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[28px]'>VoxRelease: Effortlessly Automate Press Releases</p>
                 
                 <p className='font-medium text-[#8F899C]  xl:w-[458px]'>
-                    {/* Cut through the noise and understand the true impact of your communications. Our
+                    Cut through the noise and understand the true impact of your communications. Our
                     advanced AI tool analyzes audio and text to reveal sentiment, key topics, intent, and
-                    streamline transcription */}
-                    Uncover hidden meanings in both audio and text to inform your strategies
-
+                    streamline transcription
                 </p>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
                     <img src={Monitor} alt='Monitor' className='w-6 h-6'/>
-                    <p className='text-[#17053E] text-[24px]'>Summarization</p>
+                    <p className='text-[#17053E] text-[24px]'>AI-Powered Generation:</p>
                     <p className='font-medium text-[#8F899C]'>
-                        Quickly grasp the core message of interviews, press mentions, and focus groups.
+                        Transform your transcripts into professional press releases with just a click of a button
                     </p>
                 </div>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
                     <img src={Chart} alt='Chart' className='w-6 h-6'/>
-                    <p className='text-[#17053E] text-[24px]'>Topic Detection</p>
+                    <p className='text-[#17053E] text-[24px]'>Customization: </p>
                     <p className='font-medium text-[#8F899C]'>
-                        Track how your brand or campaign is discussed across various media.
+                        Tone your press releases to your brand's voice and messaging.
                     </p>
                 </div>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
                     <img src={Data} alt='Data' className='w-6 h-6'/>
-                    <p className='text-[#17053E] text-[24px]'>Intent Detection</p>
+                    <p className='text-[#17053E] text-[24px]'>Social Media Snippets: </p>
                     <p className='font-medium text-[#8F899C]'>
-                        Discover the underlying motivations behind journalist questions or customer feedback.
+                        Automatically generate shareable snippets optimized for social media platforms.
                     </p>
                 </div>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
                     <img src={Reputation} alt='Monitor' className='w-6 h-6'/>
-                    <p className='text-[#17053E] text-[24px]'>Sentiment Analysis</p>
+                    <p className='text-[#17053E] text-[24px]'>Maximized Reach: </p>
                     <p className='font-medium text-[#8F899C]'>
-                        Measure the emotional tone of coverage, social mentions, and stakeholder communications.
+                        Effectively amplify your message and gain increased engagement through expertly 
+                        crafted press releases.
                     </p>
                 </div>
 
-                <div className='flex flex-col gap-4 xl:w-[458px]'>
+                {/* <div className='flex flex-col gap-4 xl:w-[458px]'>
                     <img src={Monitor} alt='Monitor' className='w-6 h-6'/>
                     <p className='text-[#17053E] text-[24px]'>Transcription</p>
                     <p className='font-medium text-[#8F899C]'>
@@ -215,7 +191,7 @@ const SentimentEngine = () => {
                     <p className='font-medium text-[#8F899C]'>
                         Analyze conversations for insightful soundbites and key takeaways.
                     </p>
-                </div>
+                </div> */}
 
             </div>
 
@@ -228,7 +204,7 @@ const SentimentEngine = () => {
                 <div className='flex flex-col items-center gap-4'>
                     <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>
                     <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={() => showModal()}> {/*{textDeepgram} */}
-                        <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Sentiment Decoder"}</p>
+                        <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Vox Release"}</p>
                     </button>
                 </div>
 
@@ -264,10 +240,6 @@ const SentimentEngine = () => {
             <RequestForm handleClose={() => setOpenForm(false)} />
         </ModalPop>
 
-        <ModalPop isOpen={open}>
-            <Words handleClose={() => setOpen(false)} transcription={transcription}/>
-        </ModalPop>
-
         <ModalPop isOpen={openLogin}>
             <Login handleClose={() => setOpenLogin(false)} showOpenSignUpModal={showOpenSignUpModal}/>
         </ModalPop>
@@ -280,63 +252,4 @@ const SentimentEngine = () => {
   )
 }
 
-export default SentimentEngine
-
-{/* <div className='flex flex-col xl:flex-row justify-between px-[20px] mb-10 xl:px-[100px]'>
-<div className='flex xl:hidden flex-col gap-4 w-full '>
-    <div className='border flex flex-col items-center text-center gap-2 border-blue-300 p-4'>
-        <p>Get Audio Insights Now</p>
-        <p>Upload your audio file and start analyzing</p>
-        <p>We accept over 40 common audio file formats including MP3, WAV, FLAC, M4A and more.</p>
-    </div>
-
-    <div className='flex flex-col items-center gap-4'>
-        <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>
-        <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={textDeepgram}>
-            <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Sentiment Decoder"}</p>
-        </button>
-    </div>
-    <div>
-        <img src={Decoder} alt='Decoder' className='h-[200px] w-full'/>
-    </div>
-</div>
-<div className='flex flex-col mt-4 xl:mt-0 gap-4 w-full xl:w-[48%]'>
-    <div className='border border-blue-300 p-4'>
-        <p>Sentiment Decoder: Your Audio Analysis Powerhouse for PR</p>
-    </div>
-    <div className='border border-blue-300 p-4'>
-        <p>
-            Cut through the noise and understand the true impact of your communications. Our
-            advanced AI tool analyzes audio and text to reveal sentiment, key topics, intent, and
-            streamline transcription
-        </p>
-    </div>
-    <div className='border border-blue-300 p-4 flex flex-col'>
-        <p className='font-semibold'>Features:</p>
-        <ul className='list-disc p-3 gap-3 flex flex-col'>
-            <li>Summarization: Get the gist of conversations instantly.</li>
-            <li>Topic Detection: Pinpoint the key themes discussed.</li>
-            <li>Intent Detection: Reveal the true purpose behind the words.</li>
-            <li>Sentiment Analysis: Gauge emotions with precision.</li>
-            <li>Transcription: Effortlessly convert spoken word into searchable data.</li>
-        </ul>
-    </div>
-</div>
-<div className='hidden xl:flex flex-col gap-4 w-[48%]'>
-    <div className='border flex flex-col items-center text-center gap-2 border-blue-300 p-4'>
-        <p>Get Audio Insights Now</p>
-        <p>Upload your audio file and start analyzing</p>
-        <p>We accept over 40 common audio file formats including MP3, WAV, FLAC, M4A and more.</p>
-    </div>
-
-    <div className='flex flex-col items-center gap-4'>
-        <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>
-        <button className='xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={textDeepgram}>
-            <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Sentiment Decoder"}</p>
-        </button>
-    </div>
-    <div>
-        <img src={Decoder} alt='Decoder' className='h-[200px] w-full'/>
-    </div>
-</div>
-</div> */}
+export default Release

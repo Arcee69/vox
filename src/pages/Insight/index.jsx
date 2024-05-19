@@ -59,40 +59,41 @@ const InsightEngine = () => {
     <div className='mt-[100px] xl:mt-[45px] '>
         <div className='flex flex-col xl:flex-row justify-between px-[20px] xl:px-[100px]'>
         <div className='flex flex-col gap-[48px]'>
-            <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[38px]'>Why Choose VoxPR Insight Engine?</p>
+            <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[38px]'>Insight Engine: Your 24/7 Audio Reputation Advisor</p>
 
-            <div className='flex flex-col gap-4 xl:w-[458px]'>
+            <div className='flex flex-col gap-2 xl:w-[458px]'>
             <img src={Monitor} alt='Monitor' className='w-6 h-6'/>
-            <p className='text-[#17053E] text-[24px]'>Proactive Monitoring</p>
+            <p className='text-[#17053E] text-[24px]'>We Listen:</p>
             <p className='font-medium text-[#8F899C]'>
-                Never miss a mention. VoxPR tracks conversations across traditional and social media 
-                delivering instant alerts on what matters to you.
+                Our advanced AI reputation Management advisor listens to the reputation management challenges 
+                you face and provide clear analysis.
             </p>
             </div>
 
             <div className='flex flex-col gap-4 xl:w-[458px]'>
             <img src={Chart} alt='Monitor' className='w-6 h-6'/>
-            <p className='text-[#17053E] text-[24px]'>Insightful Sentimental Analysis</p>
+            <p className='text-[#17053E] text-[24px]'>We Understand: </p>
             <p className='font-medium text-[#8F899C]'>
-                Uncover the true tone of coverage. 
-                Know how your brand is perceived and track sentiment trend over time.
+                Our advanced AI efficiently analyzes spoken language, 
+                detecting sentiment, identifying key speakers, and pinpointing emerging trends.
             </p>
             </div>
 
             <div className='flex flex-col gap-4 xl:w-[458px]'>
-            <img src={Data} alt='Monitor' className='w-6 h-6'/>
-            <p className='text-[#17053E] text-[24px]'>Data Driven Reccomendations</p>
-            <p className='font-medium text-[#8F899C]'>
-                Uncover the true tone of coverage. 
-                Know how your brand is perceived and track sentiment trend over time.
-            </p>
+                <img src={Data} alt='Monitor' className='w-6 h-6'/>
+                <p className='text-[#17053E] text-[24px]'>We Advise: </p>
+                <p className='font-medium text-[#8F899C]'>
+                    We provide data-driven recommendations to help you craft effective responses, 
+                    refine your messaging, and strengthen your brand's reputation.
+                </p>
             </div>
 
             <div className='flex flex-col gap-4 xl:w-[458px]'>
             <img src={Reputation} alt='Monitor' className='w-6 h-6'/>
-            <p className='text-[#17053E] text-[24px]'>Reputation Management</p>
+            <p className='text-[#17053E] text-[24px]'>Make Informed Decisions: </p>
             <p className='font-medium text-[#8F899C]'>
-                Stay ahead of potential crisis .nVoxPR helps you identify and respond to emerging narrative with agility.
+                Leverage on data-driven insights to gain clearer perspective, 
+                shape your communication strategies and build a stronger brand.
             </p>
             </div>
            
