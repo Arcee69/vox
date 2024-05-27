@@ -11,7 +11,15 @@ app.get('/token', async (req, res) => {
   try {
     const response = await axios.post('https://api.assemblyai.com/v2/realtime/token', 
       { expires_in: 3600 }, 
-      { headers: { authorization: `e2e85fbc06704e94bf249dc576d1145a` } }); 
+      { headers: { 
+        authorization: `e2e85fbc06704e94bf249dc576d1145a`,
+        "Content-Type": 'application/json',
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Origin": "https://api.assemblyai.com",
+          "Access-Control-Allow-Credentials": true,
+
+      } 
+    }); 
     const { data } = response; 
     res.json(data); 
   } catch (error) {

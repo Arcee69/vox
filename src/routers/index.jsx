@@ -9,6 +9,7 @@ import Settings from '../pages/Settings'
 import Solutions from '../pages/Solutions'
 import Scribe from '../pages/Scribe'
 import Release from '../pages/Release'
+import Translate from '../pages/Translate'
 
 
 const Routers = () => {
@@ -23,6 +24,7 @@ const Routers = () => {
         <Route path='/solutions' element={<Solutions />} />
         <Route path='/voxscribe' element={<Scribe />} />
         <Route path='/voxrelease' element={<Release />} />
+        <Route path='/voxtranslate' element={<Translate />} />
       </Route>
     </Routes>
   )

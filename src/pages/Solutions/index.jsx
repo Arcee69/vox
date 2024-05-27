@@ -76,6 +76,19 @@ const Solutions = () => {
     }
   }
 
+  const showFifthModal = () => {
+    if(!isAuthed) {
+      setLoading(true)
+      setTimeout(() => {
+        setLoading(false)
+      }, 1500)
+      navigate("/voxtranslate"); 
+      window.scrollTo(0, 0)
+    } else {
+      setOpenLogin(true)
+    }
+  }
+
   const showOpenSignUpModal = () => {
     setOpenLogin(false)
     setOpenSignUp(true)  
@@ -127,6 +140,14 @@ const Solutions = () => {
               </div>
                 <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Vox Release</p>
                 <p className='text-[#3B3F5C] font-poppins text-base opacity-50'>Press Release Automation tool</p>
+                <p className='text-[#3B3F5C] font-poppins opacity-80 text-base'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at enim a arcu bibendum posuere ut eget elit. Etiam vitae ipsum</p>
+            </div>
+            <div className='w-full lg:w-[388px] h-full p-[38px] flex flex-col gap-6 bg-[#F9F8F8] rounded-lg border border-[#E0E6ED]' onClick={() => showFifthModal()}>
+              <div className='flex justify-between'>
+                <img src={Logo} alt='Logo' className='w-[60px] h-[60px]'/>
+              </div>
+                <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Vox Translate</p>
+                <p className='text-[#3B3F5C] font-poppins text-base opacity-50'>Dynamic Voice Translation</p>
                 <p className='text-[#3B3F5C] font-poppins opacity-80 text-base'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at enim a arcu bibendum posuere ut eget elit. Etiam vitae ipsum</p>
             </div>
             <div className='w-full lg:w-[388px] h-full p-[38px] flex flex-col gap-6 bg-[#F9F8F8] rounded-lg border border-[#E0E6ED]'>
