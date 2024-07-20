@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 import { CgSpinner } from 'react-icons/cg';
 import axios from 'axios';
@@ -23,19 +23,28 @@ import SignUp from '../Auth/SignUp';
 import Listen from "../../assets/png/listen.jpg"
 import RequestForm from '../Insight/RequestForm';
 import { isObjectEmpty } from '../../utils/CheckLoginData';
+import { Listbox, Transition } from '@headlessui/react';
+import { IoIosArrowDown } from 'react-icons/io';
 
+const language = [
+    {name:"", value:""},
+    {name:"Spanish", value:"es"},
+    // {name: "German", value: "de"},
+    // {name: "French", value: "fr"},
+    // {name: "English", value: "en"},
+]
 
 const Translate = () => {
-    const [transcription, setTranscription] = useState([]);
+    const [languageSelected, setLanguageSelected] = useState(language[0]);
     const [file, setFile] = useState(null);
     const [loading, setLoading] = useState(false)
-    const [open, setOpen] = useState(false)
     const [openForm, setOpenForm] = useState(false)
     const [openLogin, setOpenLogin] = useState(false)
     const [openSignUp, setOpenSignUp] = useState(false)
     const [dubbingId, setDubbingId] = useState("")
 
-console.log(dubbingId, "dubbingId")
+    console.log(dubbingId, "dubbingId")
+    console.log(languageSelected, "languageSelected")
 
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
@@ -43,6 +52,7 @@ console.log(dubbingId, "dubbingId")
       };
 
     const submitForm = async () => {
+        setLoading(true)
         const formData = new FormData();
         formData.append("mode", "automatic");
         formData.append("file", file);
@@ -67,7 +77,7 @@ console.log(dubbingId, "dubbingId")
         await axios.post('https://api.elevenlabs.io/v1/dubbing', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
-                'xi-api-key': import.meta.env.VITE_APP_API_KEY 
+                'xi-api-key': "3392b41099e1bfc55980e42d6af4b040" 
             }
         })
         .then((res) => {
@@ -90,34 +100,65 @@ console.log(dubbingId, "dubbingId")
     }
 
     const getFile = async () => {
-        try {
-            const res = await axios.get(`https://api.elevenlabs.io/v1/dubbing/${dubbingId}/audio/es`, null, {
-                headers: {
-                    'xi-api-key': import.meta.env.VITE_APP_API_KEY
-                }
-            });
-            console.log(res, "res");
-            toast(`File Converted Successfully`, {
-                position: "top-right",
-                autoClose: 5000,
-                closeOnClick: true,
-            });
-        } catch (error) {
-            console.error("Error fetching file:", error);
-            toast(`Error converting file: ${error.message}`, {
-                position: "top-right",
-                autoClose: 5000,
-                closeOnClick: true,
-            });
-        }
+            try {
+                const res = await axios.get(`https://api.elevenlabs.io/v1/dubbing/${dubbingId}/audio/${languageSelected?.value || "es"}`, {
+                    headers: {
+                        'xi-api-key': "3392b41099e1bfc55980e42d6af4b040"
+                    },
+                    responseType: 'blob' // Important to handle the binary data correctly
+                });
+                console.log(res?.data, "res");
+
+                  // Create a blob from the response data
+                const blob = new Blob([res.data], { type: 'audio/mpeg' });
+        
+                // Create a link element
+                const link = document.createElement('a');
+        
+                // Set the download attribute with a filename
+                link.href = window.URL.createObjectURL(blob);
+                link.download = `audio_${dubbingId}.mp3`;
+        
+                // Append the link to the body
+                document.body.appendChild(link);
+                
+                // Programmatically click the link to trigger the download
+                link.click();
+                
+                // Remove the link from the document
+                document.body.removeChild(link);
+
+                setLoading(false)
+                toast(`File Converted Successfully`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    closeOnClick: true,
+                });
+            } catch (error) {
+                console.error("Error fetching file:", error);
+                setLoading(false)
+                toast(`Error converting file: ${error.message}`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    closeOnClick: true,
+                });
+            }
+        
     };
-    
+
+    const checkDubbingId = () => {
+        if(dubbingId) {
+            setTimeout(() => {
+                getFile()
+            }, 70000)
+        }
+    }
+
+    const lang = languageSelected.name
 
     useEffect(() => {
-        if(dubbingId) {
-            getFile()
-        }
-    }, [dubbingId])
+        checkDubbingId()
+    }, [dubbingId, lang])
 
 
     const isAuthed = isObjectEmpty(JSON.parse(localStorage.getItem("userObj")))
@@ -154,6 +195,52 @@ console.log(dubbingId, "dubbingId")
                     </div>
                     <div className='flex flex-col items-center gap-4'>
                         <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>
+                        <Listbox value={languageSelected} onChange={setLanguageSelected}>
+                            <div className="relative">
+                                <Listbox.Button className="outline-none w-full flex items-center justify-between  rounded-lg bg-[#fff] border  border-[#BABABA] p-3 h-[48px] border-solid">
+                                    <span className="block truncate w-full text-left text-[#222222] font-medium  font-mont">  {languageSelected.name || 'Select a language'}</span>
+                                    {/* <span className="pointer-events-none absolute inset-y-0 right-0 pr-2 lg:-right-6 flex items-center"> */}
+                                        <IoIosArrowDown
+                                            className="h-5 w-5 text-[#AAAAAA] "
+                                            aria-hidden="true"
+                                        />
+                                    {/* </span> */}
+                                </Listbox.Button>
+                                <Transition
+                                    as={Fragment}
+                                    leave="transition ease-in duration-100"
+                                    leaveFrom="opacity-100"
+                                    leaveTo="opacity-0"
+                                >
+                                    <Listbox.Options className="absolute z-10 mt-1 w-[300px] max-h-60  overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+                                        {language.map((item, index) => (
+                                            <Listbox.Option
+                                                key={index}
+                                                className={({ active }) =>
+                                                    `relative cursor-default select-none py-2 pl-4 pr-4 ${
+                                                    active ? 'bg-[#E6F6F4] text-[#052011]' : 'text-[#052011]'
+                                                    }`
+                                                }
+                                                value={item}
+                                            >
+                                            {({ selected }) => (
+                                                <>
+                                                    <span
+                                                        className={`block truncate ${
+                                                        selected ? 'font-medium' : 'font-normal'
+                                                        } text-[#052011]`}
+                                                        // onChange={() => setFieldValue("gender", item?.name)}
+                                                    >
+                                                        {item.name}
+                                                    </span>
+                                                </>
+                                            )}
+                                            </Listbox.Option>
+                                        ))}
+                                    </Listbox.Options>
+                                </Transition>
+                            </div>
+                        </Listbox>
                         <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={() => run()}>
                             <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Vox Translate"}</p>
                         </button>
@@ -247,6 +334,52 @@ console.log(dubbingId, "dubbingId")
                 </div>
                 <div className='flex flex-col items-center gap-4'>
                     <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>
+                    <Listbox value={languageSelected} onChange={setLanguageSelected}>
+                        <div className="relative">
+                            <Listbox.Button className="outline-none w-full xl:w-[371px] flex items-center justify-between  rounded-lg bg-[#fff] border  border-[#BABABA] p-3 h-[48px] border-solid">
+                                <span className="block truncate w-full text-left text-[#222222] font-medium  font-mont">  {languageSelected.name || 'Select a language'}</span>
+                                {/* <span className="pointer-events-none absolute inset-y-0 right-0 pr-2 lg:-right-6 flex items-center"> */}
+                                    <IoIosArrowDown
+                                        className="h-5 w-5 text-[#AAAAAA] "
+                                        aria-hidden="true"
+                                    />
+                                {/* </span> */}
+                            </Listbox.Button>
+                            <Transition
+                                as={Fragment}
+                                leave="transition ease-in duration-100"
+                                leaveFrom="opacity-100"
+                                leaveTo="opacity-0"
+                            >
+                                <Listbox.Options className="absolute z-10 mt-1 w-[300px] max-h-60  overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+                                    {language.map((item, index) => (
+                                        <Listbox.Option
+                                            key={index}
+                                            className={({ active }) =>
+                                                `relative cursor-default select-none py-2 pl-4 pr-4 ${
+                                                active ? 'bg-[#E6F6F4] text-[#052011]' : 'text-[#052011]'
+                                                }`
+                                            }
+                                            value={item}
+                                        >
+                                        {({ selected }) => (
+                                            <>
+                                                <span
+                                                    className={`block truncate ${
+                                                    selected ? 'font-medium' : 'font-normal'
+                                                    } text-[#052011]`}
+                                                    // onChange={() => setFieldValue("gender", item?.name)}
+                                                >
+                                                    {item.name}
+                                                </span>
+                                            </>
+                                        )}
+                                        </Listbox.Option>
+                                    ))}
+                                </Listbox.Options>
+                            </Transition>
+                        </div>
+                    </Listbox>
                     <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={() => showModal()}> {/*{textDeepgram} */}
                         <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Translate"}</p>
                     </button>
