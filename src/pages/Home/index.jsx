@@ -91,10 +91,8 @@ const Home = () => {
         <div className='w-[300px] md:w-[500px] xl:w-[844px] mt-24 xl:mt-10 flex flex-col gap-6 items-center justify-center'>
           <p className='text-[#404040] text-center font-medium font-poppins text-[20px]'>VoxPR: Automate Your PR and Communication Workflow with <span className='font-semibold text-[#FF6600]'>AI-Powered Tools.</span></p>
           <p className='font-poppins text-[22px] text-center text-[#17053E]'>
-            Take control of your brand's narrative and streamline your PR and communications with VoxPR. 
-            Streamline your PR and communications with real-time reputation management, 
-            sentiment analysis, live transcription, press release automation, 
-            and instant voice clone and translation in 29 languages.
+            Streamline your PR and communications with real-time reputation management, sentiment analysis, 
+            live transcription, press release automation, and instant voice clone and translation in 29 languages
           </p>
         
           <div className='flex flex-col xl:flex-row gap-5 items-center'>

@@ -20,6 +20,7 @@ const solutions = [
   { name: 'Sentiment Decoder', link:"/sentiment-decoder" },
   { name: 'VoxScribe', link:"/voxscribe" },
   { name: 'VoxRelease', link:"/voxrelease" },
+  { name: 'VoxTranslate', link:"/voxtranslate" },
   { name: 'SpinChecker', link:"#" },
  
 ]
@@ -128,7 +129,7 @@ const Header = () => {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                     >
-                        <Listbox.Options className="absolute z-10 mt-1 w-[200px] max-h-60  overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+                        <Listbox.Options className="absolute mt-1 w-[200px] max-h-60 z-50  overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
                             {solutions.map((item, index) => (
                                 <Listbox.Option
                                     key={index}

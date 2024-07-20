@@ -24,6 +24,7 @@ import SignUp from '../Auth/SignUp';
 import Listen from "../../assets/png/listen.jpg"
 import RequestForm from '../Insight/RequestForm';
 import { isObjectEmpty } from '../../utils/CheckLoginData';
+import Result from './Result';
 
 
 const Release = () => {
@@ -34,7 +35,8 @@ const Release = () => {
     const [openForm, setOpenForm] = useState(false)
     const [openLogin, setOpenLogin] = useState(false)
     const [openSignUp, setOpenSignUp] = useState(false)
-
+    const [openResult, setOpenResult] = useState(false)
+    const [showResult, setShowResult] = useState([])
 
 
     const handleFileChange = (e) => {
@@ -43,7 +45,7 @@ const Release = () => {
       };
 
       const client = new AssemblyAI({
-        apiKey: `e2e85fbc06704e94bf249dc576d1145a` 
+        apiKey: import.meta.env.VITE_APP_ASSEMBLY_AI_API_KEY  
       })
 
     const audioUrl = file
@@ -51,35 +53,54 @@ const Release = () => {
     const run = async () => {
         // Step 1: Transcribe an audio file.
         const transcript = await client.transcripts.transcribe({ audio: audioUrl })
+
+        console.log(transcript, "faoao")
       
         // Step 2: Define a prompt to generate content.
         const prompt = 'Write a SEO-optimized article based on the audio transcript.'
-      
-        // Step 3: Apply LeMUR.
+
         const data = {
-            transcript_ids: [transcript.id],
-            prompt
+            prompt: prompt,
+            transcript_ids: [transcript?.id]
         }
-        const response = axios.post("https://api.assemblyai.com/lemur/v3/generate/task", data, {
+
+
+        // Run a task using LeMUR (POST /lemur/v3/generate/task)
+        const response = await fetch("https://api.assemblyai.com/lemur/v3/generate/task", {
+            method: "POST",
             headers: {
-                "Authorization": `e2e85fbc06704e94bf249dc576d1145a`,
-                "Content-Type": 'application/json',
-                "Access-Control-Allow-Methods": "*",
-                "Access-Control-Allow-Credentials": true,
-                "Access-Control-Allow-Origin":  "https://api.assemblyai.com"
-            }
+                "Authorization": "e2e85fbc06704e94bf249dc576d1145a",
+                "Content-Type": "application/json",
+                // "Access-Control-Allow-Methods": "*",
+                // "Access-Control-Allow-Origin": "https://www.assemblyai.com",
+                // "Access-Control-Allow-Credentials": true,
+                // "Mode": "no-cors"
+            },
+            body: JSON.stringify({
+            "prompt": 'Write a SEO-optimized article based on the audio transcript.',
+            "context": "",
+            "final_model": "default",
+            "max_output_size": 3000,
+            "temperature": 0,
+            "transcript_ids": [
+                transcript?.id
+            ]
+            }),
+        });
+        
+        const body = await response.json();
+        console.log(body, "lambo");
 
-        }
-        )
-        // const { response } = await client.lemur.task({
-        //   transcript_ids: [transcript.id],
-        //   prompt,
-        // })
+        setShowResult(body)
       
-        console.log(response)
-      }
+        if(body.response) {
+            setOpenResult(true)
+        }
+      
+        console.log(response, "caro")
+    }
 
-
+   
     const isAuthed = isObjectEmpty(JSON.parse(localStorage.getItem("userObj")))
 
     console.log(isAuthed, "isAuthed")
@@ -244,9 +265,13 @@ const Release = () => {
             <Login handleClose={() => setOpenLogin(false)} showOpenSignUpModal={showOpenSignUpModal}/>
         </ModalPop>
 
-      <ModalPop isOpen={openSignUp}>
-        <SignUp handleClose={() => setOpenSignUp(false)}/>
-      </ModalPop>
+        <ModalPop isOpen={openSignUp}>
+            <SignUp handleClose={() => setOpenSignUp(false)}/>
+        </ModalPop>
+
+        <ModalPop isOpen={openResult}>
+            <Result handleClose={() => setOpenResult(false)} showResult={showResult} />
+        </ModalPop>
 
     </div>
   )

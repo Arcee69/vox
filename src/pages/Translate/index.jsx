@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 import { CgSpinner } from 'react-icons/cg';
 import axios from 'axios';
@@ -33,8 +33,9 @@ const Translate = () => {
     const [openForm, setOpenForm] = useState(false)
     const [openLogin, setOpenLogin] = useState(false)
     const [openSignUp, setOpenSignUp] = useState(false)
+    const [dubbingId, setDubbingId] = useState("")
 
-
+console.log(dubbingId, "dubbingId")
 
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
@@ -71,6 +72,7 @@ const Translate = () => {
         })
         .then((res) => {
             console.log(res, "appa")
+            setDubbingId(res?.data?.dubbing_id)
             toast(`File Uploaded Successfully`, {
                 position: "top-right",
                 autoClose: 5000,
@@ -86,6 +88,36 @@ const Translate = () => {
             }) 
         })
     }
+
+    const getFile = async () => {
+        try {
+            const res = await axios.get(`https://api.elevenlabs.io/v1/dubbing/${dubbingId}/audio/es`, null, {
+                headers: {
+                    'xi-api-key': import.meta.env.VITE_APP_API_KEY
+                }
+            });
+            console.log(res, "res");
+            toast(`File Converted Successfully`, {
+                position: "top-right",
+                autoClose: 5000,
+                closeOnClick: true,
+            });
+        } catch (error) {
+            console.error("Error fetching file:", error);
+            toast(`Error converting file: ${error.message}`, {
+                position: "top-right",
+                autoClose: 5000,
+                closeOnClick: true,
+            });
+        }
+    };
+    
+
+    useEffect(() => {
+        if(dubbingId) {
+            getFile()
+        }
+    }, [dubbingId])
 
 
     const isAuthed = isObjectEmpty(JSON.parse(localStorage.getItem("userObj")))
@@ -113,9 +145,12 @@ const Translate = () => {
 
                 <div className='flex xl:hidden flex-col mt-10 xl:mt-0 gap-[32px]'>
                     <div className='flex flex-col  xl:w-[600px] gap-2 xl:p-4'>
-                        <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Get Audio Insights Now</p>
-                        <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Upload your audio file and start analyzing</p>
-                        <p className='text-[#17053E] text-[22px] font-poppins font-medium'>We accept over 40 common audio file formats including MP3, WAV, FLAC, M4A and more.</p>
+                        <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Upload your audio or video file and start analyzing</p>
+                        <p className='text-[#17053E] text-[22px] font-poppins font-medium'>
+                            VoxTranslator's AI-powered Automated Dubbing uses advanced voice cloning technology 
+                            to translate video content while maintaining the authenticity of the original speakers' 
+                            voices. Reach diverse audiences without sacrificing the nuances of your message
+                        </p>
                     </div>
                     <div className='flex flex-col items-center gap-4'>
                         <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>
@@ -203,9 +238,12 @@ const Translate = () => {
 
             <div className='xl:flex flex-col mt-10 hidden xl:mt-0 gap-[32px]'>
                 <div className='flex flex-col  xl:w-[600px] gap-2 xl:p-4'>
-                    <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Get Audio Insights Now</p>
-                    <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Upload your audio file and start analyzing</p>
-                    <p className='text-[#17053E] text-[22px] font-poppins font-medium'>We accept over 40 common audio file formats including MP3, WAV, FLAC, M4A and more.</p>
+                    <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Upload your audio or video file and start analyzing</p>
+                    <p className='text-[#17053E] text-[22px] font-poppins font-medium'>
+                        VoxTranslator's AI-powered Automated Dubbing uses advanced voice cloning technology 
+                        to translate video content while maintaining the authenticity of the original speakers' 
+                        voices. Reach diverse audiences without sacrificing the nuances of your message
+                    </p>
                 </div>
                 <div className='flex flex-col items-center gap-4'>
                     <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>

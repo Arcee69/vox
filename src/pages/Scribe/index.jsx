@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { toast } from 'react-toastify';
 import { CgSpinner } from 'react-icons/cg';
 import RecordRTC from 'recordrtc';
+import axios from "axios"
 
 import Monitor from "../../assets/svg/monitor.svg"
 import Chart from "../../assets/svg/chart.svg"
@@ -19,92 +20,136 @@ const Scribe = () => {
     const [loading, setLoading] = useState(false)
     const [isRecording, setIsRecording] = useState(false)
     const [transcript, setTranscript] = useState('')
+    const [tokenData, setTokenData] = useState()
+    const [text, setText] = useState("")
 
 
     const socket = useRef(null)
     const recorder = useRef(null)
 
-    const generateTranscript = async() => {
-        const response = await fetch('http://localhost:8000/token');
-        const data = await response.json();
+    const getTranscription = async () => {
+        const response = await fetch('https://api.assemblyai.com/v2/transcript', {
+            method: "POST",
+            headers: {
+                "Authorization": "e2e85fbc06704e94bf249dc576d1145a",
+                "Content-Type": "application/json",
+                // "Access-Control-Allow-Methods": "*",
+                // "Access-Control-Allow-Origin": "https://www.assemblyai.com",
+                // "Access-Control-Allow-Credentials": true,
+                // "Mode": "no-cors"   "https://github.com/AssemblyAI-Examples/audio-examples/raw/main/20230607_me_canadian_wildfires.mp3"
+            },
+            body: JSON.stringify({ 
+                "audio_url": text
+            }),
+        });
+        
+        const body = await response.json();
+        console.log(body, "text");
+
+    }
+
+
+    // const generateTranscript = async() => {
+       
+        // try {
+        //     const response = await axios.post('https://api.assemblyai.com/v2/realtime/token',
+        //         { expires_in: 3600 }, 
+        //         { 
+        //             headers: { 
+        //                 "Authorization": `e2e85fbc06704e94bf249dc576d1145a`,
+        //                 "Content-Type": 'application/json',
+        //                 // "Access-Control-Allow-Methods": "*",
+        //                 // "Access-Control-Allow-Origin": "*",
+        //                 // "Access-Control-Allow-Credentials": true,
+        //                 // "Mode":"no-cors"
+        //             } 
+        //         }); 
+        //     console.log(response, "response")
+        // } catch (err) {
+        //     console.log(err, "err")
+        // }
+
+        // const response = await fetch('http://localhost:8000/token');
+
+        // const data = await response.json();
     
-        if(data.error){
-          alert(data.error)
-        }
+        // if(data.error){
+        //   alert(data.error)
+        // }
           
-        const { token } = data;
+        // const { token } = data;
       
-        socket.current = await new WebSocket(`wss://api.assemblyai.com/v2/realtime/ws?sample_rate=16000&token=${token}`);
+    //     socket.current = await new WebSocket(`wss://api.assemblyai.com/v2/realtime/ws?sample_rate=16000&token=${tokenData}`);
       
-        const texts = {};
-        socket.current.onmessage = (voicePrompt) => {
-          let msg = '';
-          const res = JSON.parse(voicePrompt.data);
-          texts[res.audio_start] = res.text;
-          const keys = Object.keys(texts);
-          keys.sort((a, b) => a - b);
-          for (const key of keys) {
-            if (texts[key]) {
-              msg += ` ${texts[key]}` 
-              console.log(msg)
-            }
-          }
-          setTranscript(msg)
-        };
+    //     const texts = {};
+    //     socket.current.onmessage = (voicePrompt) => {
+    //       let msg = '';
+    //       const res = JSON.parse(voicePrompt.data);
+    //       texts[res.audio_start] = res.text;
+    //       const keys = Object.keys(texts);
+    //       keys.sort((a, b) => a - b);
+    //       for (const key of keys) {
+    //         if (texts[key]) {
+    //           msg += ` ${texts[key]}` 
+    //           console.log(msg)
+    //         }
+    //       }
+    //       setTranscript(msg)
+    //     };
       
-        socket.current.onerror = (event) => {
-          console.error(event);
-          socket.current.close();
-        }
+    //     socket.current.onerror = (event) => {
+    //       console.error(event);
+    //       socket.current.close();
+    //     }
         
-        socket.current.onclose = event => {
-          console.log(event);
-          socket.current = null;
-        }
+    //     socket.current.onclose = event => {
+    //       console.log(event);
+    //       socket.current = null;
+    //     }
       
-        socket.current.onopen = () => {
-          navigator.mediaDevices.getUserMedia({ audio: true })
-            .then((stream) => {
-                recorder.current = new RecordRTC(stream, {
-                type: 'audio',
-                mimeType: 'audio/webm;codecs=pcm', 
-                recorderType: RecordRTC.StereoAudioRecorder,
-                timeSlice: 250, 
-                desiredSampRate: 16000,
-                numberOfAudioChannels: 1, 
-                bufferSize: 4096,
-                audioBitsPerSecond: 128000,
-                ondataavailable: (blob) => {
-                  const reader = new FileReader();
-                  reader.onload = () => {
-                    const base64data = reader.result;
-                    if (socket.current) {
-                      socket.current.send(JSON.stringify({ audio_data: base64data.split('base64,')[1] }));
-                    }
-                  };
-                  reader.readAsDataURL(blob);
-                },
-              });
-              recorder.current.startRecording();
-            })
-            .catch((err) => console.error(err));
-        };
+    //     socket.current.onopen = () => {
+    //       navigator.mediaDevices.getUserMedia({ audio: true })
+    //         .then((stream) => {
+    //             recorder.current = new RecordRTC(stream, {
+    //             type: 'audio',
+    //             mimeType: 'audio/webm;codecs=pcm', 
+    //             recorderType: RecordRTC.StereoAudioRecorder,
+    //             timeSlice: 250, 
+    //             desiredSampRate: 16000,
+    //             numberOfAudioChannels: 1, 
+    //             bufferSize: 4096,
+    //             audioBitsPerSecond: 128000,
+    //             ondataavailable: (blob) => {
+    //               const reader = new FileReader();
+    //               reader.onload = () => {
+    //                 const base64data = reader.result;
+    //                 if (socket.current) {
+    //                   socket.current.send(JSON.stringify({ audio_data: base64data.split('base64,')[1] }));
+    //                 }
+    //               };
+    //               reader.readAsDataURL(blob);
+    //             },
+    //           });
+    //           recorder.current.startRecording();
+    //         })
+    //         .catch((err) => console.error(err));
+    //     };
         
-        setIsRecording(true) 
-      }
+    //     setIsRecording(true) 
+    //   }
     
-      const endTranscription = async (event) => {
-        event.preventDefault();
-        setIsRecording(false) 
+    //   const endTranscription = async (event) => {
+    //     event.preventDefault();
+    //     setIsRecording(false) 
     
-        socket.current.send(JSON.stringify({terminate_session: true}));
-        socket.current.close();
-        console.log(prompt)
-        socket.current = null;
+    //     socket.current.send(JSON.stringify({terminate_session: true}));
+    //     socket.current.close();
+    //     console.log(prompt)
+    //     socket.current = null;
     
-        recorder.current.pauseRecording();
-        recorder.current = null;
-      }
+    //     recorder.current.pauseRecording();
+    //     recorder.current = null;
+    //   }
     
     console.log(transcript, "transcript")
   
@@ -118,19 +163,30 @@ const Scribe = () => {
                     <div className='flex flex-col  xl:w-[600px] gap-2 xl:p-4'>
                         <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Get Audio Transcription Now</p>
                     </div>
+                    <div>
+                        <input 
+                            type='text'
+                            name='url'
+                            className='outline-none w-full border border-[#000]'
+                        />
+                    </div>
                     <div className='flex flex-col items-center gap-4'>
-                    {isRecording ? (
-                    <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={endTranscription}>
-                        <p className='text-[#fff] '>Stop recording</p>
-                    </button>
-                ):(
+                        <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={getTranscription}>
+                            <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Voxscribe"}</p>
+                        </button>
+                    </div>
+                    {/* <div className='flex flex-col items-center gap-4'>
+                        {isRecording ? (
+                        <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={endTranscription}>
+                            <p className='text-[#fff] '>Stop recording</p>
+                        </button>
+                        ):(
                         <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={generateTranscript}>
                             <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Voxscribe"}</p>
                         </button>
-                    )
-                }
-                        
-                    </div>
+                        )
+                        }
+                    </div> */}
                     <textarea
                         type="text"
                         value={transcript}
@@ -220,19 +276,32 @@ const Scribe = () => {
                 <div className='flex flex-col  xl:w-[600px] gap-2 '>
                     <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Get Audio Transcription Now</p>
                 </div>
+                <div>
+                    <input 
+                        type='text'
+                        name='url'
+                        placeholder='audio url here...'
+                        className='outline-none w-full border border-[#000] h-[48px] rounded-lg p-2'
+                        onChange={(e) => setText(e.target.value)}
+                    />
+                </div>
                 <div className='flex flex-col items-center gap-4'>
-                {isRecording ? (
-                    <button className='w-full text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={endTranscription}>
-                        <p className='text-[#fff] '>Stop recording</p>
-                    </button>
-                ):(
-                    <button className='w-full text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={generateTranscript}>
+                    <button className='w-full xl:w-full text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={getTranscription}>
                         <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Voxscribe"}</p>
                     </button>
-                    )
-                }
-
                 </div>
+                {/* <div className='flex flex-col items-center gap-4'>
+                    {isRecording ? (
+                        <button className='w-full text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={endTranscription}>
+                            <p className='text-[#fff] '>Stop recording</p>
+                        </button>
+                    ):(
+                        <button className='w-full text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={generateTranscript}>
+                            <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Voxscribe"}</p>
+                        </button>
+                        )
+                    }
+                </div> */}
 
                 <textarea
                     type="text"

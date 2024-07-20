@@ -42,7 +42,7 @@ const Login = ({ handleClose, showOpenSignUpModal }) => {
         .catch((err) => {
           console.log(err, "err")
           setLoading(false)
-          toast(`Error`, {
+          toast(`${err.data.message}`, {
             position: "top-right",
             autoClose: 5000,
             closeOnClick: true,

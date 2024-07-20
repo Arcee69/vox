@@ -111,7 +111,7 @@ const Solutions = () => {
             </div>
         </div>
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-[28px] mx-[20px] lg:mx-[64px] items-center'>
-            <div className='w-full lg:w-[388px] h-full p-[28px] flex flex-col gap-6 z-50 bg-[#F9F8F8] rounded-lg border cursor-pointer border-[#E0E6ED]' onClick={() => showModal()}>
+            <div className='w-full lg:w-[388px] h-full p-[28px] flex flex-col gap-6 z-10 bg-[#F9F8F8] rounded-lg border cursor-pointer border-[#E0E6ED]' onClick={() => showModal()}>
                 <img src={Logo} alt='Logo' className='w-[60px] h-[60px]'/>
                 <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Insight Engine</p>
                 <p className='text-[#3B3F5C] font-poppins text-base opacity-50'>Your AI Reputation Strategist</p>
@@ -130,7 +130,7 @@ const Solutions = () => {
                   key topics, intent, and streamline transcription.
                 </p>
             </div>
-            <div className='w-full lg:w-[388px] h-full p-[28px] flex flex-col gap-6 z-50 bg-[#F9F8F8] rounded-lg cursor-pointer border border-[#E0E6ED]'  onClick={() => showThirdModal()}>
+            <div className='w-full lg:w-[388px] h-full p-[28px] flex flex-col gap-6 z-40 bg-[#F9F8F8] rounded-lg cursor-pointer border border-[#E0E6ED]'  onClick={() => showThirdModal()}>
                 <img src={Logo} alt='Logo' className='w-[60px] h-[60px]'/>
                 <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Voxscribe</p>
                 <p className='text-[#3B3F5C] font-poppins text-base opacity-50'>Live Recording Capability</p>
