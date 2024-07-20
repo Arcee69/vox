@@ -106,7 +106,7 @@ const Solutions = () => {
                 <p className='text-[#404040] w-[400px] text-center font-medium font-poppins text-[20px]'>Intelligent AI Solutions to Streamline PR and Communication Workflow</p>
                 <p className='font-poppins text-[48px] text-center text-[#17053E]'>Vox PR<span className='font-semibold text-[#FF6600]'> Tools.</span></p>
             </div>
-            <div className='absolute hidden xl:block  top-10 right-14'>
+            <div className='absolute hidden xl:block top-10 right-14'>
                 <img src={Globe} alt='Globe' />
             </div>
         </div>
@@ -130,18 +130,7 @@ const Solutions = () => {
                   key topics, intent, and streamline transcription.
                 </p>
             </div>
-            <div className='w-full lg:w-[388px] h-full p-[28px] flex flex-col gap-6 z-40 bg-[#F9F8F8] rounded-lg cursor-pointer border border-[#E0E6ED]'  onClick={() => showThirdModal()}>
-                <img src={Logo} alt='Logo' className='w-[60px] h-[60px]'/>
-                <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Voxscribe</p>
-                <p className='text-[#3B3F5C] font-poppins text-base opacity-50'>Live Recording Capability</p>
-                <p  className='text-[#3B3F5C] font-poppins opacity-80 text-base'>
-                  Enables users to record interviews and events directly within the application, 
-                  streamlining the process of capturing essential communications. 
-                  Offers real-time transcription of audio streams, ensuring immediate access to accurate textual 
-                  representations of all communications.
-                </p>
-            </div>
-            <div className='w-full lg:w-[388px] h-full p-[38px] flex flex-col gap-6 bg-[#F9F8F8] rounded-lg border border-[#E0E6ED]' onClick={() => showFourthModal()}>
+            <div className='w-full lg:w-[388px] h-full p-[38px] flex flex-col z-10 gap-6 bg-[#F9F8F8] rounded-lg border border-[#E0E6ED]' onClick={() => showFourthModal()}>
               <div className='flex justify-between'>
                 <img src={Logo} alt='Logo' className='w-[60px] h-[60px]'/>
               </div>
@@ -150,6 +139,17 @@ const Solutions = () => {
                 <p className='text-[#3B3F5C] font-poppins opacity-80 text-base'>
                   Utilizes AI to analyze transcribed content and automatically 
                   generate well-crafted press releases, reducing manual effort and increasing efficiency.
+                </p>
+            </div>
+            <div className='w-full lg:w-[388px] h-full p-[28px] flex flex-col gap-6 z-50 bg-[#F9F8F8] rounded-lg cursor-pointer border border-[#E0E6ED]'  onClick={() => showThirdModal()}>
+                <img src={Logo} alt='Logo' className='w-[60px] h-[60px]'/>
+                <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Voxscribe</p>
+                <p className='text-[#3B3F5C] font-poppins text-base opacity-50'>Live Recording Capability</p>
+                <p  className='text-[#3B3F5C] font-poppins opacity-80 text-base'>
+                  Enables users to record interviews and events directly within the application, 
+                  streamlining the process of capturing essential communications. 
+                  Offers real-time transcription of audio streams, ensuring immediate access to accurate textual 
+                  representations of all communications.
                 </p>
             </div>
             <div className='w-full lg:w-[388px] h-full p-[38px] flex flex-col gap-6 bg-[#F9F8F8] rounded-lg border border-[#E0E6ED]' onClick={() => showFifthModal()}>
