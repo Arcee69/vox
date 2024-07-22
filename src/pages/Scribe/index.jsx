@@ -50,6 +50,7 @@ const Scribe = () => {
 
 
     const generateTranscript = async () => {
+        setLoading(true)
         try {
             const response = await axios.post('https://api.assemblyai.com/v2/realtime/token',
                 { expires_in: 3600 }, 
@@ -77,7 +78,7 @@ const Scribe = () => {
         }
           
         const { token } = data;
-      
+        setLoading(false)
         socket.current = await new WebSocket(`wss://api.assemblyai.com/v2/realtime/ws?sample_rate=16000&token=${token}`);
       
         const texts = {};

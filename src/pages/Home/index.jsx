@@ -61,7 +61,7 @@ const Home = () => {
       setTimeout(() => {
         setLoading(false)
       }, 1500)
-      connect()
+     navigate("/solutions")
     } else {
       setOpenLogin(true)
     }

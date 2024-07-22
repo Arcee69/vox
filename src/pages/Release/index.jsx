@@ -51,6 +51,7 @@ const Release = () => {
     const audioUrl = file
 
     const run = async () => {
+        setLoading(true)
         // Step 1: Transcribe an audio file.
         const transcript = await client.transcripts.transcribe({ audio: audioUrl })
 
@@ -88,9 +89,9 @@ const Release = () => {
             }),
         });
         
+        setLoading(false)
         const body = await response.json();
         console.log(body, "lambo");
-
         setShowResult(body)
       
         if(body.response) {
@@ -127,7 +128,7 @@ const Release = () => {
 
                 <div className='flex xl:hidden flex-col mt-10 xl:mt-0 gap-[32px]'>
                     <div className='flex flex-col  xl:w-[600px] gap-2 xl:p-4'>
-                        <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Get Audio Insights Now</p>
+                        <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Get Press Release now</p>
                         <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Upload your audio file and start analyzing</p>
                         <p className='text-[#17053E] text-[22px] font-poppins font-medium'>We accept over 40 common audio file formats including MP3, WAV, FLAC, M4A and more.</p>
                     </div>
@@ -144,9 +145,8 @@ const Release = () => {
                 <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[28px]'>VoxRelease: Effortlessly Automate Press Releases</p>
                 
                 <p className='font-medium text-[#8F899C]  xl:w-[458px]'>
-                    Cut through the noise and understand the true impact of your communications. Our
-                    advanced AI tool analyzes audio and text to reveal sentiment, key topics, intent, and
-                    streamline transcription
+                    Utilizes AI to analyze transcribed content and automatically 
+                    generate well-crafted press releases, reducing manual effort and increasing efficiency.
                 </p>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
@@ -218,7 +218,7 @@ const Release = () => {
 
             <div className='xl:flex flex-col mt-10 hidden xl:mt-0 gap-[32px]'>
                 <div className='flex flex-col  xl:w-[600px] gap-2 xl:p-4'>
-                    <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Get Audio Insights Now</p>
+                    <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Get Press Release now</p>
                     <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Upload your audio file and start analyzing</p>
                     <p className='text-[#17053E] text-[22px] font-poppins font-medium'>We accept over 40 common audio file formats including MP3, WAV, FLAC, M4A and more.</p>
                 </div>
