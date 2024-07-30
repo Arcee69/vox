@@ -78,7 +78,7 @@ const Release = () => {
                 // "Mode": "no-cors"
             },
             body: JSON.stringify({
-            "prompt": 'Write a SEO-optimized article based on the audio transcript.',
+            "prompt": 'Generate a professional press release from the provided audio file, ensuring it includes a compelling headline, detailed body paragraphs with key points and quotes, and contact information',
             "context": "",
             "final_model": "default",
             "max_output_size": 3000,
