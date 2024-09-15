@@ -186,11 +186,11 @@ const Translate = () => {
 
                 <div className='flex xl:hidden flex-col mt-10 xl:mt-0 gap-[32px]'>
                     <div className='flex flex-col  xl:w-[600px] gap-2 xl:p-4'>
-                        <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Upload your audio or video file and start analyzing</p>
+                        {/* <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Upload your audio or video file and start analyzing</p> */}
+                        <p className='text-[#17053E] text-[22px] font-poppins font-medium'>VoxOver: Your Voice, Amplified</p>
                         <p className='text-[#17053E] text-[22px] font-poppins font-medium'>
-                            VoxTranslator's AI-powered Automated Dubbing uses advanced voice cloning technology 
-                            to translate video content while maintaining the authenticity of the original speakers' 
-                            voices. Reach diverse audiences without sacrificing the nuances of your message
+                            Let VoxOver take your brand’s communication to new heights. With our feature, your messages aren’t 
+                            just heard—they’re remembered. Add the power of voice to your content today.
                         </p>
                     </div>
                     <div className='flex flex-col items-center gap-4'>
@@ -249,55 +249,65 @@ const Translate = () => {
                     <img src={Listen} alt='Listen' className='xl:w-[600px]'/>
                 </div>
 
-                <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[28px]'>VoxTranslator: Dynamic Voice Translation</p>
-                
-                <p className='font-medium text-[#8F899C]  xl:w-[458px]'>
+                <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[28px]'>
+                    VoxOver: Your Ultimate Voice Over Tool for Impactful Storytelling
+                </p>
+
+                {/* <p className='font-medium text-[#8F899C]  xl:w-[458px]'>
                     Break language barriers with lightning-fast translations in 29 languages. 
                     VoxTranslator's cutting-edge technology delivers:
+                </p> */}
+                
+                <p className='font-medium text-[#8F899C]  xl:w-[458px]'>
+                    Why Choose VoxOver?
                 </p>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
                     <img src={Monitor} alt='Monitor' className='w-6 h-6'/>
-                    <p className='text-[#17053E] text-[24px]'>Instant voice translation</p>
+                    <p className='text-[#17053E] text-[24px]'>Crystal Clear Narration:</p>
                     <p className='font-medium text-[#8F899C]'>
-                        Transform your transcripts into professional press releases with just a click of a button
+                        Our high-quality voice-over feature ensures your message is delivered with clarity and precision, 
+                        capturing your audience’s attention from the first word.
                     </p>
                 </div>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
                     <img src={Chart} alt='Chart' className='w-6 h-6'/>
-                    <p className='text-[#17053E] text-[24px]'>Speaker detection for accurate identification</p>
+                    <p className='text-[#17053E] text-[24px]'>Customizable Voices:</p>
                     <p className='font-medium text-[#8F899C]'>
-                        Tone your press releases to your brand's voice and messaging.
+                        Tailor the tone, style, and personality of your voice-over to match your brand’s identity and message, 
+                        whether you need a warm, professional, or dynamic sound.
                     </p>
                 </div>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
                     <img src={Data} alt='Data' className='w-6 h-6'/>
-                    <p className='text-[#17053E] text-[24px]'>Audio dubbing with authentic voice preservation </p>
+                    <p className='text-[#17053E] text-[24px]'>Seamless Integration:</p>
                     <p className='font-medium text-[#8F899C]'>
-                        Automatically generate shareable snippets optimized for social media platforms.
-                    </p>
-                </div>
-
-                {/* <div className='flex flex-col gap-4 xl:w-[458px]'>
-                    <img src={Reputation} alt='Monitor' className='w-6 h-6'/>
-                    <p className='text-[#17053E] text-[24px]'>Maximized Reach: </p>
-                    <p className='font-medium text-[#8F899C]'>
-                        Effectively amplify your message and gain increased engagement through expertly 
-                        crafted press releases.
-                    </p>
-                </div> */}
-
-                {/* <div className='flex flex-col gap-4 xl:w-[458px]'>
-                    <img src={Monitor} alt='Monitor' className='w-6 h-6'/>
-                    <p className='text-[#17053E] text-[24px]'>Transcription</p>
-                    <p className='font-medium text-[#8F899C]'>
-                        Turn presentations, podcasts, and media appearances into searchable text
+                        Effortlessly incorporate VoxOver into your content creation process, whether it’s for a video, presentation, 
+                        or digital ad.
                     </p>
                 </div>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
+                    <img src={Reputation} alt='Monitor' className='w-6 h-6'/>
+                    <p className='text-[#17053E] text-[24px]'>Enhanced Engagement:  </p>
+                    <p className='font-medium text-[#8F899C]'>
+                        Audio enhances user experience—VoxOver adds an extra layer of professionalism 
+                        that boosts engagement and drives results.
+                    </p>
+                </div>
+
+                 <div className='flex flex-col gap-4 xl:w-[458px]'>
+                    <img src={Monitor} alt='Monitor' className='w-6 h-6'/>
+                    <p className='text-[#17053E] text-[24px]'>Versatile Application:</p>
+                    <p className='font-medium text-[#8F899C]'>
+                        From corporate narrations to dynamic product launches, VoxOver adapts to your needs, 
+                        providing the perfect voice for every project.
+                    </p>
+                </div>
+
+                {/* <div className='flex flex-col gap-4 xl:w-[458px]'>
                     <img src={Chart} alt='Chart' className='w-6 h-6'/>
                     <p className='text-[#17053E] text-[24px]'>Punctuation</p>
                     <p className='font-medium text-[#8F899C]'>
@@ -325,11 +335,10 @@ const Translate = () => {
 
             <div className='xl:flex flex-col mt-10 hidden xl:mt-0 gap-[32px]'>
                 <div className='flex flex-col  xl:w-[600px] gap-2 xl:p-4'>
-                    <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Upload your audio or video file and start analyzing</p>
+                    <p className='text-[#17053E] text-[22px] font-poppins font-medium'>VoxOver: Your Voice, Amplified</p>
                     <p className='text-[#17053E] text-[22px] font-poppins font-medium'>
-                        VoxTranslator's AI-powered Automated Dubbing uses advanced voice cloning technology 
-                        to translate video content while maintaining the authenticity of the original speakers' 
-                        voices. Reach diverse audiences without sacrificing the nuances of your message
+                        Let VoxOver take your brand’s communication to new heights. With our feature, your messages aren’t 
+                        just heard—they’re remembered. Add the power of voice to your content today.
                     </p>
                 </div>
                 <div className='flex flex-col items-center gap-4'>

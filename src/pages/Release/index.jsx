@@ -114,11 +114,21 @@ const Release = () => {
         }
     }
 
-
     const showOpenSignUpModal = () => {
         setOpenLogin(false)
         setOpenSignUp(true)  
     }
+
+
+   
+
+
+
+
+
+
+
+
 
       
   return (
@@ -128,8 +138,10 @@ const Release = () => {
 
                 <div className='flex xl:hidden flex-col mt-10 xl:mt-0 gap-[32px]'>
                     <div className='flex flex-col  xl:w-[600px] gap-2 xl:p-4'>
-                        <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Get Press Release now</p>
-                        <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Upload your audio file and start analyzing</p>
+                        {/* <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Get Press Release now</p> */}
+                        <p className='text-[#17053E] text-[22px] font-poppins font-medium'>VoxRelease: Amplify Your Brand’s Voice</p>
+                        <p className='text-[#17053E] text-[22px] font-poppins font-medium'>With VoxRelease, your announcements don't just reach the media — they resonate. Let us handle the complexity of creating high-quality press releases so you can focus on driving your success. Your story, told right.</p>
+                        {/* <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Upload your audio file and start analyzing</p> */}
                         <p className='text-[#17053E] text-[22px] font-poppins font-medium'>We accept over 40 common audio file formats including MP3, WAV, FLAC, M4A and more.</p>
                     </div>
                     <div className='flex flex-col items-center gap-4'>
@@ -142,55 +154,65 @@ const Release = () => {
                     <img src={Listen} alt='Listen' className='xl:w-[600px]'/>
                 </div>
 
-                <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[28px]'>VoxRelease: Effortlessly Automate Press Releases</p>
+                <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[28px]'>VoxRelease: Your Expert Partner for Impactful Press Releases</p>
                 
                 <p className='font-medium text-[#8F899C]  xl:w-[458px]'>
-                    Utilizes AI to analyze transcribed content and automatically 
-                    generate well-crafted press releases, reducing manual effort and increasing efficiency.
+                    Transform Your News Into Powerful Stories with VoxRelease
+                    At VoxRelease, we specialize in crafting professional, clear, and compelling press releases that get your 
+                    message heard. Whether you're announcing a new product, service, or milestone, our expert team ensures your 
+                    news is communicated effectively, engaging your audience and making a lasting impact.
+                </p>
+
+                <p className='font-medium text-[#8F899C]  xl:w-[458px]'>
+                    Why Choose VoxRelease?
                 </p>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
                     <img src={Monitor} alt='Monitor' className='w-6 h-6'/>
-                    <p className='text-[#17053E] text-[24px]'>AI-Powered Generation:</p>
+                    <p className='text-[#17053E] text-[24px]'>Precision in Communication:</p>
                     <p className='font-medium text-[#8F899C]'>
-                        Transform your transcripts into professional press releases with just a click of a button
+                        Our press releases are carefully crafted to be concise, impactful, and easy to understand, 
+                        ensuring your message reaches the right people, in the right way.
                     </p>
                 </div>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
                     <img src={Chart} alt='Chart' className='w-6 h-6'/>
-                    <p className='text-[#17053E] text-[24px]'>Customization: </p>
+                    <p className='text-[#17053E] text-[24px]'>Professional Tone and Style: </p>
                     <p className='font-medium text-[#8F899C]'>
-                        Tone your press releases to your brand's voice and messaging.
+                        With our deep understanding of industry standards and media formats, VoxRelease delivers polished, 
+                        credible content that adheres to AP Style and fits seamlessly into any publication.
                     </p>
                 </div>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
                     <img src={Data} alt='Data' className='w-6 h-6'/>
-                    <p className='text-[#17053E] text-[24px]'>Social Media Snippets: </p>
+                    <p className='text-[#17053E] text-[24px]'>Tailored to Your Audience: </p>
                     <p className='font-medium text-[#8F899C]'>
-                        Automatically generate shareable snippets optimized for social media platforms.
+                        We analyze your news and target audience to ensure the language, tone, and structure of your release 
+                        are perfectly aligned for maximum engagement.
                     </p>
                 </div>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
                     <img src={Reputation} alt='Monitor' className='w-6 h-6'/>
-                    <p className='text-[#17053E] text-[24px]'>Maximized Reach: </p>
+                    <p className='text-[#17053E] text-[24px]'>Engaging, Data-Driven Content: </p>
                     <p className='font-medium text-[#8F899C]'>
-                        Effectively amplify your message and gain increased engagement through expertly 
-                        crafted press releases.
+                        We incorporate relevant quotes, data, and statistics to strengthen your message, 
+                        making your news not only informative but also persuasive and newsworthy.
+                    </p>
+                </div>
+
+               <div className='flex flex-col gap-4 xl:w-[458px]'>
+                    <img src={Monitor} alt='Monitor' className='w-6 h-6'/>
+                    <p className='text-[#17053E] text-[24px]'>Error-Free Excellence:</p>
+                    <p className='font-medium text-[#8F899C]'>
+                        Every release undergoes rigorous editing to ensure it's free of grammatical errors, 
+                        inconsistencies, and ambiguity, giving you the peace of mind that your content is flawless.
                     </p>
                 </div>
 
                 {/* <div className='flex flex-col gap-4 xl:w-[458px]'>
-                    <img src={Monitor} alt='Monitor' className='w-6 h-6'/>
-                    <p className='text-[#17053E] text-[24px]'>Transcription</p>
-                    <p className='font-medium text-[#8F899C]'>
-                        Turn presentations, podcasts, and media appearances into searchable text
-                    </p>
-                </div>
-
-                <div className='flex flex-col gap-4 xl:w-[458px]'>
                     <img src={Chart} alt='Chart' className='w-6 h-6'/>
                     <p className='text-[#17053E] text-[24px]'>Punctuation</p>
                     <p className='font-medium text-[#8F899C]'>
@@ -218,8 +240,10 @@ const Release = () => {
 
             <div className='xl:flex flex-col mt-10 hidden xl:mt-0 gap-[32px]'>
                 <div className='flex flex-col  xl:w-[600px] gap-2 xl:p-4'>
-                    <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Get Press Release now</p>
-                    <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Upload your audio file and start analyzing</p>
+                    {/* <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Get Press Release now</p> */}
+                    <p className='text-[#17053E] text-[22px] font-poppins font-medium'>VoxRelease: Amplify Your Brand’s Voice</p>
+                    <p className='text-[#17053E] text-[22px] font-poppins font-medium'>With VoxRelease, your announcements don't just reach the media — they resonate. Let us handle the complexity of creating high-quality press releases so you can focus on driving your success. Your story, told right.</p>
+                    {/* <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Upload your audio file and start analyzing</p> */}
                     <p className='text-[#17053E] text-[22px] font-poppins font-medium'>We accept over 40 common audio file formats including MP3, WAV, FLAC, M4A and more.</p>
                 </div>
                 <div className='flex flex-col items-center gap-4'>

@@ -169,12 +169,13 @@ const Solutions = () => {
               <div className='flex justify-between'>
                 <img src={Logo} alt='Logo' className='w-[60px] h-[60px]'/>
               </div>
-                <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Vox Voice</p>
-                <p className='text-[#3B3F5C] font-poppins text-base opacity-50'>Voice Cloning and Translator</p>
+                <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>VoxOver</p>
+                <p className='text-[#3B3F5C] font-poppins text-base opacity-50'>
+                  Your Ultimate Voice Over Tool for Impactful Storytelling
+                </p>
                 <p className='text-[#3B3F5C] font-poppins opacity-80 text-base'>
-                  VoxTranslator's AI-powered Automated Dubbing uses advanced voice cloning technology to 
-                  translate video content while maintaining the authenticity of the original speakers' voices. 
-                  Reach diverse audiences without sacrificing the nuances of your message
+                  Let VoxOver take your brand’s communication to new heights. With our feature, your messages aren’t 
+                  just heard—they’re remembered. Add the power of voice to your content today.
                 </p>
             </div>
             <div className='w-full lg:w-[388px] h-full p-[38px] flex flex-col gap-6 bg-[#F9F8F8] rounded-lg border border-[#E0E6ED]' onClick={() => showSixthModal()}>
@@ -183,11 +184,10 @@ const Solutions = () => {
                 <p className='font-poppins invisible  text-base text-[#3B3F5C]'>Coming Soon</p>
               </div>
                 <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Vox Prompt</p>
-                <p className='text-[#3B3F5C] font-poppins text-base opacity-50 '>Cutting-Edge AI for Deepfake & Fake News Detection.</p>
+                <p className='text-[#3B3F5C] font-poppins text-base opacity-50 '>AI Prompting Made Easy with VoxPrompt: Precision at Your Fingertips</p>
                 <p className='text-[#3B3F5C] font-poppins opacity-80 text-base'>
-                  Shield Your Reputation. Uncover Deepfakes & Fake News. 
-                  Malicious content is a constant threat. VoxPR's SpinChecker is your AI-powered guard against 
-                  the damaging impact of misinformation.
+                  Experience the Future of AI-Driven Content Creation
+                  With VoxPrompt, you don’t just generate prompts – you create brilliance.
                 </p>
             </div>
 

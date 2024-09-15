@@ -135,6 +135,19 @@ const Prompt = () => {
         setOpenSignUp(true)  
     }
 
+   
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <div className='mt-[100px] xl:mt-[45px] '>
         <div className='flex flex-col xl:flex-row justify-between px-[20px] xl:px-[100px]'>
@@ -142,11 +155,12 @@ const Prompt = () => {
 
                 <div className='flex xl:hidden flex-col mt-10 xl:mt-0 gap-[32px]'>
                     <div className='flex flex-col  xl:w-[600px] gap-2 xl:p-4'>
-                        <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Upload your audio or video file and start analyzing</p>
+                        {/* <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Upload your audio or video file and start analyzing</p> */}
                         <p className='text-[#17053E] text-[22px] font-poppins font-medium'>
-                            VoxPrompt's AI-powered Automated Dubbing uses advanced voice cloning technology 
-                            to translate video content while maintaining the authenticity of the original speakers' 
-                            voices. Reach diverse audiences without sacrificing the nuances of your message
+                            Unlock state-of-the-art, tailored prompts that supercharge your AI’s output like never before. 
+                            VoxPrompt is designed to transform ordinary inputs into extraordinary results, ensuring your content 
+                            is more accurate, engaging, and impactful. Whether you're crafting stories, data analysis, or 
+                            business insights, VoxPrompt gives you the cutting edge.
                         </p>
                     </div>
                     <div className='flex flex-col items-center gap-4'>
@@ -166,34 +180,38 @@ const Prompt = () => {
                     <img src={Listen} alt='Listen' className='xl:w-[600px]'/>
                 </div>
 
-                <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[28px]'>VoxPrompt: Dynamic Voice Translation</p>
+                <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[28px]'> AI Prompting Made Easy with VoxPrompt: Precision at Your Fingertips</p>
                 
                 <p className='font-medium text-[#8F899C]  xl:w-[458px]'>
-                    Break language barriers with lightning-fast translations in 29 languages. 
-                    VoxTranslator's cutting-edge technology delivers:
+                    Experience the Future of AI-Driven Content Creation
+                    With VoxPrompt, you don’t just generate prompts – you create brilliance.
+                </p>
+
+                <p className='font-medium text-[#8F899C]  xl:w-[458px]'>
+                    Why Choose VoxPrompt?
                 </p>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
                     <img src={Monitor} alt='Monitor' className='w-6 h-6'/>
-                    <p className='text-[#17053E] text-[24px]'>Instant voice translation</p>
+                    <p className='text-[#17053E] text-[24px]'>Effortless Precision:</p>
                     <p className='font-medium text-[#8F899C]'>
-                        Transform your transcripts into professional press releases with just a click of a button
+                        Create precise, context-driven prompts that generate superior results.
                     </p>
                 </div>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
                     <img src={Chart} alt='Chart' className='w-6 h-6'/>
-                    <p className='text-[#17053E] text-[24px]'>Speaker detection for accurate identification</p>
+                    <p className='text-[#17053E] text-[24px]'>Boost Creativity:</p>
                     <p className='font-medium text-[#8F899C]'>
-                        Tone your press releases to your brand's voice and messaging.
+                        Elevate your AI-generated content with unparalleled quality and clarity.
                     </p>
                 </div>
 
                 <div className='flex flex-col gap-4 xl:w-[458px]'>
                     <img src={Data} alt='Data' className='w-6 h-6'/>
-                    <p className='text-[#17053E] text-[24px]'>Audio dubbing with authentic voice preservation </p>
+                    <p className='text-[#17053E] text-[24px]'>Seamless Integration: </p>
                     <p className='font-medium text-[#8F899C]'>
-                        Automatically generate shareable snippets optimized for social media platforms.
+                        A powerful byproduct of VoxPR, seamlessly fitting into your workflow.
                     </p>
                 </div>
 
@@ -202,11 +220,12 @@ const Prompt = () => {
 
             <div className='xl:flex flex-col mt-10 hidden xl:mt-0 gap-[32px]'>
                 <div className='flex flex-col  xl:w-[600px] gap-2 xl:p-4'>
-                    <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Upload your audio or video file and start analyzing</p>
+                    {/* <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Upload your audio or video file and start analyzing</p> */}
                     <p className='text-[#17053E] text-[22px] font-poppins font-medium'>
-                        VoxPrompt's AI-powered Automated Dubbing uses advanced voice cloning technology 
-                        to translate video content while maintaining the authenticity of the original speakers' 
-                        voices. Reach diverse audiences without sacrificing the nuances of your message
+                        Unlock state-of-the-art, tailored prompts that supercharge your AI’s output like never before. 
+                        VoxPrompt is designed to transform ordinary inputs into extraordinary results, ensuring your content 
+                        is more accurate, engaging, and impactful. Whether you're crafting stories, data analysis, or 
+                        business insights, VoxPrompt gives you the cutting edge.
                     </p>
                 </div>
                 <div className='flex flex-col items-center gap-4'>
