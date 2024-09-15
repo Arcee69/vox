@@ -126,7 +126,7 @@ const Solutions = () => {
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-[28px] mx-[20px] lg:mx-[64px] items-center'>
             <div className='w-full lg:w-[388px] h-full p-[28px] flex flex-col gap-6 z-10 bg-[#F9F8F8] rounded-lg border cursor-pointer border-[#E0E6ED]' onClick={() => showModal()}>
                 <img src={Logo} alt='Logo' className='w-[60px] h-[60px]'/>
-                <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Insight Engine</p>
+                <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Vox Reputation</p>
                 <p className='text-[#3B3F5C] font-poppins text-base opacity-50'>Your AI Reputation Strategist</p>
                 <p className='text-[#3B3F5C] font-poppins opacity-80 text-base'>
                   Gain expert guidance on safeguarding and enhancing your brand's reputation. 
@@ -136,7 +136,7 @@ const Solutions = () => {
             </div>
             <div className='w-full lg:w-[388px] h-full p-[28px] flex flex-col gap-6 bg-[#F9F8F8] rounded-lg border cursor-pointer border-[#E0E6ED]' onClick={() => showSecondModal()}>
                 <img src={Logo} alt='Logo' className='w-[60px] h-[60px]'/>
-                <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Sentiment Decoder</p>
+                <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Vox Sentiment</p>
                 <p className='text-[#3B3F5C] font-poppins text-base opacity-50'>Sentiment Analysis Tool</p>
                 <p className='text-[#3B3F5C] font-poppins opacity-80 text-base'>
                   Our advanced AI tool analyzes and trascribes both audio and text to reveal sentiment, 
@@ -156,7 +156,7 @@ const Solutions = () => {
             </div>
             <div className='w-full lg:w-[388px] h-full p-[28px] flex flex-col gap-6 z-50 bg-[#F9F8F8] rounded-lg cursor-pointer border border-[#E0E6ED]'  onClick={() => showThirdModal()}>
                 <img src={Logo} alt='Logo' className='w-[60px] h-[60px]'/>
-                <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Voxscribe</p>
+                <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Vox Scribe</p>
                 <p className='text-[#3B3F5C] font-poppins text-base opacity-50'>Live Recording Capability</p>
                 <p  className='text-[#3B3F5C] font-poppins opacity-80 text-base'>
                   Enables users to record interviews and events directly within the application, 
@@ -169,7 +169,7 @@ const Solutions = () => {
               <div className='flex justify-between'>
                 <img src={Logo} alt='Logo' className='w-[60px] h-[60px]'/>
               </div>
-                <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>VoxOver</p>
+                <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Vox Over</p>
                 <p className='text-[#3B3F5C] font-poppins text-base opacity-50'>
                   Your Ultimate Voice Over Tool for Impactful Storytelling
                 </p>
