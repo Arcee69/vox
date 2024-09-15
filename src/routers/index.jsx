@@ -10,6 +10,7 @@ import Solutions from '../pages/Solutions'
 import Scribe from '../pages/Scribe'
 import Release from '../pages/Release'
 import Translate from '../pages/Translate'
+import Prompt from '../pages/Prompt'
 
 
 const Routers = () => {
@@ -25,6 +26,7 @@ const Routers = () => {
         <Route path='/voxscribe' element={<Scribe />} />
         <Route path='/voxrelease' element={<Release />} />
         <Route path='/voxtranslate' element={<Translate />} />
+        <Route path='/voxprompt' element={<Prompt />} />
       </Route>
     </Routes>
   )

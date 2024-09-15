@@ -22,24 +22,23 @@ const Login = ({ handleClose, showOpenSignUpModal }) => {
             "email": values?.email,
             "password": values?.password
         }
-        await api.post(appUrls?.LOGIN_URL, data)
-        .then((res) => {
+        try {
+          const res =  await api.post(appUrls?.LOGIN_URL, data)
           setLoading(false)
           console.log(res, "res")
-          if (res?.status === 200) {
-            const { token, ...newObject } = res?.data;
-            localStorage.setItem("token", token);
-            localStorage.setItem("userObj", JSON.stringify(newObject));
-            toast("Login Successfully", {  //`${res?.data?.status}`
-                position: "top-right",
-                autoClose: 3500,
-                closeOnClick: true,
-            });
-        }    
+            if (res?.status === 200) {
+              const { token, ...newObject } = res?.data;
+              localStorage.setItem("token", token);
+              localStorage.setItem("userObj", JSON.stringify(newObject));
+              toast("Login Successfully", {  //`${res?.data?.status}`
+                  position: "top-right",
+                  autoClose: 3500,
+                  closeOnClick: true,
+              });
+          }    
           handleClose()
           navigate("/solutions")
-        })
-        .catch((err) => {
+        } catch (err)  {
           console.log(err, "err")
           setLoading(false)
           toast(`${err.data.message}`, {
@@ -48,7 +47,7 @@ const Login = ({ handleClose, showOpenSignUpModal }) => {
             closeOnClick: true,
           })  
           handleClose()
-        })
+        }
     }
 
   
