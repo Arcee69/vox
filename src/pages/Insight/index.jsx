@@ -59,7 +59,7 @@ const InsightEngine = () => {
     <div className='mt-[100px] xl:mt-[45px] '>
         <div className='flex flex-col xl:flex-row justify-between px-[20px] xl:px-[100px]'>
         <div className='flex flex-col gap-[48px]'>
-            <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[38px]'>Insight Engine: Your 24/7 Audio Reputation Advisor</p>
+            <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[38px]'>Vox Reputation: Your 24/7 Audio Reputation Advisor</p>
 
             <div className='flex flex-col gap-2 xl:w-[458px]'>
             <img src={Monitor} alt='Monitor' className='w-6 h-6'/>

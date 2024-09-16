@@ -69,7 +69,7 @@ const Home = () => {
 
   const showSecondModal = () => {
     if(!isAuthed) {
-      navigate("/sentiment-decoder")
+      navigate("/vox-sentiment")
     } else {
       setOpenLogin(true)
     }

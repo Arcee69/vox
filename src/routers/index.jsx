@@ -18,14 +18,14 @@ const Routers = () => {
     <Routes>
       <Route element={<Layout />}>
         <Route path='/' element={<Home />} />
-        <Route path='/insight-engine' element={<InsightEngine />} />
-        <Route path='/sentiment-decoder' element={<SentimentEngine />} />
+        <Route path='/vox-reputation' element={<InsightEngine />} />
+        <Route path='/vox-sentiment' element={<SentimentEngine />} />
         <Route path='/pricing' element={<Pricing />} />
         <Route path='/settings' element={<Settings />} />
         <Route path='/solutions' element={<Solutions />} />
         <Route path='/voxscribe' element={<Scribe />} />
         <Route path='/voxrelease' element={<Release />} />
-        <Route path='/voxtranslate' element={<Translate />} />
+        <Route path='/voxover' element={<Translate />} />
         <Route path='/voxprompt' element={<Prompt />} />
       </Route>
     </Routes>

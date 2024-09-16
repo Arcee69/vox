@@ -30,7 +30,7 @@ const Solutions = () => {
       setTimeout(() => {
         setLoading(false)
       }, 1500)
-      navigate("/insight-engine"); 
+      navigate("/vox-reputation"); 
       window.scrollTo(0, 0)
     } else {
       setOpenLogin(true)
@@ -43,7 +43,7 @@ const Solutions = () => {
       setTimeout(() => {
         setLoading(false)
       }, 1500)
-      navigate("/sentiment-decoder"); 
+      navigate("/vox-sentiment"); 
       window.scrollTo(0, 0)
     } else {
       setOpenLogin(true)
@@ -82,7 +82,7 @@ const Solutions = () => {
       setTimeout(() => {
         setLoading(false)
       }, 1500)
-      navigate("/voxtranslate"); 
+      navigate("/voxover"); 
       window.scrollTo(0, 0)
     } else {
       setOpenLogin(true)

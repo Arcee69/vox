@@ -70,8 +70,8 @@ const isAuthed = isObjectEmpty(JSON.parse(localStorage.getItem("userObj")))
                 <p onClick={() => {navigate("/solutions"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#FF6600]">Our Solutions</p>
                 <p onClick={() => {navigate("/pricing"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Pricing</p>
                 <p onClick={() => {navigate("#"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Contact Us</p>
-                {/* <p onClick={() => {navigate("/insight-engine"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Insight Engine</p>
-                <p onClick={() => {navigate("/sentiment-decoder"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Sentiment Decoder</p> */}
+                {/* <p onClick={() => {navigate("/vox-reputation"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Insight Engine</p>
+                <p onClick={() => {navigate("/vox-sentiment"); window.scrollTo(0,0); handleClose()}} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Sentiment Decoder</p> */}
                 {!isAuthed ? <p onClick={() => logOut()} className="font-mont  cursor-pointer font-semibold text-[17px]  text-[#00141B]">Logout</p> : null}
             </div>
             <div

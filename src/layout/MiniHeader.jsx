@@ -13,7 +13,7 @@ const MiniHeader = () => {
 
   return (
     <div className='w-full fixed z-10'>
-        <div  className={`${location.pathname === "/sentiment-decoder" || location.pathname === "/insight-engine" ? "bg-[#fff]" : "bg-transparent"} w-full mx-auto h-[58px]  py-[16px] px-[14px]  flex justify-between items-center`}>
+        <div  className={`${location.pathname === "/vox-sentiment" || location.pathname === "/vox-reputation" ? "bg-[#fff]" : "bg-transparent"} w-full mx-auto h-[58px]  py-[16px] px-[14px]  flex justify-between items-center`}>
             <img src={Logo} alt='logo' className=' h-[50px]' onClick={() => navigate("/")} />
             <img src={Hamburger} alt='logo'  className='w-[21px] h-[16px]' onClick={() => setOpen(true)}/>
         </div>

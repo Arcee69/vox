@@ -136,14 +136,14 @@ const SentimentEngine = () => {
                     <div className='flex flex-col items-center gap-4'>
                         <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>
                         <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={textDeepgram}>
-                            <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Sentiment Decoder"}</p>
+                            <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Vox Sentiment"}</p>
                         </button>
                     </div>
 
                     <img src={Listen} alt='Listen' className='xl:w-[600px]'/>
                 </div>
 
-                <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[28px]'>Sentiment Decoder (Sentiment Analysis Tool): </p>
+                <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[28px]'>Vox Sentiment (Sentiment Analysis Tool): </p>
                 
                 <p className='font-medium text-[#8F899C]  xl:w-[458px]'>
                     {/* Cut through the noise and understand the true impact of your communications. Our
@@ -228,7 +228,7 @@ const SentimentEngine = () => {
                 <div className='flex flex-col items-center gap-4'>
                     <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>
                     <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={() => showModal()}> {/*{textDeepgram} */}
-                        <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Sentiment Decoder"}</p>
+                        <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Vox Sentiment"}</p>
                     </button>
                 </div>
 
@@ -293,7 +293,7 @@ export default SentimentEngine
     <div className='flex flex-col items-center gap-4'>
         <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>
         <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={textDeepgram}>
-            <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Sentiment Decoder"}</p>
+            <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Vox Sentiment"}</p>
         </button>
     </div>
     <div>
@@ -302,7 +302,7 @@ export default SentimentEngine
 </div>
 <div className='flex flex-col mt-4 xl:mt-0 gap-4 w-full xl:w-[48%]'>
     <div className='border border-blue-300 p-4'>
-        <p>Sentiment Decoder: Your Audio Analysis Powerhouse for PR</p>
+        <p>Vox Sentiment: Your Audio Analysis Powerhouse for PR</p>
     </div>
     <div className='border border-blue-300 p-4'>
         <p>
@@ -332,7 +332,7 @@ export default SentimentEngine
     <div className='flex flex-col items-center gap-4'>
         <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>
         <button className='xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={textDeepgram}>
-            <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Sentiment Decoder"}</p>
+            <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Vox Sentiment"}</p>
         </button>
     </div>
     <div>

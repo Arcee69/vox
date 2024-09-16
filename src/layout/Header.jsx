@@ -16,12 +16,12 @@ import SignUp from '../pages/Auth/SignUp';
 import Login from '../pages/Auth/Login';
 
 const solutions = [
-  { name: 'Insight Engine', link:"/insight-engine" },
-  { name: 'Sentiment Decoder', link:"/sentiment-decoder" },
+  { name: 'Vox Reputation', link:"/vox-reputation" },
+  { name: 'Vox Sentiment', link:"/vox-sentiment" },
   { name: 'VoxScribe', link:"/voxscribe" },
   { name: 'VoxRelease', link:"/voxrelease" },
-  { name: 'VoxTranslate', link:"/voxtranslate" },
-  { name: 'SpinChecker', link:"#" },
+  { name: 'VoxOver', link:"/voxover" },
+  { name: 'VoxPrompt', link:"/voxprompt" },
  
 ]
 
