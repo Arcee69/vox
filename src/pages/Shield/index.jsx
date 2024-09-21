@@ -24,7 +24,7 @@ import RequestForm from '../Insight/RequestForm';
 import { isObjectEmpty } from '../../utils/CheckLoginData';
 
 
-const Prompt = () => {
+const Shield = () => {
     const [loading, setLoading] = useState(false)
     const [openForm, setOpenForm] = useState(false)
     const [openLogin, setOpenLogin] = useState(false)
@@ -123,7 +123,7 @@ const Prompt = () => {
 
     const showModal = () => {
         if(!isAuthed) {
-            submitForm()
+            window.location.href = "https://preview--truth-shield.gptengineer.run"
         } else {
             setOpenLogin(true)
         }
@@ -158,29 +158,29 @@ const Prompt = () => {
                         {/* <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Upload your audio or video file and start analyzing</p> */}
                         <p className='text-[#17053E] text-[22px] font-poppins font-medium'>
                             Unlock state-of-the-art, tailored prompts that supercharge your AI’s output like never before. 
-                            VoxPrompt is designed to transform ordinary inputs into extraordinary results, ensuring your content 
+                            VoxShield is designed to transform ordinary inputs into extraordinary results, ensuring your content 
                             is more accurate, engaging, and impactful. Whether you're crafting stories, data analysis, or 
                             business insights, VoxPrompt gives you the cutting edge.
                         </p>
                     </div>
                     <div className='flex flex-col items-center gap-4'>
-                        <input 
+                        {/* <input 
                             type="text" 
                             onChange={(e) => setText(e.target.value)} 
                             value={text}
-                            placeholder='Prompt'
+                            placeholder='Shield'
                             className='border border-[#ccc] outline-none xl:w-[371px] p-2'
-                        />
+                        /> */}
                    
                         <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={() => run()}>
-                            <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Vox Prompt"}</p>
+                            <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Vox Shield"}</p>
                         </button>
                     </div>
 
                     <img src={Listen} alt='Listen' className='xl:w-[600px]'/>
                 </div>
 
-                <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[28px]'> AI Prompting Made Easy with VoxPrompt: Precision at Your Fingertips</p>
+                <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[28px]'> AI Prompting Made Easy with VoxShield: Precision at Your Fingertips</p>
                 
                 <p className='font-medium text-[#8F899C]  xl:w-[458px]'>
                     Experience the Future of AI-Driven Content Creation
@@ -223,22 +223,22 @@ const Prompt = () => {
                     {/* <p className='text-[#17053E] text-[22px] font-poppins font-medium'>Upload your audio or video file and start analyzing</p> */}
                     <p className='text-[#17053E] text-[22px] font-poppins font-medium'>
                         Unlock state-of-the-art, tailored prompts that supercharge your AI’s output like never before. 
-                        VoxPrompt is designed to transform ordinary inputs into extraordinary results, ensuring your content 
+                        VoxShield is designed to transform ordinary inputs into extraordinary results, ensuring your content 
                         is more accurate, engaging, and impactful. Whether you're crafting stories, data analysis, or 
-                        business insights, VoxPrompt gives you the cutting edge.
+                        business insights, VoxShield gives you the cutting edge.
                     </p>
                 </div>
                 <div className='flex flex-col items-center gap-4'>
-                    <input 
+                    {/* <input 
                         type="text" 
                         onChange={(e) => setText(e.target.value)} 
                         value={text}
-                        placeholder='Prompt'
+                        placeholder='Shield'
                         className='border border-[#ccc] xl:w-[371px] outline-none p-2'
-                    />
+                    /> */}
                    
                     <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={() => showModal()}> {/*{textDeepgram} */}
-                        <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Vox Prompt"}</p>
+                        <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Vox Shield"}</p>
                     </button>
                 </div>
 
@@ -286,4 +286,4 @@ const Prompt = () => {
   )
 }
 
-export default Prompt
+export default Shield

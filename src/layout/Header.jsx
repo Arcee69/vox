@@ -21,9 +21,10 @@ const solutions = [
   { name: 'VoxScribe', link:"/voxscribe" },
   { name: 'VoxRelease', link:"/voxrelease" },
   { name: 'VoxOver', link:"/voxover" },
-  { name: 'VoxPrompt', link:"/voxprompt" },
+  { name: 'VoxShield', link:"/vox-shield" },
  
 ]
+
 
 const Header = () => {
   const [openConsultModal, setOpenConsultModal] = useState(false);

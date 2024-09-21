@@ -95,7 +95,7 @@ const Solutions = () => {
       setTimeout(() => {
         setLoading(false)
       }, 1500)
-      navigate("/voxprompt"); 
+      navigate("/vox-shield"); 
       window.scrollTo(0, 0)
     } else {
       setOpenLogin(true)
@@ -183,7 +183,7 @@ const Solutions = () => {
                 <img src={Logo} alt='Logo' className='w-[60px] h-[60px]'/>
                 <p className='font-poppins invisible  text-base text-[#3B3F5C]'>Coming Soon</p>
               </div>
-                <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Vox Prompt</p>
+                <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Vox Shield</p>
                 <p className='text-[#3B3F5C] font-poppins text-base opacity-50 '>AI Prompting Made Easy with VoxPrompt: Precision at Your Fingertips</p>
                 <p className='text-[#3B3F5C] font-poppins opacity-80 text-base'>
                   Experience the Future of AI-Driven Content Creation

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { usePaystackPayment } from 'react-paystack';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import Help from "../../assets/svg/help_circle.svg"
 import Check from "../../assets/png/check_icon.png"
@@ -23,6 +23,11 @@ const Pricing = () => {
     const [openRequestForm, setOpenRequestForm] = useState(false)
     
     const navigate = useNavigate()
+    const location = useLocation();
+
+    const queryParams = new URLSearchParams(location.search);
+    const trxref = queryParams.get('trxref');
+    const reference = queryParams.get('reference');
 
     const userData = JSON.parse(localStorage.getItem("userObj"))
     console.log(userData, "userData")
@@ -43,21 +48,47 @@ const Pricing = () => {
 
   console.log(showRef, "pablo");
 
-  // you can call this function anything
-  const onClose = async () => {
-    // implementation for  whatever you want to do when the Paystack dialog closed.
-    console.log('closed')
-    try {
-        const res = await api.get(appUrls?.PAYMENT_URL + `?ref=${showRef}&total=5000`)
-        console.log(res, "res")
-    } catch (error) {
-        console.log(error, "err")
-    }
-    navigate("/pricing")
-  }
+
+
+ 
 
   
-  const initializePayment = usePaystackPayment(config);
+//   const initializePayment = usePaystackPayment(config);
+  const initializePayment = async () => {
+    const data= { 
+        "email": userData?.data?.email,
+        "amount": 1000000,
+        "currency": "NGN",
+        "callback_url": "http://localhost:5173"
+    }
+    await axios.post("https://api.paystack.co/transaction/initialize", data, {
+        headers: {
+            "Authorization": `Bearer sk_test_f0ec1551eed23b489b279e49a5d2613d92cbf4fe`,
+            "Content-Type": "application/json"
+        }
+    })
+    .then((res) => {
+        console.log(res, "pablo")
+        const authUrl = res?.data?.data?.authorization_url
+        window.open(authUrl)
+    })
+    .catch((err) => {
+        console.log(err, "zanku")
+    })
+  }
+
+    // you can call this function anything
+    const verifyTransaction = async () => {
+        // implementation for  whatever you want to do when the Paystack dialog closed.
+        console.log('closed')
+        try {
+            const res = await api.get(appUrls?.PAYMENT_URL + `?ref=${reference}&total=5000`)
+            console.log(res, "res")
+        } catch (error) {
+            console.log(error, "err")
+        }
+        navigate("/pricing")
+      }
 
   const isAuthed = isObjectEmpty(JSON.parse(localStorage.getItem("userObj")))
 
@@ -69,7 +100,7 @@ const Pricing = () => {
       setTimeout(() => {
         setLoading(false)
       }, 1500)
-      initializePayment(onSuccess, onClose)
+      initializePayment()
     } else {
       setOpenLogin(true)
     }
@@ -80,6 +111,9 @@ const Pricing = () => {
     setOpenSignUp(true)  
 }
 
+ useEffect(() => {
+    verifyTransaction()
+ }, [reference])
 
   return (
     <div className='mt-[100px] xl:mt-[45px] flex flex-col items-center xl:mb-[40px]'>

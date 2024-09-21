@@ -10,7 +10,7 @@ import Solutions from '../pages/Solutions'
 import Scribe from '../pages/Scribe'
 import Release from '../pages/Release'
 import Translate from '../pages/Translate'
-import Prompt from '../pages/Prompt'
+import Shield from '../pages/Shield'
 
 
 const Routers = () => {
@@ -26,7 +26,7 @@ const Routers = () => {
         <Route path='/voxscribe' element={<Scribe />} />
         <Route path='/voxrelease' element={<Release />} />
         <Route path='/voxover' element={<Translate />} />
-        <Route path='/voxprompt' element={<Prompt />} />
+        <Route path='/vox-shield' element={<Shield />} />
       </Route>
     </Routes>
   )
