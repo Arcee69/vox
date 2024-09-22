@@ -123,7 +123,7 @@ const Shield = () => {
 
     const showModal = () => {
         if(!isAuthed) {
-            window.location.href = "https://preview--truth-shield.gptengineer.run"
+            window.location.href = "https://voxshield.netlify.app"
         } else {
             setOpenLogin(true)
         }
@@ -134,18 +134,6 @@ const Shield = () => {
         setOpenLogin(false)
         setOpenSignUp(true)  
     }
-
-   
-
-
-
-
-
-
-
-
-
-
 
 
   return (
