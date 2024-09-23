@@ -10,7 +10,7 @@ import Solutions from '../pages/Solutions'
 import Scribe from '../pages/Scribe'
 import Release from '../pages/Release'
 import Translate from '../pages/Translate'
-import Shield from '../pages/Shield'
+import Shield from '../pages/Shield/shield'
 
 
 const Routers = () => {
