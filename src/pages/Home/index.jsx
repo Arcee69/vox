@@ -47,7 +47,7 @@ const Home = () => {
   //   return () => vapi.removeAllListeners();
   // }, [])
 
-  const { connect } = useVoice();
+  // const { connect } = useVoice();
 
   const navigate = useNavigate()
 
