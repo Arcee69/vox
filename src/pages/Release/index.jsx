@@ -78,7 +78,7 @@ const Release = () => {
                 // "Mode": "no-cors"
             },
             body: JSON.stringify({
-            "prompt": 'Generate a professional press release from the provided audio file, ensuring it includes a compelling headline, detailed body paragraphs with key points and quotes, and contact information',
+            "prompt": 'Generate a professional press release based on the provided audio file. The press release should include a compelling and attention-grabbing headline, detailed body paragraphs that highlight key points and incorporate relevant quotes from the audio and contact information at the end. Please ensure that the headline and paragraphs are well-spaced, properly aligned, and professionally formatted for optimal readability.',
             "context": "",
             "final_model": "default",
             "max_output_size": 3000,

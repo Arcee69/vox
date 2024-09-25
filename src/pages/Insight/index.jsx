@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import Vapi from '@vapi-ai/web';
-import { useVoice } from '@humeai/voice-react';
 import { CgSpinner } from 'react-icons/cg';
 
 import Monitor from "../../assets/svg/monitor.svg"
@@ -20,6 +19,7 @@ import SignUp from '../Auth/SignUp';
 
 import Decoder from "../../assets/png/decoder.jpg"
 import { isObjectEmpty } from '../../utils/CheckLoginData';
+import axios from 'axios';
 
 
 const InsightEngine = () => {
@@ -28,20 +28,91 @@ const InsightEngine = () => {
     const [loading, setLoading] = useState(false)
     const [openLogin, setOpenLogin] = useState(false)
     const [openSignUp, setOpenSignUp] = useState(false)
-
-    const { connect } = useVoice()
+    const [voices, setVoices] = useState([])
+    const [selectedVoice, setSelectedVoice] = useState("")
+    const [text, setText] = useState("")
 
     const isAuthed = isObjectEmpty(JSON.parse(localStorage.getItem("userObj")))
 
     console.log(isAuthed, "isAuthed")
 
+    const getVoices = async () => {
+        try {
+            const res = await axios.get("https://api.elevenlabs.io/v1/voices", {
+                headers: {
+                    'xi-api-key': "3392b41099e1bfc55980e42d6af4b040"
+                }
+            });
+            console.log(res, "res");
+            setVoices(res?.data?.voices);
+        } catch (error) {
+            console.error("Error fetching voices:", error);
+        }
+    };
+
+    useEffect(() => {
+        getVoices();
+    }, []);
+
+    console.log(voices, "voices")
+    console.log(selectedVoice, "selectedVoice")
+
+    const handleVoiceChange = (e) => {
+        const selectedVoice = e.target.value;
+        setSelectedVoice(selectedVoice);
+    };
+
+    const submitForm = async () => {
+        setLoading(true)
+        const data = {
+            "text": text,
+            "model_id": "eleven_monolingual_v1",
+            "voice_settings": {
+              "stability": 0.1,
+              "similarity_boost": 0.3
+            }
+          }
+        
+        try {
+            const res = await axios.post(`https://api.elevenlabs.io/v1/text-to-speech/${selectedVoice}`, data, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'xi-api-key': "3392b41099e1bfc55980e42d6af4b040"
+                },
+                responseType: 'blob' // Important to handle the binary data correctly
+            });
+            console.log(res, "audioT");
+
+            // Create a blob from the response data
+            const blob = new Blob([res.data], { type: 'audio/mpeg' });
+    
+            // Create a link element
+            const link = document.createElement('a');
+    
+            // Set the download attribute with a filename
+            link.href = window.URL.createObjectURL(blob);
+            link.download = `audio_translated.mp3`;
+    
+            // Append the link to the body
+            document.body.appendChild(link);
+            
+            // Programmatically click the link to trigger the download
+            link.click();
+            
+            // Remove the link from the document
+            document.body.removeChild(link);
+
+            setLoading(false)
+            // setTranslatedAudio(res?.data?.audio_url)
+        } catch (error) {
+            setLoading(false)
+            console.error("Error fetching voices:", error);
+        }
+    }
+
     const showModal = () => {
         if(!isAuthed) {
-            setLoading(true)
-            setTimeout(() => {
-                setLoading(false)
-            }, 1500)
-            connect()
+            submitForm()
         } else {
             setOpenLogin(true)
         }
@@ -101,6 +172,18 @@ const InsightEngine = () => {
         </div>
         <div className='flex flex-col mt-10 xl:mt-0 gap-[32px]'>
             <p className='text-[32px] text-[#17053E] w-full text-center xl:text-left xl:w-[613px] font-medium'>VoxPR listens, analyzes and enhances your PR success.</p>
+            <textarea 
+                type='text'
+                value={text}
+                className='w-full border border-[#ccc] outline-none h-[250px] p-4 font-poppins rounded-lg'
+                onChange={(e) => setText(e.target.value)}
+            ></textarea>
+            <select onChange={handleVoiceChange} className='w-full p-2 outline-none border border-[#ccc] rounded-lg'>
+                    <option value="">Select a voice</option>
+                    {voices?.map((voice, index) => (
+                        <option key={index} value={voice?.voice_id}>{voice?.name}</option>
+                ))}
+            </select>
             <button className='xl:w-[371px] mx-auto flex items-center justify-center rounded-lg p-4 bg-[#17053E]' onClick={() => showModal()}>
                 <p className='text-[#fff]'>{loading ? <CgSpinner className=" animate-spin text-xl " /> : "Get Insight"} </p>
             </button>
