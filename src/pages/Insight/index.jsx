@@ -9,8 +9,10 @@ import Reputation from "../../assets/svg/reputation.svg"
 
 import Time from "../../assets/png/time.svg"
 import Insights from "../../assets/png/insight.svg"
-import Notification from "../../assets/png/notification.svg"
-import NotificationB from "../../assets/png/notification-b.svg"
+import Notification from "../../assets/png/notification.png"
+import NotificationB from "../../assets/png/notification-b.png"
+
+import Speech from "../../assets/png/VoxSpeech.png"
 
 import ModalPop from '../../components/modalPop';
 import RequestForm from './RequestForm';
@@ -127,7 +129,151 @@ const InsightEngine = () => {
 
 
   return (
-    <div className='mt-[100px] xl:mt-[45px] '>
+    <div className=' '>
+        <div 
+            style={{
+                backgroundImage: `url(${Speech})`,
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat"
+            }}
+            className="w-full h-[456px] lg:h-[534px] flex flex-col lg:flex-row items-center lg:gap-[179px] px-5 lg:px-[80px] py-6"
+        >
+            <div className='flex flex-col gap-5 mt-20 items-center lg:mt-0 w-full lg:w-5/12'>
+                <p className='font-bold text-[#fff] font-satoshi text-[40px] lg:text-[64px]'>Vox Speech</p>
+                <p className='text-[#fff] text-[24px] lg:text-[32px] text-center lg:text-left font-satoshi'>Your 24/7 Audio Reputation advisor</p>
+                <button 
+                    type='button'
+                    className='w-[226px] h-[54px] rounded-xl bg-[#FF6600] flex items-center justify-center'
+                >
+                    <p className='text-[#fff] font-medium font-satoshi text-[20px]'>See how it works</p>
+                </button>
+            </div>
+            <div className='w-6/12 bg-[#fff] rounded-3xl hidden lg:flex flex-col gap-4 p-[50px]'>
+                <p className='font-satoshi text-center text-[18px] text-[#000]'>VoxPR listens, analyzes and enhances your PR success</p>
+                <textarea 
+                    type='text'
+                    value={text}
+                    className='w-full lg:w-[491px] border border-[#ccc] outline-none h-[189px] p-4 font-satoshi rounded-lg'
+                    onChange={(e) => setText(e.target.value)}
+                ></textarea>
+                <select onChange={handleVoiceChange} className='w-full lg:w-[491px] p-2 outline-none border border-[#ccc] rounded-lg'>
+                    <option value="">Select a voice</option>
+                    {voices?.map((voice, index) => (
+                        <option key={index} value={voice?.voice_id}>{voice?.name}</option>
+                    ))}
+                </select>
+                <button className='w-full lg:w-[491px] flex items-center justify-center rounded-lg p-4 bg-[#17053E]' onClick={() => showModal()}>
+                    <p className='text-[#fff]'>{loading ? <CgSpinner className=" animate-spin text-xl " /> : "Get Insight"} </p>
+                </button>
+            </div>
+
+        </div>
+        <div className='w-11/12 bg-[#fff] mx-auto mt-10 rounded-3xl lg:hidden flex flex-col gap-4 py-10 px-5 lg:p-[50px]'>
+            <p className='font-satoshi text-center text-base text-[#000]'>VoxPR listens, analyzes and enhances your PR success</p>
+            <textarea 
+                type='text'
+                value={text}
+                className='w-full border border-[#ccc] outline-none h-[189px] p-4 font-satoshi rounded-lg'
+                onChange={(e) => setText(e.target.value)}
+            ></textarea>
+            <select onChange={handleVoiceChange} className='w-full  p-2 outline-none border border-[#ccc] rounded-lg'>
+                <option value="">Select a voice</option>
+                {voices?.map((voice, index) => (
+                    <option key={index} value={voice?.voice_id}>{voice?.name}</option>
+                ))}
+            </select>
+            <button className='w-full lg:w-[491px] flex items-center justify-center rounded-lg p-4 bg-[#17053E]' onClick={() => showModal()}>
+                <p className='text-[#fff]'>{loading ? <CgSpinner className=" animate-spin text-xl " /> : "Get Insight"} </p>
+            </button>
+        </div>
+
+        <div className='mt-[60px] mb-[115px] flex w-full'>
+            <div className='w-10/12 mx-auto flex flex-col gap-[32px] '>
+                <p className='text-[28px] lg:text-[48px] font-satoshi font-bold text-[#1C1C1C]'>How it works</p>
+                <div className='grid grid-cols-1 lg:grid-cols-4 gap-[40px] lg:gap-[56px] items-center'>
+                    <div className='flex flex-col items-start gap-6 w-full lg:w-[278px]'>
+                        <img src={Monitor} alt='Monitor' className='w-6 h-6'/>
+                        <p className='text-[#1C1C1C] font-bold font-satoshi text-[20px] lg:text-[24px]'>We Listen:</p>
+                        <p className='font-normal font-satoshi text-[#363637]'>
+                            Our advanced AI reputation Management advisor listens to the reputation management challenges 
+                            you face and provide clear analysis.
+                        </p>
+                    </div>
+                    <div className='flex flex-col items-start gap-6  w-full lg:w-[278px]'>
+                        <img src={Chart} alt='Chart' className='w-6 h-6'/>
+                        <p className='text-[#1C1C1C] font-bold font-satoshi text-[20px] lg:text-[24px]'>We Understand:</p>
+                        <p className='font-normal font-satoshi text-[#363637]'>
+                            Our advanced AI reputation Management advisor listens to the reputation management challenges 
+                            you face and provide clear analysis.
+                        </p>
+                    </div>
+                    <div className='flex flex-col items-start gap-6 w-full lg:w-[278px]'>
+                        <img src={Data} alt='Data' className='w-6 h-6'/>
+                        <p className='text-[#1C1C1C] font-bold font-satoshi text-[20px] lg:text-[24px]'>We Advise:</p>
+                        <p className='font-normal font-satoshi text-[#363637]'>
+                            We provide data-driven recommendations to help you craft effective responses, 
+                            refine your messaging, and strengthen your brand's reputation.
+                        </p>
+                    </div>
+                    <div className='flex flex-col items-start gap-6 w-full lg:w-[278px]'>
+                        <img src={Reputation} alt='Reputation' className='w-6 h-6'/>
+                        <p className='text-[#1C1C1C] font-bold  font-satoshi text-[20px] lg:text-[24px]'>Make Informed Decisions:</p>
+                        <p className='font-normal font-satoshi text-[#363637]'>
+                            Leverage on data-driven insights to gain clearer perspective, 
+                            shape your communication strategies and build a stronger brand.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div className='w-full bg-[#FFF7F2] relative flex justify-between h-auto'>
+            <img src={Notification} alt='NotificationB' className='w-[350px] hidden lg:block absolute top-0 ' />
+            <img src={Time} alt='Time' className='w-[172px] absolute -left-10 top-0 lg:hidden h-[82px]'/>
+            <div className='flex flex-col gap-8  w-full lg:w-8/12 mx-5 lg:mx-auto my-[60px] items-center'>
+                <img src={Insights} alt='Insights' className='w-[159px] hidden lg:flex h-[59px]'/>
+                
+                <p className='lg:w-6/12 font-satoshi mt-5 lg:mt-0 font-bold text-[20px] lg:text-[24px] text-center'>
+                    Our AI driven product helps you to stay ahead of your public image by monitoring trends 
+                    and helping you control your media narrative.
+                </p>
+                <button
+                    type='button'
+                    className='w-[303px] bg-[#17053E] p-4 flex items-center justify-center rounded-3xl'
+                    // onClick={() => setOpen(true)}
+                >
+                    <p className='font-satoshi text-[20px] font-medium text-[#fff]'>Request free consultation</p>
+                </button>
+                <img src={Time} alt='Time' className='w-[172px] hidden lg:flex h-[82px]'/>
+            </div>  
+            <img src={NotificationB} alt='Notification' className='w-[359px] hidden lg:block absolute bottom-0 right-0' />  
+        </div>
+
+      
+
+        <ModalPop isOpen={open}>
+            <RequestForm handleClose={() => setOpen(false)} />
+        </ModalPop>
+
+        <ModalPop isOpen={openLogin}>
+            <Login handleClose={() => setOpenLogin(false)} showOpenSignUpModal={showOpenSignUpModal}/>
+        </ModalPop>
+
+      <ModalPop isOpen={openSignUp}>
+        <SignUp handleClose={() => setOpenSignUp(false)}/>
+      </ModalPop>
+
+    </div>
+  )
+}
+
+export default InsightEngine
+
+
+{/* <div className='mt-[100px] xl:mt-[45px] '>
         <div className='flex flex-col xl:flex-row justify-between px-[20px] xl:px-[100px]'>
         <div className='flex flex-col gap-[48px]'>
             <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[38px]'>Vox Reputation: Your 24/7 Audio Reputation Advisor</p>
@@ -222,8 +368,4 @@ const InsightEngine = () => {
         <SignUp handleClose={() => setOpenSignUp(false)}/>
       </ModalPop>
 
-    </div>
-  )
-}
-
-export default InsightEngine
+    </div> */}
