@@ -16,7 +16,7 @@ import SignUp from '../pages/Auth/SignUp';
 import Login from '../pages/Auth/Login';
 
 const solutions = [
-  { name: 'Vox Reputation', link:"/vox-reputation" },
+  { name: 'Vox Speaks', link:"/vox-speaks" },
   { name: 'Vox Sentiment', link:"/vox-sentiment" },
   { name: 'VoxScribe', link:"/voxscribe" },
   { name: 'VoxRelease', link:"/voxrelease" },

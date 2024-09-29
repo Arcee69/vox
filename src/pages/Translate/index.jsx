@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { toast } from 'react-toastify';
 import { CgSpinner } from 'react-icons/cg';
 import axios from 'axios';
@@ -9,13 +9,13 @@ import Chart from "../../assets/svg/chart.svg"
 import Data from "../../assets/svg/data.svg"
 import Reputation from "../../assets/svg/reputation.svg"
 import Record from "../../assets/png/record.svg"
+import Close from "../../assets/svg/closeIcon.svg"
 
 import Over from "../../assets/png/VoxOver.png"
 
 import Upload from "../../assets/png/upload.png"
 import Shake from "../../assets/png/shake.png"
 
-// import Time from "../../assets/png/time.svg"
 import Time from "../../assets/png/time-b.png"
 import Insights from "../../assets/png/insight.svg"
 import Notification from "../../assets/png/notification.png"
@@ -49,7 +49,12 @@ const Translate = () => {
     const [dubbingId, setDubbingId] = useState("")
     const [voices, setVoices] = useState([])
     const [selectedVoice, setSelectedVoice] = useState("")
-    const [translatedAudio, setTranslatedAudio] = useState(null)
+    const [mediaRecorder, setMediaRecorder] = useState(null);
+    const [audioChunks, setAudioChunks] = useState([]);
+    const [isRecording, setIsRecording] = useState(false);
+    const [audioUrl, setAudioUrl] = useState(null);
+
+    const audioRef = useRef();
 
 
 
@@ -83,8 +88,104 @@ const Translate = () => {
     console.log(voices, "voices")
     console.log(selectedVoice, "selectedVoice")
 
-    const handleVoiceChange = (e) => {
+     // Start recording
+    //  const startRecording = () => {
+    //     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    //         navigator.mediaDevices.getUserMedia({ audio: true })
+    //             .then(stream => {
+    //                 const recorder = new MediaRecorder(stream);
+    //                 setMediaRecorder(recorder);
+    //                 recorder.start();
+    //                 setIsRecording(true);
 
+    //                 recorder.ondataavailable = (e) => {
+    //                     setAudioChunks(prev => [...prev, e.data]);
+    //                 };
+
+    //                 recorder.onstop = () => {
+    //                     const blob = new Blob(audioChunks, { type: 'audio/wav' });
+    //                     const url = URL.createObjectURL(blob);
+    //                     console.log(url, blob, "mask")
+    //                     setAudioUrl(url);
+    //                     setFile(blob); 
+    //                 };
+    //             }).catch(err => {
+    //                 console.error("Recording error:", err);
+    //             });
+    //     }
+    // };
+
+      // Stop recording
+    //   const stopRecording = () => {
+    //     if (mediaRecorder) {
+    //         mediaRecorder.stop();
+    //         setIsRecording(false);
+    //     }
+    // };
+
+    // Start recording
+    const startRecording = () => {
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(stream => {
+                    const recorder = new MediaRecorder(stream);
+                    setMediaRecorder(recorder);
+                    
+                    // Clear previous chunks
+                    setAudioChunks([]); 
+    
+                    recorder.start();
+                    setIsRecording(true);
+    
+                    recorder.ondataavailable = (e) => {
+                        setAudioChunks(prev => [...prev, e.data]);
+                    };
+
+                    recorder.onstop = () => {
+                        setTimeout(() => {
+                            if (audioChunks.length > 0) {
+                                const blob = new Blob(audioChunks, { type: 'audio/wav' });
+                                const url = URL.createObjectURL(blob);
+                                console.log(url, blob, "mask");
+                                setAudioUrl(url);
+                                setFile(blob);
+                            } else {
+                                console.error('No audio data available.');
+                            }
+                        }, 100); // Add a small delay to ensure all chunks are processed
+                    };
+                    
+    
+                    // recorder.onstop = () => {
+                    //     // Ensure the data is collected properly after stop
+                    //     if (audioChunks.length > 0) {
+                    //         const blob = new Blob(audioChunks, { type: 'audio/wav' });
+                    //         const url = URL.createObjectURL(blob);
+                    //         setAudioUrl(url);
+                    //         setFile(blob);
+                    //     } else {
+                    //         console.error('No audio data available.');
+                    //     }
+                    // };
+                })
+                .catch(err => {
+                    console.error("Recording error:", err);
+                });
+        }
+    };
+    
+
+// Stop recording
+const stopRecording = () => {
+    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+        setIsRecording(false);
+    }
+};
+
+
+
+    const handleVoiceChange = (e) => {
         const selectedVoice = e.target.value;
         setSelectedVoice(selectedVoice);
     };
@@ -104,148 +205,31 @@ const Translate = () => {
                     'Content-Type': 'multipart/form-data',
                     'xi-api-key': "3392b41099e1bfc55980e42d6af4b040"
                 },
-                responseType: 'blob' // Important to handle the binary data correctly
+                responseType: 'blob' 
             });
             console.log(res, "audioT");
 
-            // Create a blob from the response data
+         
             const blob = new Blob([res.data], { type: 'audio/mpeg' });
     
-            // Create a link element
+            
             const link = document.createElement('a');
     
-            // Set the download attribute with a filename
             link.href = window.URL.createObjectURL(blob);
             link.download = `audio_translated.mp3`;
     
-            // Append the link to the body
             document.body.appendChild(link);
             
-            // Programmatically click the link to trigger the download
             link.click();
             
-            // Remove the link from the document
             document.body.removeChild(link);
 
             setLoading(false)
-            // setTranslatedAudio(res?.data?.audio_url)
         } catch (error) {
             setLoading(false)
             console.error("Error fetching voices:", error);
         }
     }
-
-    // const submitForm = async () => {
-
-
-
-    //     setLoading(true)
-    //     const formData = new FormData();
-    //     formData.append("mode", "automatic");
-    //     formData.append("file", file);
-    //     // formData.append("csv_file", "<string>");
-    //     // formData.append("foreground_audio_file", "<string>");
-    //     // formData.append("background_audio_file", "<string>");
-    //     formData.append("name", "translator");
-    //     // formData.append("source_url", "<string>");
-    //     formData.append("source_lang", "en");
-    //     formData.append("target_lang", "es");
-    //     formData.append("num_speakers", "0");
-    //     // formData.append("watermark", "true");
-    //     // formData.append("start_time", "123");
-    //     // formData.append("end_time", "123");
-    //     // formData.append("highest_resolution", "true");
-    //     // formData.append("dubbing_studio", "true");
-
-    //     // const options = {method: 'POST',};
-
-    //     // options.body = form;
-
-    //     await axios.post('https://api.elevenlabs.io/v1/dubbing', formData, {
-    //         headers: {
-    //             'Content-Type': 'multipart/form-data',
-    //             'xi-api-key': "3392b41099e1bfc55980e42d6af4b040" 
-    //         }
-    //     })
-    //     .then((res) => {
-    //         console.log(res, "appa")
-    //         setDubbingId(res?.data?.dubbing_id)
-    //         toast(`File Uploaded Successfully`, {
-    //             position: "top-right",
-    //             autoClose: 5000,
-    //             closeOnClick: true,
-    //         })   
-    //     })
-    //     .catch((err) => {
-    //         console.log(err, "zuko")
-    //         toast(`Error`, {
-    //             position: "top-right",
-    //             autoClose: 5000,
-    //             closeOnClick: true,
-    //         }) 
-    //     })
-    // }
-
-    // const getFile = async () => {
-    //         try {
-    //             const res = await axios.get(`https://api.elevenlabs.io/v1/dubbing/${dubbingId}/audio/${languageSelected?.value || "es"}`, {
-    //                 headers: {
-    //                     'xi-api-key': "3392b41099e1bfc55980e42d6af4b040"
-    //                 },
-    //                 responseType: 'blob' // Important to handle the binary data correctly
-    //             });
-    //             console.log(res?.data, "res");
-
-    //               // Create a blob from the response data
-    //             const blob = new Blob([res.data], { type: 'audio/mpeg' });
-        
-    //             // Create a link element
-    //             const link = document.createElement('a');
-        
-    //             // Set the download attribute with a filename
-    //             link.href = window.URL.createObjectURL(blob);
-    //             link.download = `audio_${dubbingId}.mp3`;
-        
-    //             // Append the link to the body
-    //             document.body.appendChild(link);
-                
-    //             // Programmatically click the link to trigger the download
-    //             link.click();
-                
-    //             // Remove the link from the document
-    //             document.body.removeChild(link);
-
-    //             setLoading(false)
-    //             toast(`File Converted Successfully`, {
-    //                 position: "top-right",
-    //                 autoClose: 5000,
-    //                 closeOnClick: true,
-    //             });
-    //         } catch (error) {
-    //             console.error("Error fetching file:", error);
-    //             setLoading(false)
-    //             toast(`Error converting file: ${error.message}`, {
-    //                 position: "top-right",
-    //                 autoClose: 5000,
-    //                 closeOnClick: true,
-    //             });
-    //         }
-        
-    // };
-
-    // const checkDubbingId = () => {
-    //     if(dubbingId) {
-    //         setTimeout(() => {
-    //             getFile()
-    //         }, 70000)
-    //     }
-    // }
-
-    // const lang = languageSelected.name
-
-    // useEffect(() => {
-    //     checkDubbingId()
-    // }, [dubbingId, lang])
 
 
     const isAuthed = isObjectEmpty(JSON.parse(localStorage.getItem("userObj")))
@@ -274,13 +258,13 @@ const Translate = () => {
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat"
             }}
-            className='h-[576px] flex flex-col items-center gap-3 lg:gap-5 justify-center px-5 lg:px-0'
+            className='h-[676px] flex flex-col items-center gap-3 lg:gap-5 justify-center px-5 lg:px-0'
         >
             <p className='font-satoshi font-bold text-[40px] lg:text-[64px] text-[#fff]'>VoxOver</p>
             <p className='font-satoshi text-[24px] lg:text-[32px] w-full lg:w-[412px] text-[#fff] text-center'>
                 Add the power of your voice to your content today
             </p>
-            <div className='flex flex-col lg:mx-auto  bg-[#FAF1ED] rounded-xl items-center lg:w-[491px] h-[173px] px-6 py-[28px]  gap-[16px]'>
+            <div className='flex flex-col lg:mx-auto  bg-[#FAF1ED] rounded-xl items-center lg:w-[491px] h-auto px-6 py-[28px]  gap-[16px]'>
                 <div className='p-[9px] w-[300px] cursor-pointer flex justify-center gap-[16px] '>
                     {  
                         file?.name ? 
@@ -303,7 +287,7 @@ const Translate = () => {
                                     <input
                                         type="file"
                                         id="fileInput"
-                                        accept='pdf, docx'
+                                        accept='audio/*'
                                         style={{ display: 'none' }}
                                         onChange={handleFileChange}
                                     />
@@ -313,13 +297,41 @@ const Translate = () => {
                                     <p className='text-xs font-inter font-semibold text-[#98A2B3]'>OR</p>
                                     <div className='bg-[#F0F2F5] w-[100px] h-[1px]'></div> 
                                 </div>
-                                <button
+
+                                {  
+                                    audioUrl ? 
+                                        <div className='flex flex-col relative gap-1'>
+                                            <audio ref={audioRef} src={audioUrl} controls />
+                                            <img 
+                                                src={Close} 
+                                                alt='Close' 
+                                                className='w-[10px] h-[10px] absolute -right-2' 
+                                                onClick={() => {setAudioUrl(null), setAudioChunks([])}} />
+                                            
+                                        </div> 
+                                        :
+                                        <div className='flex flex-col items-center gap-[16px]'>
+                                            {!isRecording ? (
+                                                <button onClick={startRecording} className='bg-[#FF6600] flex items-center justify-center gap-[4px] rounded-xl w-[123px] h-[28px]'>
+                                                    <img src={Record} alt='Record' className='w-3 h-3' />
+                                                    <p className='text-[#fff] font-bold font-satoshi text-xs'>Record audio</p>
+                                                </button>
+                                            ) : (
+                                                <button onClick={stopRecording} className='bg-[#FF6600] flex items-center justify-center gap-[4px] rounded-xl w-[123px] h-[28px]'>
+                                                    <p className='text-[#fff] font-bold font-satoshi text-xs'>Stop Recording</p>
+                                                </button>
+                                            )}
+                                        </div>
+                                }
+
+                                {/* <button
                                     type='button'
                                     className='bg-[#FF6600] flex items-center justify-center gap-[4px] rounded-xl w-[123px] h-[28px]'
                                 >
                                     <img src={Record} alt='Record' className='w-3 h-3' />
                                     <p className='text-[#fff] font-bold font-satoshi text-xs'>Record audio</p>
-                                </button>
+                                </button> */}
+
                             </div>
                     }
                     
@@ -462,139 +474,3 @@ const Translate = () => {
 }
 
 export default Translate
-
-
-// <div className='flex flex-col xl:flex-row justify-between px-[20px] xl:px-[100px]'>
-//             <div className='flex flex-col gap-[48px]'>
-
-//                 <div className='flex xl:hidden flex-col mt-10 xl:mt-0 gap-[32px]'>
-//                     <div className='flex flex-col  xl:w-[600px] gap-2 xl:p-4'>
-//                         <p className='text-[#17053E] text-[22px] font-poppins font-medium'>VoxOver: Your Voice, Amplified</p>
-//                         <p className='text-[#17053E] text-[22px] font-poppins font-medium'>
-//                             Let VoxOver take your brand's communication to new heights. With our feature, your messages aren't 
-//                             just heard—they're remembered. Add the power of voice to your content today.
-//                         </p>
-//                     </div>
-//                     <div className='flex flex-col items-center gap-4'>
-//                         <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>
-//                         <select onChange={handleVoiceChange} className='w-full xl:w-[371px] p-2 outline-none border border-[#ccc] rounded-lg'>
-//                             <option value="">Select a voice</option>
-//                             {voices?.map((voice, index) => (
-//                                 <option key={index} value={voice?.voice_id}>{voice?.name}</option>
-//                             ))}
-//                         </select>
-                        
-
-//                         <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={() => run()}>
-//                             <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Vox Over"}</p>
-//                         </button>
-//                     </div>
-
-//                     <img src={Listen} alt='Listen' className='xl:w-[600px]'/>
-//                 </div>
-
-//                 <p className='w-full text-center xl:text-left xl:w-[450px] text-[#17053E] text-[28px]'>
-//                     VoxOver: Your Ultimate Voice Over Tool for Impactful Storytelling
-//                 </p>
-                
-//                 <p className='font-medium text-[#8F899C]  xl:w-[458px]'>
-//                     Why Choose VoxOver?
-//                 </p>
-
-//                 <div className='flex flex-col gap-4 xl:w-[458px]'>
-//                     <img src={Monitor} alt='Monitor' className='w-6 h-6'/>
-//                     <p className='text-[#17053E] text-[24px]'>Crystal Clear Narration:</p>
-//                     <p className='font-medium text-[#8F899C]'>
-//                         Our high-quality voice-over feature ensures your message is delivered with clarity and precision, 
-//                         capturing your audience's attention from the first word.
-//                     </p>
-//                 </div>
-
-//                 <div className='flex flex-col gap-4 xl:w-[458px]'>
-//                     <img src={Chart} alt='Chart' className='w-6 h-6'/>
-//                     <p className='text-[#17053E] text-[24px]'>Customizable Voices:</p>
-//                     <p className='font-medium text-[#8F899C]'>
-//                         Tailor the tone, style, and personality of your voice-over to match your brand's identity and message, 
-//                         whether you need a warm, professional, or dynamic sound.
-//                     </p>
-//                 </div>
-
-//                 <div className='flex flex-col gap-4 xl:w-[458px]'>
-//                     <img src={Data} alt='Data' className='w-6 h-6'/>
-//                     <p className='text-[#17053E] text-[24px]'>Seamless Integration:</p>
-//                     <p className='font-medium text-[#8F899C]'>
-//                         Effortlessly incorporate VoxOver into your content creation process, whether it's for a video, presentation, 
-//                         or digital ad.
-//                     </p>
-//                 </div>
-
-//                 <div className='flex flex-col gap-4 xl:w-[458px]'>
-//                     <img src={Reputation} alt='Monitor' className='w-6 h-6'/>
-//                     <p className='text-[#17053E] text-[24px]'>Enhanced Engagement:  </p>
-//                     <p className='font-medium text-[#8F899C]'>
-//                         Audio enhances user experience—VoxOver adds an extra layer of professionalism 
-//                         that boosts engagement and drives results.
-//                     </p>
-//                 </div>
-
-//                  <div className='flex flex-col gap-4 xl:w-[458px]'>
-//                     <img src={Monitor} alt='Monitor' className='w-6 h-6'/>
-//                     <p className='text-[#17053E] text-[24px]'>Versatile Application:</p>
-//                     <p className='font-medium text-[#8F899C]'>
-//                         From corporate narrations to dynamic product launches, VoxOver adapts to your needs, 
-//                         providing the perfect voice for every project.
-//                     </p>
-//                 </div>
-
-         
-
-//             </div>
-
-//             <div className='xl:flex flex-col mt-10 hidden xl:mt-0 gap-[32px]'>
-//                 <div className='flex flex-col  xl:w-[600px] gap-2 xl:p-4'>
-//                     <p className='text-[#17053E] text-[22px] font-poppins font-medium'>VoxOver: Your Voice, Amplified</p>
-//                     <p className='text-[#17053E] text-[22px] font-poppins font-medium'>
-//                         Let VoxOver take your brand's communication to new heights. With our feature, your messages aren't 
-//                         just heard—they're remembered. Add the power of voice to your content today.
-//                     </p>
-//                 </div>
-//                 <div className='flex flex-col items-center gap-4'>
-//                     <input type="file" accept='audio/*' onChange={handleFileChange} className='border border-[#ccc] xl:w-[371px] p-2'/>
-//                     <select onChange={handleVoiceChange} className='w-full xl:w-[371px] p-2 outline-none border border-[#ccc] rounded-lg'>
-//                             <option value="">Select a voice</option>
-//                             {voices?.map((voice, index) => (
-//                                 <option key={index} value={voice?.voice_id}>{voice?.name}</option>
-//                         ))}
-//                     </select>
-//                     <button className='w-full xl:w-[371px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={() => showModal()}> {/*{textDeepgram} */}
-//                         <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Vox Over"}</p>
-
-//                     </button>
-//                 </div>
-
-//                 <img src={Listen} alt='Listen' className='xl:w-[600px]'/>
-//             </div>
-
-//         </div>
-
-
-//         <div className='w-full flex flex-col xl:flex-row items-center mb-10 justify-between py-10 xl:py-0 xl:h-[480px] mt-[103px] px-[20px] xl:px-[100px] bg-[#FFF7F2]'>
-//             <div className='flex flex-col gap-[6px]'>
-//                 <p className=' flex flex-col gap-4  xl:w-[673px]'>
-//                 <p className='text-2xl xl:text-[30px] text-[#17053E] font-semibold'> How PR Pros Benefit</p>
-//                 <p className='text-base'><span className='font-medium'>Crisis Management:</span> Quickly gauge public sentiment in a crisis.</p>
-//                 <p className='text-base'><span className='font-medium'>Media Monitoring:</span> Track the impact of press coverage and competitor activity.</p>
-//                 <p className='text-base'><span className='font-medium'>Campaign Evaluation:</span> Measure the emotional resonance of your messaging.</p>
-//                 <p className='text-base'><span className='font-medium'>Stakeholder Insights:</span> Understand the true needs and concerns of your audience.</p>
-//                 </p>
-//                 <button type='button' className='xl:w-[371px] mt-2 rounded-lg bg-[#17053E] p-4' onClick={() => setOpenForm(true)}>
-//                     <p className='text-[#fff]'>Request Free Consultation</p>
-//                 </button>
-//             </div>
-//             <div className='flex-col relative hidden xl:flex'>
-//                 <img src={Time} alt='Time' className='w-[208px]  absolute -top-24 '/>
-//                 <img src={Notification} alt='Notification' className='w-[444px] left-14 -top-16 absolute ' />
-//                 <img src={Insights} alt='Insights' className='w-[193px]  top-20 z-40 absolute'/>
-//                 <img src={NotificationB} alt='NotificationB' className='w-[446px] left-14 top-20 relative  ' />
-//             </div>
-//         </div>

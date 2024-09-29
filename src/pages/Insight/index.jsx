@@ -139,7 +139,7 @@ const InsightEngine = () => {
             className="w-full h-[456px] lg:h-[534px] flex flex-col lg:flex-row items-center lg:gap-[179px] px-5 lg:px-[80px] py-6"
         >
             <div className='flex flex-col gap-5 mt-20 items-center lg:mt-0 w-full lg:w-5/12'>
-                <p className='font-bold text-[#fff] font-satoshi text-[40px] lg:text-[64px]'>Vox Speech</p>
+                <p className='font-bold text-[#fff] font-satoshi text-[40px] lg:text-[64px]'>Vox Speaks</p>
                 <p className='text-[#fff] text-[24px] lg:text-[32px] text-center lg:text-left font-satoshi'>Your 24/7 Audio Reputation advisor</p>
                 <button 
                     type='button'

@@ -30,7 +30,7 @@ const Solutions = () => {
       setTimeout(() => {
         setLoading(false)
       }, 1500)
-      navigate("/vox-reputation"); 
+      navigate("/vox-speaks"); 
       window.scrollTo(0, 0)
     } else {
       setOpenLogin(true)
@@ -126,7 +126,7 @@ const Solutions = () => {
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-[28px] mx-[20px] lg:mx-[64px] items-center'>
             <div className='w-full lg:w-[388px] h-full p-[28px] flex flex-col gap-6 z-10 bg-[#F9F8F8] rounded-lg border cursor-pointer border-[#E0E6ED]' onClick={() => showModal()}>
                 <img src={Logo} alt='Logo' className='w-[60px] h-[60px]'/>
-                <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Vox Reputation</p>
+                <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Vox Speaks</p>
                 <p className='text-[#3B3F5C] font-poppins text-base opacity-50'>Your AI Reputation Strategist</p>
                 <p className='text-[#3B3F5C] font-poppins opacity-80 text-base'>
                   Gain expert guidance on safeguarding and enhancing your brand's reputation. 

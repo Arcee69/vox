@@ -18,7 +18,7 @@ const Routers = () => {
     <Routes>
       <Route element={<Layout />}>
         <Route path='/' element={<Home />} />
-        <Route path='/vox-reputation' element={<InsightEngine />} />
+        <Route path='/vox-speaks' element={<InsightEngine />} />
         <Route path='/vox-sentiment' element={<SentimentEngine />} />
         <Route path='/pricing' element={<Pricing />} />
         <Route path='/settings' element={<Settings />} />
