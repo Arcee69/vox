@@ -140,7 +140,7 @@ const InsightEngine = () => {
         >
             <div className='flex flex-col gap-5 mt-20 items-center lg:mt-0 w-full lg:w-5/12'>
                 <p className='font-bold text-[#fff] font-satoshi text-[40px] lg:text-[64px]'>Vox Speaks</p>
-                <p className='text-[#fff] text-[24px] lg:text-[32px] text-center lg:text-left font-satoshi'>Your 24/7 Audio Reputation advisor</p>
+                <p className='text-[#fff] text-[24px] lg:text-[32px] text-center  font-satoshi'>Turn Your Text into Captivating Speech</p>
                 <button 
                     type='button'
                     className='w-[226px] h-[54px] rounded-xl bg-[#FF6600] flex items-center justify-center'
@@ -189,7 +189,47 @@ const InsightEngine = () => {
 
         <div className='mt-[60px] mb-[115px] flex w-full'>
             <div className='w-10/12 mx-auto flex flex-col gap-[32px] '>
-                <p className='text-[28px] lg:text-[48px] font-satoshi font-bold text-[#1C1C1C]'>How it works</p>
+                <p className='text-[28px] lg:text-[48px] font-satoshi font-bold text-[#1C1C1C]'>Give your words a voice. </p>
+                <p className='text-base lg:text-[24px] leading-[30px] font-satoshi text-[#1C1C1C]'> 
+                    VoxSpeak is more than just text-to-speech. 
+                    It’s a tool to amplify your message  and make your content stand out. 
+                    Whether you’re educating, entertaining, or promoting, 
+                    VoxSpeak helps you craft a voice that truly connects.
+                </p>
+                <p className='text-[24px] lg:text-[40px] font-satoshi font-bold text-[#1C1C1C]'>Use Cases</p>
+                <div className='grid grid-cols-1 lg:grid-cols-4 gap-[40px] lg:gap-[56px] items-center'>
+                    <div className='flex flex-col items-start gap-6 w-full lg:w-[278px]'>
+                        <img src={Reputation} alt='Monitor' className='w-6 h-6'/>
+                        <p className='text-[#1C1C1C] font-bold font-satoshi text-[20px] lg:text-[24px]'>For Creators:</p>
+                        <p className='font-normal font-satoshi text-[#363637]'>
+                            Instantly turn written content into engaging voiceovers for YouTube, social media, or podcast intros.
+                        </p>
+                    </div>
+                    <div className='flex flex-col items-start gap-6  w-full lg:w-[278px]'>
+                        <img src={Data} alt='Chart' className='w-6 h-6'/>
+                        <p className='text-[#1C1C1C] font-bold font-satoshi text-[20px] lg:text-[24px]'>For Educators:</p>
+                        <p className='font-normal font-satoshi text-[#363637]'>
+                            Enhance lessons by converting educational material into multilingual audio, perfect for global classrooms.
+                        </p>
+                    </div>
+                    <div className='flex flex-col items-start gap-6 w-full lg:w-[278px]'>
+                        <img src={Chart} alt='Data' className='w-6 h-6'/>
+                        <p className='text-[#1C1C1C] font-bold font-satoshi text-[20px] lg:text-[24px]'>For Businesses:</p>
+                        <p className='font-normal font-satoshi text-[#363637]'>
+                            Add professional narration to presentations, product demos, and customer service interactions.
+                        </p>
+                    </div>
+                    <div className='flex flex-col items-start gap-6 w-full lg:w-[278px]'>
+                        <img src={Monitor} alt='Reputation' className='w-6 h-6'/>
+                        <p className='text-[#1C1C1C] font-bold  font-satoshi text-[20px] lg:text-[24px]'>For Publishers:</p>
+                        <p className='font-normal font-satoshi text-[#363637]'>
+                            Turn your books and articles into captivating audiobooks, 
+                            or offer narrated versions for accessibility.
+                        </p>
+                    </div>
+                </div>
+                <p  className='text-base lg:text-[24px] text-center font-satoshi font-bold text-[#1C1C1C]'>Ready to bring your text to life? Get started today!</p>
+                <p className='text-[24px] lg:text-[40px] font-satoshi font-bold text-[#1C1C1C]'>How it works</p>
                 <div className='grid grid-cols-1 lg:grid-cols-4 gap-[40px] lg:gap-[56px] items-center'>
                     <div className='flex flex-col items-start gap-6 w-full lg:w-[278px]'>
                         <img src={Monitor} alt='Monitor' className='w-6 h-6'/>

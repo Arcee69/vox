@@ -14,9 +14,10 @@ import ModalPop from '../../components/modalPop';
 import Login from '../Auth/Login';
 import SignUp from '../Auth/SignUp';
 import RequestForm from '../Insight/RequestForm';
+import axios from 'axios';
 
 const Pricing = () => {
-    const [showRef, setShowRef] = useState("")
+    const [type, setType] = useState(0)
     const [openLogin, setOpenLogin] = useState(false)
     const [openSignUp, setOpenSignUp] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -32,38 +33,21 @@ const Pricing = () => {
     const userData = JSON.parse(localStorage.getItem("userObj"))
     console.log(userData, "userData")
 
-    const config = {
-        reference: (new Date()).getTime().toString(),
-        email: userData?.data?.email,
-        amount: 1000000, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
-        publicKey: 'pk_test_58043fcdc746c1d60622e808c7e1cd57dd810aa5',
-    };
+    const secret = import.meta.env.VITE_APP_SECRET_KEY
 
-    // you can call this function anything
-  const onSuccess = async (reference) => {
-    // Implementation for whatever you want to do with reference and after success call.
-    setShowRef(reference)  
-
-  };
-
-  console.log(showRef, "pablo");
-
-
-
- 
 
   
 //   const initializePayment = usePaystackPayment(config);
   const initializePayment = async () => {
     const data= { 
         "email": userData?.data?.email,
-        "amount": 1000000,
+        "amount": `${type}00`,
         "currency": "NGN",
-        "callback_url": "http://localhost:5173"
+        "callback_url": "https://voxprinsight.com/"
     }
     await axios.post("https://api.paystack.co/transaction/initialize", data, {
         headers: {
-            "Authorization": `Bearer sk_test_f0ec1551eed23b489b279e49a5d2613d92cbf4fe`,
+            "Authorization": `Bearer ${secret}`,
             "Content-Type": "application/json"
         }
     })
@@ -82,7 +66,7 @@ const Pricing = () => {
         // implementation for  whatever you want to do when the Paystack dialog closed.
         console.log('closed')
         try {
-            const res = await api.get(appUrls?.PAYMENT_URL + `?ref=${reference}&total=5000`)
+            const res = await api.get(appUrls?.PAYMENT_URL + `?ref=${reference}&total=${type}`)
             console.log(res, "res")
         } catch (error) {
             console.log(error, "err")
@@ -294,7 +278,7 @@ const Pricing = () => {
                         <div className='flex items-center justify-center w-[265px]'>
                             <button
                                 className='w-[217px] rounded-lg flex items-center justify-center h-[40px] bg-[#FF6600]'
-                                onClick={() => showModal()}
+                                onClick={() => {showModal(); setType(10000)}}
                             >
                                 <p className='text-[#fff] font-inter font-medium text-sm'>Get Started</p>
                             </button>
@@ -302,7 +286,7 @@ const Pricing = () => {
                         <div className='flex items-center justify-center w-[265px]'>
                             <button
                                 className='w-[217px] rounded-lg flex items-center justify-center h-[40px] bg-[#FF6600]'
-                                onClick={() => showModal()}
+                                onClick={() => {showModal(); setType(100000)}}
                             >
                                 <p className='text-[#fff] font-inter font-medium text-sm'>Get Started</p>
                             </button>

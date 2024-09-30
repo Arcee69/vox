@@ -181,13 +181,15 @@ const Solutions = () => {
             <div className='w-full lg:w-[388px] h-full p-[38px] flex flex-col gap-6 bg-[#F9F8F8] rounded-lg border border-[#E0E6ED]' onClick={() => showSixthModal()}>
               <div className='flex justify-between'>
                 <img src={Logo} alt='Logo' className='w-[60px] h-[60px]'/>
-                <p className='font-poppins invisible  text-base text-[#3B3F5C]'>Coming Soon</p>
+                <p className='font-poppins text-base text-[#3B3F5C]'>Beta</p>
               </div>
                 <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Vox Shield</p>
-                <p className='text-[#3B3F5C] font-poppins text-base opacity-50 '>AI Prompting Made Easy with VoxPrompt: Precision at Your Fingertips</p>
+                <p className='text-[#3B3F5C] font-poppins text-base opacity-50 '>
+                  Your AI-Powered Truth Detector
+                </p>
                 <p className='text-[#3B3F5C] font-poppins opacity-80 text-base'>
-                  Experience the Future of AI-Driven Content Creation
-                  With VoxPrompt, you don’t just generate prompts – you create brilliance.
+                  Leverage AI to detect deepfakes, expose fake news, analyze sentiment, 
+                  and track media performance—ensuring accurate, reliable insights at every turn.
                 </p>
             </div>
 
