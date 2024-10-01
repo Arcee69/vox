@@ -110,7 +110,7 @@ const Pricing = () => {
             </p>
         </div>
 
-        <div className='flex flex-col w-10/12 mt-[60px]'>
+        <div className='flex flex-col w-[100%] overflow-auto lg:w-10/12  mt-[60px]'>
             <div className='w-full flex items-center '>
                 <div className='w-[265px] h-[306px] flex flex-col px-3 gap-3'>
 
@@ -146,14 +146,14 @@ const Pricing = () => {
                 </div>
 
             </div>
-            <div className='flex flex-col gap-4'>
+            <div className='flex flex-col gap-4 px-5'>
                 <div className='w-full'>
                     <p className='font-inter font-medium text-[#FF6600]'>Features</p>
                 </div>
                 <div className='flex flex-col'>
-                    <div className='w-full bg-[#fff] h-[64px] p-2 flex items-center'>
+                    <div className='w-full bg-[#fff] w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
                         <div className='flex items-center gap-1.5 w-[265px]'>
-                            <p className='font-medium font-poppins'>Vox Speech</p>
+                            <p className='font-medium font-poppins'>Vox Speak</p>
                             <img src={Help} alt='Help' />
                         </div>
                         <div className='flex items-center justify-center w-[265px]'>
@@ -166,7 +166,7 @@ const Pricing = () => {
                             <img src={Check} alt='Check' className='w-6 h-6' />
                         </div>
                     </div>
-                    <div className='w-full bg-transparent h-[64px] p-2 flex items-center'>
+                    <div className='w-full bg-transparent w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
                         <div className='flex items-center gap-1.5 w-[265px]'>
                             <p className='font-medium font-poppins'>VoxScribe</p>
                             <img src={Help} alt='Help' />
@@ -181,9 +181,9 @@ const Pricing = () => {
                             <p className='font-normal text-[#667085] font-poppins'>Unlimited</p>
                         </div>
                     </div>
-                    <div className='w-full bg-[#fff] h-[64px] p-2 flex items-center'>
+                    <div className='w-full bg-[#fff] w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
                         <div className='flex items-center gap-1.5 w-[265px]'>
-                            <p className='font-medium font-poppins'>Vox release</p>
+                            <p className='font-medium font-poppins'>Vox Release</p>
                             <img src={Help} alt='Help' />
                         </div>
                         <div className='flex items-center justify-center w-[265px]'>
@@ -196,7 +196,7 @@ const Pricing = () => {
                             <p className='font-normal text-[#667085] font-poppins'>Unlimited</p>
                         </div>
                     </div>
-                    <div className='w-full bg-transparent h-[64px] p-2 flex items-center'>
+                    <div className='w-full bg-transparent w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
                         <div className='flex items-center gap-1.5 w-[265px]'>
                             <p className='font-medium font-poppins'>Vox Sentiment</p>
                             <img src={Help} alt='Help' />
@@ -211,7 +211,37 @@ const Pricing = () => {
                             <img src={Check} alt='Check' className='w-6 h-6' />
                         </div>
                     </div>
-                    <div className='w-full bg-[#fff] h-[64px] p-2 flex items-center'>
+                    <div className='w-full bg-[#fff] w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
+                        <div className='flex items-center gap-1.5 w-[265px]'>
+                            <p className='font-medium font-poppins'>Vox Over</p>
+                            <img src={Help} alt='Help' />
+                        </div>
+                        <div className='flex items-center justify-center w-[265px]'>
+                            <img src={Check} alt='Check' className='w-6 h-6' />
+                        </div>
+                        <div className='flex items-center justify-center w-[265px]'>
+                            <img src={Check} alt='Check' className='w-6 h-6' />
+                        </div>
+                        <div className='flex items-center justify-center w-[265px]'>
+                            <img src={Check} alt='Check' className='w-6 h-6' />
+                        </div>
+                    </div>
+                    <div className='w-full bg-transparent w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
+                        <div className='flex items-center gap-1.5 w-[265px]'>
+                            <p className='font-medium font-poppins'>Vox Shield</p>
+                            <img src={Help} alt='Help' />
+                        </div>
+                        <div className='flex items-center justify-center w-[265px]'>
+                            <img src={Check} alt='Check' className='w-6 h-6' />
+                        </div>
+                        <div className='flex items-center justify-center w-[265px]'>
+                            <img src={Check} alt='Check' className='w-6 h-6' />
+                        </div>
+                        <div className='flex items-center justify-center w-[265px]'>
+                            <img src={Check} alt='Check' className='w-6 h-6' />
+                        </div>
+                    </div>
+                    <div className='w-full bg-[#fff] w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
                         <div className='flex items-center gap-1.5 w-[265px]'>
                             <p className='font-medium font-poppins'>Customer Support</p>
                             <img src={Help} alt='Help' />
@@ -226,7 +256,7 @@ const Pricing = () => {
                             <img src={Check} alt='Check' className='w-6 h-6' />
                         </div>
                     </div>
-                    <div className='w-full bg-transparent h-[64px] p-2 flex items-center'>
+                    <div className='w-full bg-transparent w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
                         <div className='flex items-center gap-1.5 w-[265px]'>
                             <p className='font-medium font-poppins'>Product updates</p>
                             <img src={Help} alt='Help' />
@@ -241,7 +271,7 @@ const Pricing = () => {
                             <img src={Check} alt='Check' className='w-6 h-6' />
                         </div>
                     </div>
-                    <div className='w-full bg-[#fff] h-[64px] p-2 flex items-center'>
+                    <div className='w-full bg-[#fff] w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
                         <div className='flex items-center gap-1.5 w-[265px]'>
                             <p className='font-medium font-poppins'>Secure Data Storage</p>
                             <img src={Help} alt='Help' />
@@ -256,7 +286,7 @@ const Pricing = () => {
                             <img src={Check} alt='Check' className='w-6 h-6' />
                         </div>
                     </div>
-                    <div className='w-full bg-transparent h-[64px] p-2 flex items-center'>
+                    <div className='w-full bg-transparent w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
                         <div className='flex items-center gap-1.5 w-[265px]'>
                             <p className='font-medium font-poppins'>Knowledge base training</p>
                             <img src={Help} alt='Help' />
@@ -271,7 +301,7 @@ const Pricing = () => {
                             <img src={Check} alt='Check' className='w-6 h-6' />
                         </div>
                     </div>
-                    <div className='w-full bg-transparent h-[64px] p-2 flex items-center'>
+                    <div className='w-full bg-transparent w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
                         <div className='flex items-center gap-1.5 w-[265px]'>
 
                         </div>

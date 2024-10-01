@@ -106,7 +106,11 @@ const Home = () => {
             <button type='button' className='bg-[#FF6600] cursor-pointer rounded-3xl w-[200px]  p-2 flex items-center justify-center h-[67px]'  onClick={() => showModal()}> {/* */}
               <p className='text-[#FFF] font-poppins text-[20px] font-medium'>{loading ? <CgSpinner className=" animate-spin text-xl " /> : "Get Started"}</p>
             </button>
-            <button type='button' className='bg-[#F4DCD3] xl:z-10 cursor-pointer rounded-3xl w-[272px] p-2 flex items-center justify-center h-[67px]'>
+            <button 
+              type='button' 
+              className='bg-[#F4DCD3] xl:z-10 cursor-pointer rounded-3xl w-[272px] p-2 flex items-center justify-center h-[67px]'
+              onClick={() => navigate("/watch-demo")}
+            >
               <p className='text-[#FF6600] font-poppins text-[20px] font-medium'>Watch Demo Video</p>
             </button>
           </div>

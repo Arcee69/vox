@@ -159,12 +159,12 @@ const Solutions = () => {
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-[28px] mx-[20px] lg:mx-[64px] items-center'>
             <div className='w-full lg:w-[388px] h-full p-[28px] flex flex-col gap-6 z-10 bg-[#F9F8F8] rounded-lg border cursor-pointer border-[#E0E6ED]' onClick={() => showModal()}>
                 <img src={Logo} alt='Logo' className='w-[60px] h-[60px]'/>
-                <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>Vox Speaks</p>
-                <p className='text-[#3B3F5C] font-poppins text-base opacity-50'>Your AI Reputation Strategist</p>
+                <p className='text-[32px] font-poppins font-bold text-[#3B3F5C]'>VoxSpeak</p>
+                <p className='text-[#3B3F5C] font-poppins text-base opacity-50'>Turn Your Text into Captivating Speech</p>
                 <p className='text-[#3B3F5C] font-poppins opacity-80 text-base'>
-                  Gain expert guidance on safeguarding and enhancing your brand's reputation. 
-                  VoxPR's Insights Engine Engine aggregates and analyzes vast amounts of media data, 
-                  delivering actionable intelligence to help you build and protect your brand's reputation.
+                  Give your words a voice. VoxSpeak is more than just text-to-speech. 
+                  It’s a tool to make your content stand out and helps you craft a voice that truly connects. 
+                  Whether you’re educating, entertaining, or promoting, VoxSpeak helps you craft a voice that truly connects.
                 </p>
             </div>
             <div className='w-full lg:w-[388px] h-full p-[28px] flex flex-col gap-6 bg-[#F9F8F8] rounded-lg border cursor-pointer border-[#E0E6ED]' onClick={() => showSecondModal()}>

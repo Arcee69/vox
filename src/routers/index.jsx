@@ -11,6 +11,7 @@ import Scribe from '../pages/Scribe'
 import Release from '../pages/Release'
 import Translate from '../pages/Translate'
 import Shield from '../pages/Shield/shield'
+import Demo from '../pages/Demo'
 
 
 const Routers = () => {
@@ -27,6 +28,7 @@ const Routers = () => {
         <Route path='/voxrelease' element={<Release />} />
         <Route path='/voxover' element={<Translate />} />
         <Route path='/vox-shield' element={<Shield />} />
+        <Route path='/watch-demo' element={<Demo />} />
       </Route>
     </Routes>
   )
