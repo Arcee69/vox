@@ -149,7 +149,7 @@ const InsightEngine = () => {
                 </button>
             </div>
             <div className='w-6/12 bg-[#fff] rounded-3xl hidden lg:flex flex-col gap-4 p-[50px]'>
-                <p className='font-satoshi text-center text-[18px] text-[#000]'>VoxPR listens, analyzes and enhances your PR success</p>
+                <p className='font-satoshi text-center text-[18px] text-[#000]'>Ready to bring your text to life? Get started today!</p>
                 <textarea 
                     type='text'
                     value={text}
@@ -163,13 +163,13 @@ const InsightEngine = () => {
                     ))}
                 </select>
                 <button className='w-full lg:w-[491px] flex items-center justify-center rounded-lg p-4 bg-[#17053E]' onClick={() => showModal()}>
-                    <p className='text-[#fff]'>{loading ? <CgSpinner className=" animate-spin text-xl " /> : "Get Insight"} </p>
+                    <p className='text-[#fff]'>{loading ? <CgSpinner className=" animate-spin text-xl " /> : "Generate Speech"} </p>
                 </button>
             </div>
 
         </div>
         <div className='w-11/12 bg-[#fff] mx-auto mt-10 rounded-3xl lg:hidden flex flex-col gap-4 py-10 px-5 lg:p-[50px]'>
-            <p className='font-satoshi text-center text-base text-[#000]'>VoxPR listens, analyzes and enhances your PR success</p>
+            <p className='font-satoshi text-center text-base text-[#000]'>Ready to bring your text to life? Get started today!</p>
             <textarea 
                 type='text'
                 value={text}
@@ -183,7 +183,7 @@ const InsightEngine = () => {
                 ))}
             </select>
             <button className='w-full lg:w-[491px] flex items-center justify-center rounded-lg p-4 bg-[#17053E]' onClick={() => showModal()}>
-                <p className='text-[#fff]'>{loading ? <CgSpinner className=" animate-spin text-xl " /> : "Get Insight"} </p>
+                <p className='text-[#fff]'>{loading ? <CgSpinner className=" animate-spin text-xl " /> : "Generate Speech"} </p>
             </button>
         </div>
 
@@ -228,43 +228,8 @@ const InsightEngine = () => {
                         </p>
                     </div>
                 </div>
-                <p  className='text-base lg:text-[24px] text-center font-satoshi font-bold text-[#1C1C1C]'>Ready to bring your text to life? Get started today!</p>
-                <p className='text-[24px] lg:text-[40px] font-satoshi font-bold text-[#1C1C1C]'>How it works</p>
-                <div className='grid grid-cols-1 lg:grid-cols-4 gap-[40px] lg:gap-[56px] items-center'>
-                    <div className='flex flex-col items-start gap-6 w-full lg:w-[278px]'>
-                        <img src={Monitor} alt='Monitor' className='w-6 h-6'/>
-                        <p className='text-[#1C1C1C] font-bold font-satoshi text-[20px] lg:text-[24px]'>We Listen:</p>
-                        <p className='font-normal font-satoshi text-[#363637]'>
-                            Our advanced AI reputation Management advisor listens to the reputation management challenges 
-                            you face and provide clear analysis.
-                        </p>
-                    </div>
-                    <div className='flex flex-col items-start gap-6  w-full lg:w-[278px]'>
-                        <img src={Chart} alt='Chart' className='w-6 h-6'/>
-                        <p className='text-[#1C1C1C] font-bold font-satoshi text-[20px] lg:text-[24px]'>We Understand:</p>
-                        <p className='font-normal font-satoshi text-[#363637]'>
-                            Our advanced AI reputation Management advisor listens to the reputation management challenges 
-                            you face and provide clear analysis.
-                        </p>
-                    </div>
-                    <div className='flex flex-col items-start gap-6 w-full lg:w-[278px]'>
-                        <img src={Data} alt='Data' className='w-6 h-6'/>
-                        <p className='text-[#1C1C1C] font-bold font-satoshi text-[20px] lg:text-[24px]'>We Advise:</p>
-                        <p className='font-normal font-satoshi text-[#363637]'>
-                            We provide data-driven recommendations to help you craft effective responses, 
-                            refine your messaging, and strengthen your brand's reputation.
-                        </p>
-                    </div>
-                    <div className='flex flex-col items-start gap-6 w-full lg:w-[278px]'>
-                        <img src={Reputation} alt='Reputation' className='w-6 h-6'/>
-                        <p className='text-[#1C1C1C] font-bold  font-satoshi text-[20px] lg:text-[24px]'>Make Informed Decisions:</p>
-                        <p className='font-normal font-satoshi text-[#363637]'>
-                            Leverage on data-driven insights to gain clearer perspective, 
-                            shape your communication strategies and build a stronger brand.
-                        </p>
-                    </div>
-
-                </div>
+                <p  className='text-base lg:text-[24px] text-center mt-5 font-satoshi font-bold text-[#1C1C1C]'>Ready to bring your text to life? Get started today!</p>
+                
 
             </div>
 

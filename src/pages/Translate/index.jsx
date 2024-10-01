@@ -256,96 +256,100 @@ const stopRecording = () => {
             style={{
                 backgroundImage: `url(${Over})`,
                 backgroundSize: "cover",
-                backgroundRepeat: "no-repeat"
+                backgroundRepeat: "no-repeat",
+                position: "relative",
             }}
             className='h-[676px] flex flex-col items-center gap-3 lg:gap-5 justify-center px-5 lg:px-0'
         >
-            <p className='font-satoshi font-bold text-[40px] lg:text-[64px] text-[#fff]'>VoxOver</p>
-            <p className='font-satoshi text-[24px] lg:text-[32px] w-full lg:w-[412px] text-[#fff] text-center'>
-                Add the power of your voice to your content today
-            </p>
-            <div className='flex flex-col lg:mx-auto  bg-[#FAF1ED] rounded-xl items-center lg:w-[491px] h-auto px-6 py-[28px]  gap-[16px]'>
-                <div className='p-[9px] w-[300px] cursor-pointer flex justify-center gap-[16px] '>
-                    {  
-                        file?.name ? 
-                            <div className='flex flex-col gap-1'>
-                                <div className='flex items-center justify-between'>
-                                    <p className='text-[15px] font-hanken text-[#858585]'>{file?.name}</p>
-                                    <p className='text-[#000] text-[11px]'>Completed</p>
-                                </div>
-                                <div className='w-[266px] h-[5px] bg-[#51E38B] rounded-lg'></div>
-                            </div> 
-                            :
-                            <div className='flex flex-col items-center gap-[16px]'>
-                                <label htmlFor="fileInput" className='cursor-pointer px-[22px] flex justify-center items-center '>
-                                    <div className='flex flex-col'>
-                                        <p className='text-sm font-semibold font-sataoshi text-[#17053E]'>
-                                            Click to upload <span className='text-[#475367]'>or drag and drop</span>
-                                        </p>
-                                        <p className='text-xs text-center font-medium text-[#98A2B3]'>SVG, PNG, JPG or GIF (max. 800x300px)</p>
+            <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
+            <div className='relative z-10 flex flex-col gap-5 items-center'>
+                <p className='font-satoshi font-bold text-[40px] lg:text-[64px] text-[#fff]'>VoxOver</p>
+                <p className='font-satoshi text-[24px] lg:text-[32px] w-full lg:w-[412px] text-[#fff] text-center'>
+                    Add the power of your voice to your content today
+                </p>
+                <div className='flex flex-col lg:mx-auto  bg-[#FAF1ED] rounded-xl items-center lg:w-[491px] h-auto px-6 py-[28px]  gap-[16px]'>
+                    <div className='p-[9px] w-[300px] cursor-pointer flex justify-center gap-[16px] '>
+                        {  
+                            file?.name ? 
+                                <div className='flex flex-col gap-1'>
+                                    <div className='flex items-center justify-between'>
+                                        <p className='text-[15px] font-hanken text-[#858585]'>{file?.name}</p>
+                                        <p className='text-[#000] text-[11px]'>Completed</p>
                                     </div>
-                                    <input
-                                        type="file"
-                                        id="fileInput"
-                                        accept='audio/*'
-                                        style={{ display: 'none' }}
-                                        onChange={handleFileChange}
-                                    />
-                                </label>
-                                <div className='flex gap-1.5 items-center'>
-                                    <div className='bg-[#F0F2F5] w-[100px] h-[1px]'></div> 
-                                    <p className='text-xs font-inter font-semibold text-[#98A2B3]'>OR</p>
-                                    <div className='bg-[#F0F2F5] w-[100px] h-[1px]'></div> 
-                                </div>
-
-                                {  
-                                    audioUrl ? 
-                                        <div className='flex flex-col relative gap-1'>
-                                            <audio ref={audioRef} src={audioUrl} controls />
-                                            <img 
-                                                src={Close} 
-                                                alt='Close' 
-                                                className='w-[10px] h-[10px] absolute -right-2' 
-                                                onClick={() => {setAudioUrl(null), setAudioChunks([])}} />
-                                            
-                                        </div> 
-                                        :
-                                        <div className='flex flex-col items-center gap-[16px]'>
-                                            {!isRecording ? (
-                                                <button onClick={startRecording} className='bg-[#FF6600] flex items-center justify-center gap-[4px] rounded-xl w-[123px] h-[28px]'>
-                                                    <img src={Record} alt='Record' className='w-3 h-3' />
-                                                    <p className='text-[#fff] font-bold font-satoshi text-xs'>Record audio</p>
-                                                </button>
-                                            ) : (
-                                                <button onClick={stopRecording} className='bg-[#FF6600] flex items-center justify-center gap-[4px] rounded-xl w-[123px] h-[28px]'>
-                                                    <p className='text-[#fff] font-bold font-satoshi text-xs'>Stop Recording</p>
-                                                </button>
-                                            )}
+                                    <div className='w-[266px] h-[5px] bg-[#51E38B] rounded-lg'></div>
+                                </div> 
+                                :
+                                <div className='flex flex-col items-center gap-[16px]'>
+                                    <label htmlFor="fileInput" className='cursor-pointer px-[22px] flex justify-center items-center '>
+                                        <div className='flex flex-col'>
+                                            <p className='text-sm font-semibold font-sataoshi text-[#17053E]'>
+                                                Click to upload <span className='text-[#475367]'>or drag and drop</span>
+                                            </p>
+                                            <p className='text-xs text-center font-medium text-[#98A2B3]'>SVG, PNG, JPG or GIF (max. 800x300px)</p>
                                         </div>
-                                }
+                                        <input
+                                            type="file"
+                                            id="fileInput"
+                                            accept='audio/*'
+                                            style={{ display: 'none' }}
+                                            onChange={handleFileChange}
+                                        />
+                                    </label>
+                                    <div className='flex gap-1.5 items-center'>
+                                        <div className='bg-[#F0F2F5] w-[100px] h-[1px]'></div> 
+                                        <p className='text-xs font-inter font-semibold text-[#98A2B3]'>OR</p>
+                                        <div className='bg-[#F0F2F5] w-[100px] h-[1px]'></div> 
+                                    </div>
 
-                                {/* <button
-                                    type='button'
-                                    className='bg-[#FF6600] flex items-center justify-center gap-[4px] rounded-xl w-[123px] h-[28px]'
-                                >
-                                    <img src={Record} alt='Record' className='w-3 h-3' />
-                                    <p className='text-[#fff] font-bold font-satoshi text-xs'>Record audio</p>
-                                </button> */}
+                                    {  
+                                        audioUrl ? 
+                                            <div className='flex flex-col relative gap-1'>
+                                                <audio ref={audioRef} src={audioUrl} controls />
+                                                <img 
+                                                    src={Close} 
+                                                    alt='Close' 
+                                                    className='w-[10px] h-[10px] absolute -right-2' 
+                                                    onClick={() => {setAudioUrl(null), setAudioChunks([])}} />
+                                                
+                                            </div> 
+                                            :
+                                            <div className='flex flex-col items-center gap-[16px]'>
+                                                {!isRecording ? (
+                                                    <button onClick={startRecording} className='bg-[#FF6600] flex items-center justify-center gap-[4px] rounded-xl w-[123px] h-[28px]'>
+                                                        <img src={Record} alt='Record' className='w-3 h-3' />
+                                                        <p className='text-[#fff] font-bold font-satoshi text-xs'>Record audio</p>
+                                                    </button>
+                                                ) : (
+                                                    <button onClick={stopRecording} className='bg-[#FF6600] flex items-center justify-center gap-[4px] rounded-xl w-[123px] h-[28px]'>
+                                                        <p className='text-[#fff] font-bold font-satoshi text-xs'>Stop Recording</p>
+                                                    </button>
+                                                )}
+                                            </div>
+                                    }
 
-                            </div>
-                    }
-                    
+                                    {/* <button
+                                        type='button'
+                                        className='bg-[#FF6600] flex items-center justify-center gap-[4px] rounded-xl w-[123px] h-[28px]'
+                                    >
+                                        <img src={Record} alt='Record' className='w-3 h-3' />
+                                        <p className='text-[#fff] font-bold font-satoshi text-xs'>Record audio</p>
+                                    </button> */}
+
+                                </div>
+                        }
+                        
+                    </div>
                 </div>
+                <select onChange={handleVoiceChange} className='w-full  lg:w-[491px] p-2 outline-none border border-[#ccc] rounded-lg'>
+                    <option value="">Select a voice</option>
+                    {voices?.map((voice, index) => (
+                        <option key={index} value={voice?.voice_id}>{voice?.name}</option>
+                    ))}
+                </select>
+                <button className='w-full  lg:w-[491px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={() => showModal()}> {/*{textDeepgram} */}
+                    <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Vox Over"}</p>
+                </button>
             </div>
-            <select onChange={handleVoiceChange} className='w-full  lg:w-[491px] p-2 outline-none border border-[#ccc] rounded-lg'>
-                <option value="">Select a voice</option>
-                {voices?.map((voice, index) => (
-                    <option key={index} value={voice?.voice_id}>{voice?.name}</option>
-                ))}
-            </select>
-            <button className='w-full  lg:w-[491px] text-[#fff] rounded-lg flex items-center justify-center bg-[#17053E] p-4' onClick={() => showModal()}> {/*{textDeepgram} */}
-                <p className='text-[#fff] '>{loading ? <CgSpinner className='animate-spin text-lg'/> : " Use Vox Over"}</p>
-            </button>
         </div>
         <div className='w-full lg:mb-[118px] mt-[92px] lg:mx-[80px]'>
             <div className='bg-gradient-to-r from-[#070014] to-[#1E1433] py-[77px] px-5 lg:px-[80px] rounded-[40px] h-auto w-full lg:w-11/12 flex flex-col gap-6 lg:gap-[56px]'>

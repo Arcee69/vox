@@ -104,7 +104,7 @@ const Pricing = () => {
         <div className='flex flex-col items-center w-8/12 mx-auto'>
             <p className='text-[#3B3F5C] text-[48px] font-medium font-poppins'>Pricing</p>
             <p className='text-base text-[#3B3F5C] text-center font-poppins'>
-                Enjoy a free access to our VoxPR tools for the first 2 weeks when you sign up and subscribe 
+                Enjoy a free access to our VoxPR tools for the first 2 days when you sign up and subscribe 
                 to any of our flexible plans Our pricing allows you to do more while spending less. 
                 Cancel at any time. No contracts.
             </p>
@@ -153,7 +153,7 @@ const Pricing = () => {
                 <div className='flex flex-col'>
                     <div className='w-full bg-[#fff] h-[64px] p-2 flex items-center'>
                         <div className='flex items-center gap-1.5 w-[265px]'>
-                            <p className='font-medium font-poppins'>Insight Engine</p>
+                            <p className='font-medium font-poppins'>Vox Speech</p>
                             <img src={Help} alt='Help' />
                         </div>
                         <div className='flex items-center justify-center w-[265px]'>
@@ -198,7 +198,7 @@ const Pricing = () => {
                     </div>
                     <div className='w-full bg-transparent h-[64px] p-2 flex items-center'>
                         <div className='flex items-center gap-1.5 w-[265px]'>
-                            <p className='font-medium font-poppins'>Spin Check</p>
+                            <p className='font-medium font-poppins'>Vox Sentiment</p>
                             <img src={Help} alt='Help' />
                         </div>
                         <div className='flex items-center justify-center w-[265px]'>

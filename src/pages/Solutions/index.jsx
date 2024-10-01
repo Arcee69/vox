@@ -24,14 +24,22 @@ const Solutions = () => {
 
   console.log(isAuthed, "isAuthed")
 
+  const userData = JSON.parse(localStorage.getItem("userObj"))
+  console.log(userData, "userData")
+
   const showModal = () => {
     if(!isAuthed) {
       setLoading(true)
       setTimeout(() => {
         setLoading(false)
       }, 1500)
-      navigate("/vox-speaks"); 
-      window.scrollTo(0, 0)
+      if(userData?.data?.subscription_status === 0) {
+        navigate("/pricing")
+        window.scrollTo(0, 0)
+      } else {
+        navigate("/vox-speaks"); 
+        window.scrollTo(0, 0)
+      }
     } else {
       setOpenLogin(true)
     }
@@ -43,8 +51,13 @@ const Solutions = () => {
       setTimeout(() => {
         setLoading(false)
       }, 1500)
-      navigate("/vox-sentiment"); 
-      window.scrollTo(0, 0)
+      if(userData?.data?.subscription_status === 0) {
+        navigate("/pricing")
+        window.scrollTo(0, 0)
+      } else {
+        navigate("/vox-sentiment"); 
+        window.scrollTo(0, 0)
+      }
     } else {
       setOpenLogin(true)
     }
@@ -56,8 +69,13 @@ const Solutions = () => {
       setTimeout(() => {
         setLoading(false)
       }, 1500)
-      navigate("/voxscribe"); 
-      window.scrollTo(0, 0)
+      if(userData?.data?.subscription_status === 0) {
+        navigate("/pricing")
+        window.scrollTo(0, 0)
+      } else {
+        navigate("/voxscribe"); 
+        window.scrollTo(0, 0)
+      }
     } else {
       setOpenLogin(true)
     }
@@ -69,8 +87,13 @@ const Solutions = () => {
       setTimeout(() => {
         setLoading(false)
       }, 1500)
-      navigate("/voxrelease"); 
-      window.scrollTo(0, 0)
+      if(userData?.data?.subscription_status === 0) {
+        navigate("/pricing")
+        window.scrollTo(0, 0)
+      } else {
+        navigate("/voxrelease"); 
+        window.scrollTo(0, 0)
+      }
     } else {
       setOpenLogin(true)
     }
@@ -82,8 +105,13 @@ const Solutions = () => {
       setTimeout(() => {
         setLoading(false)
       }, 1500)
-      navigate("/voxover"); 
-      window.scrollTo(0, 0)
+      if(userData?.data?.subscription_status === 0) {
+        navigate("/pricing")
+        window.scrollTo(0, 0)
+      } else {
+        navigate("/voxover"); 
+        window.scrollTo(0, 0)
+      }
     } else {
       setOpenLogin(true)
     }
@@ -95,8 +123,13 @@ const Solutions = () => {
       setTimeout(() => {
         setLoading(false)
       }, 1500)
-      navigate("/vox-shield"); 
-      window.scrollTo(0, 0)
+      if(userData?.data?.subscription_status === 0) {
+        navigate("/pricing")
+        window.scrollTo(0, 0)
+      } else {
+        navigate("/vox-shield"); 
+        window.scrollTo(0, 0)
+      }
     } else {
       setOpenLogin(true)
     }

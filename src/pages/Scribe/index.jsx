@@ -133,7 +133,7 @@ const Scribe = () => {
             VoxScribe
           </p>
           <p className="text-[#fff] text-[24px] text-center lg:text-left lg:text-[32px] font-satoshi">
-            Your expert partner for impactful press releases.
+            Capture Every Word, Every Moment.
           </p>
         </div>
 
@@ -209,57 +209,60 @@ const Scribe = () => {
       </div>
 
       <div className="mt-[60px] mb-[115px] gap-[50px] lg:gap-[154px] flex flex-col w-full">
-        <div className="w-10/12 mx-auto flex flex-col gap-[32px] ">
-          <p className="text-[28px] lg:text-[48px] font-satoshi font-bold text-[#1C1C1C]">
-            Anybody can use Voxscribe
+        <div className="w-10/12 mx-auto flex flex-col gap-[32px]">
+          <p className='text-[28px] lg:text-[48px] font-satoshi font-bold text-[#1C1C1C]'>
+            Your AI-Powered Transcription Assistant.
           </p>
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-[56px] items-center">
-            <div className="flex flex-col items-start gap-3 lg:gap-6 w-full lg:w-[278px]">
-              <img src={Monitor} alt="Monitor" className="w-6 h-6" />
-              <p className="text-[#1C1C1C] font-bold font-satoshi text-[20px] lg:text-[24px]">
-                Creators
-              </p>
-              <p className="font-normal font-satoshi text-[#363637]">
-                Instantly turn written content into engaging voiceovers for
-                YouTube, social media, or podcast intros.
-              </p>
+          <p className='text-base lg:text-[24px] leading-[30px] font-satoshi text-[#1C1C1C]'>
+            Never miss a word again. Vox Scribe seamlessly transforms live audio into accurate, real-time text. 
+            Whether you're capturing important meetings, transcribing interviews, or documenting live events, our advanced AI technology ensures every detail is accurately captured.
+          </p>
+        </div>
+
+        <div className="w-10/12 mx-auto flex flex-col gap-[32px] ">
+          <p className='text-[24px] lg:text-[40px] font-satoshi font-bold text-[#1C1C1C]'>Use Cases</p>
+          <div className='grid grid-cols-1 lg:grid-cols-4 gap-[40px] lg:gap-[56px] items-center'>
+            <div className='flex flex-col items-start gap-6 w-full lg:w-[278px]'>
+                <img src={Reputation} alt='Monitor' className='w-6 h-6'/>
+                <p className='text-[#1C1C1C] font-bold font-satoshi text-[20px] lg:text-[24px]'>For Journalists & Reporters: </p>
+                <p className='font-normal font-satoshi text-[#363637]'>
+                  Capture interviews and press conferences in real-time, ensuring that every word is recorded accurately.
+                </p>
             </div>
-            <div className="flex flex-col items-start gap-3 lg:gap-6 w-full lg:w-[278px]">
-              <img src={Chart} alt="Chart" className="w-6 h-6" />
-              <p className="text-[#1C1C1C] font-bold font-satoshi text-[20px] lg:text-[24px]">
-                Educators
-              </p>
-              <p className="font-normal font-satoshi text-[#363637]">
-                Enhance lessons by converting educational material into
-                multilingual audio, perfect for global classrooms.
-              </p>
+            <div className='flex flex-col items-start gap-6  w-full lg:w-[278px]'>
+                <img src={Data} alt='Chart' className='w-6 h-6'/>
+                <p className='text-[#1C1C1C] font-bold font-satoshi text-[20px] lg:text-[24px]'>For Corporate Meetings: </p>
+                <p className='font-normal font-satoshi text-[#363637]'>
+                  Document live meetings or boardroom discussions effortlessly, reducing the need for manual note-taking.
+                </p>
             </div>
-            <div className="flex flex-col items-start gap-3 lg:gap-6 w-full lg:w-[278px]">
-              <img src={Data} alt="Data" className="w-6 h-6" />
-              <p className="text-[#1C1C1C] font-bold font-satoshi text-[20px] lg:text-[24px]">
-                Businesses
-              </p>
-              <p className="font-normal font-satoshi text-[#363637]">
-                Add professional narration to presentations, product demos, and
-                customer service interactions.
-              </p>
+            <div className='flex flex-col items-start gap-6 w-full lg:w-[278px]'>
+                <img src={Chart} alt='Data' className='w-6 h-6'/>
+                <p className='text-[#1C1C1C] font-bold font-satoshi text-[20px] lg:text-[24px]'>For Event Organizers: </p>
+                <p className='font-normal font-satoshi text-[#363637]'>
+                Provide live transcripts for conferences, webinars, and seminars to enhance audience engagement
+                </p>
             </div>
-            <div className="flex flex-col items-start gap-3 lg:gap-6 w-full lg:w-[278px]">
-              <img src={Reputation} alt="Reputation" className="w-6 h-6" />
-              <p className="text-[#1C1C1C] font-bold font-satoshi text-[20px] lg:text-[24px]">
-                Publishers
-              </p>
-              <p className="font-normal font-satoshi text-[#363637]">
-                Turn your books and articles into captivating audiobooks, or
-                offer narrated versions for accessibility.
-              </p>
+            <div className='flex flex-col items-start gap-6 w-full lg:w-[278px]'>
+                <img src={Monitor} alt='Reputation' className='w-6 h-6'/>
+                <p className='text-[#1C1C1C] font-bold  font-satoshi text-[20px] lg:text-[24px]'>For Educators & Students: </p>
+                <p className='font-normal font-satoshi text-[#363637]'>
+                  Use Vox Scribe in classrooms or virtual learning sessions to generate automatic lecture notes.
+                </p>
+            </div>
+            <div className='flex flex-col items-start gap-6 w-full lg:w-[278px]'>
+                <img src={Monitor} alt='Reputation' className='w-6 h-6'/>
+                <p className='text-[#1C1C1C] font-bold  font-satoshi text-[20px] lg:text-[24px]'>For Content Creators:</p>
+                <p className='font-normal font-satoshi text-[#363637]'>
+                  Transcribe podcasts, video recordings, or live streams in real-time for quick content creation and SEO-friendly posts.
+                </p>
             </div>
           </div>
         </div>
 
         <div className="w-10/12 mx-auto flex flex-col gap-[32px] ">
           <p className="text-[#1C1C1C] font-bold font-satoshi text-[28px] lg:text-[48px]">
-            Why choose Voxscribe?
+            Key Features:
           </p>
           <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-[91px] ">
             <img
@@ -271,32 +274,28 @@ const Scribe = () => {
               <div className="flex gap-6 flex-col">
                 <img src={Monitor} alt="Monitor" className="w-6 h-6" />
                 <p className="text-[#1C1C1C] font-satoshi font-bold text-[24px]">
-                  Lifelike Speech
+                  Real-time Transcription: 
                 </p>
                 <p className="font-medium font-satoshi text-base text-[#363637]">
-                  Create natural, human-like audio that sounds as if it were
-                  spoken by a real person, complete with emotions and
-                  inflections.
+                  Experience lightning-fast transcriptions that keep up with your conversations.
                 </p>
               </div>
               <div className="flex gap-6 flex-col">
                 <img src={Chart} alt="Chart" className="w-6 h-6" />
                 <p className="text-[#1C1C1C] font-satoshi font-bold text-[24px]">
-                  Instant Voice Creation
+                  High Accuracy: 
                 </p>
                 <p className="font-medium font-satoshi text-base text-[#363637]">
-                  Upload text, select your preferred voice, and generate
-                  professional-quality speech in seconds.
+                  Our state-of-the-art AI models deliver exceptional accuracy, even in challenging audio conditions
                 </p>
               </div>
               <div className="flex gap-6 flex-col">
                 <img src={Data} alt="Data" className="w-6 h-6" />
                 <p className="text-[#1C1C1C] font-satoshi font-bold text-[24px]">
-                  Customizable Voices{" "}
+                  Versatile Applications: {" "}
                 </p>
                 <p className="font-medium font-satoshi text-base text-[#363637]">
-                  Choose the tone, pace, and style that perfectly fits your
-                  message, ensuring it hits just the right note.
+                  Use Vox Scribe for a wide range of scenarios, including:
                 </p>
               </div>
             </div>
@@ -306,6 +305,12 @@ const Scribe = () => {
               className="w-[562px] h-[572px] hidden lg:flex"
             />
           </div>
+        </div>
+        <div className="w-10/12 mx-auto flex flex-col gap-[32px] ">
+          <p className="text-center text-[#1C1C1C] font-bold font-satoshi text-[28px] ">
+            Ready to experience the future of transcription? <br />
+            <span className="font-medium font-satoshi text-[20px]"> Start talking into your microphone now and see Vox Scribe in action.</span>
+          </p>
         </div>
       </div>
 
