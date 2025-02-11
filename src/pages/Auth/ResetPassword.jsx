@@ -5,6 +5,7 @@ import { CgSpinner } from 'react-icons/cg';
 import { IoClose } from "react-icons/io5";
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import * as Yup from "yup"
 
 import { api } from '../../services/api';
 import { appUrls } from '../../services/urls';
@@ -16,6 +17,14 @@ const ResetPassword = ({ handleClose  }) => {
 
     const navigate = useNavigate()
 
+    const formValidationSchema = Yup.object().shape({
+      password: Yup.string().required("Password is required"),
+      confirmPassword: Yup.string()
+        .oneOf([Yup.ref("password"), null], "Passwords must match")
+        .required("Confirm Password is required"),
+  })
+
+
     const id = localStorage.getItem("id")
 
     const submitForm = async (values, action) => {
@@ -23,7 +32,7 @@ const ResetPassword = ({ handleClose  }) => {
         const data = {
             "user_id": `${id}`,
             "password": values?.password,
-            "password_confirmation": values?.newPassword
+            "password_confirmation": values?.confirmPassword
         }
         try {
           const res =  await api.post(appUrls?.RESETPASSWORD_URL, data)
@@ -57,9 +66,9 @@ const ResetPassword = ({ handleClose  }) => {
           <Formik
             initialValues={{
                 password: "",
-                newPassword: ""
+                confirmPassword: ""
             }}
-          // validationSchema={formValidationSchema}
+          validationSchema={formValidationSchema}
               onSubmit={(values, action) => {
               window.scrollTo(0, 0);
               console.log(values, "market")
@@ -85,20 +94,26 @@ const ResetPassword = ({ handleClose  }) => {
                       <PasswordField
                         name="password"
                         value={values.password}
-                        placeholder="Password"
+                        placeholder="New Password"
                         className="border w-full h-[51px] rounded-lg border-[#8F8F8F] mt-1.5"
                         onChange={handleChange}
                       />
+                      {errors.password && touched.password ? (
+                        <div className='text-RED-_100'>{errors.password}</div>
+                        ) : null}
                   </div>
 
                     <div className='w-full xl:w-[450px] flex flex-col '>
                       <PasswordField
-                        name="newPassword"
-                        value={values.newPassword}
-                        placeholder="Password"
+                        name="confirmPassword"
+                        value={values.confirmPassword}
+                        placeholder="Confirm Password"
                         className="border w-full h-[51px] rounded-lg border-[#8F8F8F] mt-1.5"
                         onChange={handleChange}
                       />
+                       {errors.confirmPassword && touched.confirmPassword ? (
+                        <div className='text-RED-_100'>{errors.confirmPassword}</div>
+                        ) : null}
                   </div>
   
                     <button
@@ -106,7 +121,7 @@ const ResetPassword = ({ handleClose  }) => {
                         type="submit"
                         disabled={loading}
                     >
-                        <p className='text-WHITE-_100 text-sm font-semibold'>{loading ? <CgSpinner className=" animate-spin text-xl " /> : 'Login'}</p>
+                        <p className='text-WHITE-_100 text-sm font-semibold'>{loading ? <CgSpinner className=" animate-spin text-xl " /> : 'Submit'}</p>
                     </button>
 
                    

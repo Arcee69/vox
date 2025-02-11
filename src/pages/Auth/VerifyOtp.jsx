@@ -3,13 +3,18 @@ import React, { useState } from 'react'
 import { Form, Formik } from 'formik';
 import { CgSpinner } from 'react-icons/cg';
 import { IoClose } from "react-icons/io5";
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'
+import * as Yup from "yup" ;;
 
 import { api } from '../../services/api';
 import { appUrls } from '../../services/urls';
 
 const VerifyOtp = ({ handleClose, showOpenResetPasswordModal }) => {
     const [loading, setLoading] = useState(false)
+
+    const formValidationSchema = Yup.object().shape({
+        otp: Yup.string().required("Otp is required")
+    })
 
     const submitForm = async (values, action) => {
         setLoading(true)
@@ -48,7 +53,7 @@ const VerifyOtp = ({ handleClose, showOpenResetPasswordModal }) => {
                 initialValues={{
                     otp: "",
                 }}
-            // validationSchema={formValidationSchema}
+            validationSchema={formValidationSchema}
                 onSubmit={(values, action) => {
                 window.scrollTo(0, 0);
                 console.log(values, "market")
@@ -78,6 +83,9 @@ const VerifyOtp = ({ handleClose, showOpenResetPasswordModal }) => {
                             onChange={handleChange}
                             className='w-full  h-[48px] outline-none rounded-lg border border-[#8F8F8F] p-2.5'
                         />
+                         {errors.otp && touched.otp ? (
+                            <div className='text-RED-_100'>{errors.otp}</div>
+                            ) : null}
                         </div>
 
 

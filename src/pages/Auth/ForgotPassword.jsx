@@ -54,7 +54,7 @@ const ForgotPassword = ({ handleClose, showOpenVerifyOtpModal }) => {
                 initialValues={{
                     email: "",
                 }}
-            validationSchema={formValidationSchema}
+                validationSchema={formValidationSchema}
                 onSubmit={(values, action) => {
                 window.scrollTo(0, 0);
                 console.log(values, "market")
@@ -84,6 +84,9 @@ const ForgotPassword = ({ handleClose, showOpenVerifyOtpModal }) => {
                             onChange={handleChange}
                             className='w-full  h-[48px] outline-none rounded-lg border border-[#8F8F8F] p-2.5'
                         />
+                         {errors.email && touched.email ? (
+                            <div className='text-RED-_100'>{errors.email}</div>
+                            ) : null}
                         </div>
 
 
