@@ -42,7 +42,7 @@ const InsightEngine = () => {
         try {
             const res = await axios.get("https://api.elevenlabs.io/v1/voices", {
                 headers: {
-                    'xi-api-key': "3392b41099e1bfc55980e42d6af4b040"
+                    'xi-api-key': "sk_c1ad50cb7d0cdae583d7edc38d926fa53c9fb0cd880f6d21"
                 }
             });
             console.log(res, "res");
@@ -79,7 +79,7 @@ const InsightEngine = () => {
             const res = await axios.post(`https://api.elevenlabs.io/v1/text-to-speech/${selectedVoice}`, data, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'xi-api-key': "3392b41099e1bfc55980e42d6af4b040"
+                    'xi-api-key': "sk_c1ad50cb7d0cdae583d7edc38d926fa53c9fb0cd880f6d21"
                 },
                 responseType: 'blob' // Important to handle the binary data correctly
             });

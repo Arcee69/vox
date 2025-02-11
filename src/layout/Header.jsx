@@ -14,6 +14,7 @@ import RequestForm from '../pages/Insight/RequestForm';
 import { isObjectEmpty } from '../utils/CheckLoginData';
 import SignUp from '../pages/Auth/SignUp';
 import Login from '../pages/Auth/Login';
+import ForgotPassword from '../pages/Auth/ForgotPassword';
 
 const solutions = [
   { name: 'Vox Speaks', link:"/vox-speaks" },
@@ -32,16 +33,19 @@ const Header = () => {
   const [openSignUp, setOpenSignUp] = useState(false)
   const [anchorEl, setAnchorEl] = useState(null);
   const [userName, setUserName] = useState("");
+  const [openForgotPassword, setOpenForgotPassword] = useState(false)
   const [selected, setSelected] = useState(solutions[0])
 
-  // const [callStatus, setCallStatus] = useState('inactive')
-  // const [voxData, setVoxData] = useState([]);
-  // const [loading, setLoading] = useState(false)
 
   const showOpenSignUpModal = () => {
     setOpenLogin(false)
     setOpenSignUp(true)  
-}
+  }
+
+  const showOpenForgotPasswordModal = () => {
+    setOpenLogin(false)
+    setOpenForgotPassword(true)  
+  }
 
 
   const navigate = useNavigate()
@@ -77,34 +81,6 @@ const Header = () => {
 
   
   const isAuthed = isObjectEmpty(JSON.parse(localStorage.getItem("userObj")))
-
-  // console.log(isAuthed, "isAuthed")
-
-
-
-  // const vapi = new Vapi('5d3d4e5d-3f85-4af4-8dae-9d6527d525fc');
-
-  // const start = async () => {
-  //   setCallStatus("loading");
-  //   setLoading(true);
-  //   const response = await vapi.start("1aa24789-cabd-46b4-a5a8-af5a819ac810");
-  //   setLoading(false);
-  //   setVoxData(response)
-  //   console.log(response.status, "brymo")
-  //   return response
-  // };
-
-  // const stop = () => {
-  //   setCallStatus("loading");
-  //   vapi.stop();
-  // };
-
-  // useEffect(() => {
-  //   vapi.on("call-start", () => setCallStatus("active"));
-  //   vapi.on("call-end", () => setCallStatus('inactive'));
-    
-  //   return () => vapi.removeAllListeners();
-  // }, [])
 
   return (
     <div 
@@ -197,11 +173,21 @@ const Header = () => {
 
         
       <ModalPop isOpen={openLogin}>
-        <Login handleClose={() => setOpenLogin(false)} showOpenSignUpModal={showOpenSignUpModal}/>
+        <Login 
+          handleClose={() => setOpenLogin(false)} 
+          showOpenSignUpModal={showOpenSignUpModal}
+          showOpenForgotPasswordModal={showOpenForgotPasswordModal}
+        />
       </ModalPop>
 
       <ModalPop isOpen={openSignUp}>
         <SignUp handleClose={() => setOpenSignUp(false)}/>
+      </ModalPop>
+
+      <ModalPop isOpen={openForgotPassword}>
+        <ForgotPassword 
+          handleClose={() => setOpenForgotPassword(false)}
+        />
       </ModalPop>
     </div>
   )

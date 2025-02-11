@@ -10,7 +10,8 @@ import { api } from '../../services/api';
 import { appUrls } from '../../services/urls';
 import PasswordField from '../../components/PasswordField';
 
-const Login = ({ handleClose, showOpenSignUpModal }) => {
+
+const Login = ({ handleClose, showOpenSignUpModal, showOpenForgotPasswordModal }) => {
     const [loading, setLoading] = useState(false)
     const [openSignUp, setOpenSignUp] = useState(false)
 
@@ -95,14 +96,17 @@ const Login = ({ handleClose, showOpenSignUpModal }) => {
                     </div>
   
   
-                    <div className='w-full xl:w-[450px] flex flex-col gap-2'>
-                        <PasswordField
-                            name="password"
-                            value={values.password}
-                            placeholder="Password"
-                            className="border w-full h-[51px] rounded-lg border-[#8F8F8F] mt-1.5"
-                            onChange={handleChange}
-                        />
+                    <div className='w-full xl:w-[450px] flex flex-col '>
+                      <p className='text-[#F7A301] text-xs font-bold flex justify-end cursor-pointer' onClick={showOpenForgotPasswordModal}>
+                        Forgot Password
+                      </p>
+                      <PasswordField
+                        name="password"
+                        value={values.password}
+                        placeholder="Password"
+                        className="border w-full h-[51px] rounded-lg border-[#8F8F8F] mt-1.5"
+                        onChange={handleChange}
+                      />
                   </div>
   
                     <button

@@ -71,7 +71,7 @@ const Translate = () => {
         try {
             const res = await axios.get("https://api.elevenlabs.io/v1/voices", {
                 headers: {
-                    'xi-api-key': "3392b41099e1bfc55980e42d6af4b040"
+                    'xi-api-key': "sk_c1ad50cb7d0cdae583d7edc38d926fa53c9fb0cd880f6d21" //"3392b41099e1bfc55980e42d6af4b040"
                 }
             });
             console.log(res, "res");
@@ -203,7 +203,7 @@ const stopRecording = () => {
             const res = await axios.post(`https://api.elevenlabs.io/v1/speech-to-speech/${selectedVoice}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    'xi-api-key': "3392b41099e1bfc55980e42d6af4b040"
+                    'xi-api-key': "sk_c1ad50cb7d0cdae583d7edc38d926fa53c9fb0cd880f6d21"   //"3392b41099e1bfc55980e42d6af4b040"
                 },
                 responseType: 'blob' 
             });
