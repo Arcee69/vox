@@ -5,7 +5,7 @@ import { CgSpinner } from 'react-icons/cg';
 import { IoClose } from "react-icons/io5";
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+
 import { api } from '../../services/api';
 import { appUrls } from '../../services/urls';
 import PasswordField from '../../components/PasswordField';
@@ -13,7 +13,7 @@ import PasswordField from '../../components/PasswordField';
 
 const Login = ({ handleClose, showOpenSignUpModal, showOpenForgotPasswordModal }) => {
     const [loading, setLoading] = useState(false)
-    const [openSignUp, setOpenSignUp] = useState(false)
+   
 
     const navigate = useNavigate()
 
@@ -47,7 +47,6 @@ const Login = ({ handleClose, showOpenSignUpModal, showOpenForgotPasswordModal }
             autoClose: 5000,
             closeOnClick: true,
           })  
-          handleClose()
         }
     }
 

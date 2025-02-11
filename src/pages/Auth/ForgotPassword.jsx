@@ -4,13 +4,18 @@ import { Form, Formik } from 'formik';
 import { CgSpinner } from 'react-icons/cg';
 import { IoClose } from "react-icons/io5";
 import { toast } from 'react-toastify';
+import * as Yup from "yup" ;
 
 import { api } from '../../services/api';
 import { appUrls } from '../../services/urls';
 
 
-const ForgotPassword = ({ handleClose }) => {
+const ForgotPassword = ({ handleClose, showOpenVerifyOtpModal }) => {
     const [loading, setLoading] = useState(false)
+
+    const formValidationSchema = Yup.object().shape({
+        email: Yup.string().email().required("Email is required")
+    })
 
     const submitForm = async (values, action) => {
         setLoading(true)
@@ -26,7 +31,7 @@ const ForgotPassword = ({ handleClose }) => {
             autoClose: 5000,
             closeOnClick: true,
           })  
-          handleClose()
+          showOpenVerifyOtpModal()
         } catch (err)  {
           console.log(err, "err")
           setLoading(false)
@@ -49,7 +54,7 @@ const ForgotPassword = ({ handleClose }) => {
                 initialValues={{
                     email: "",
                 }}
-            // validationSchema={formValidationSchema}
+            validationSchema={formValidationSchema}
                 onSubmit={(values, action) => {
                 window.scrollTo(0, 0);
                 console.log(values, "market")
@@ -99,7 +104,7 @@ const ForgotPassword = ({ handleClose }) => {
         </div>
     
 
-  </div>
+    </div>
   )
 }
 

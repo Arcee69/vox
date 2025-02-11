@@ -15,6 +15,8 @@ import { isObjectEmpty } from '../utils/CheckLoginData';
 import SignUp from '../pages/Auth/SignUp';
 import Login from '../pages/Auth/Login';
 import ForgotPassword from '../pages/Auth/ForgotPassword';
+import VerifyOtp from '../pages/Auth/VerifyOtp';
+import ResetPassword from '../pages/Auth/ResetPassword';
 
 const solutions = [
   { name: 'Vox Speaks', link:"/vox-speaks" },
@@ -34,7 +36,9 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [userName, setUserName] = useState("");
   const [openForgotPassword, setOpenForgotPassword] = useState(false)
+  const [openVerifyOtpModal, setOpenVerifyOtpModal] = useState(false)
   const [selected, setSelected] = useState(solutions[0])
+  const [openResetPassword, setOpenResetPassword] = useState(false)
 
 
   const showOpenSignUpModal = () => {
@@ -47,6 +51,15 @@ const Header = () => {
     setOpenForgotPassword(true)  
   }
 
+  const showOpenVerifyOtpModal = () => {
+    setOpenForgotPassword(false)
+    setOpenVerifyOtpModal(true)  
+  }
+
+  const showOpenResetPasswordModal = () => {
+    setOpenVerifyOtpModal(false)
+    setOpenResetPassword(true)  
+  }
 
   const navigate = useNavigate()
 
@@ -187,8 +200,23 @@ const Header = () => {
       <ModalPop isOpen={openForgotPassword}>
         <ForgotPassword 
           handleClose={() => setOpenForgotPassword(false)}
+          showOpenVerifyOtpModal={showOpenVerifyOtpModal}
         />
       </ModalPop>
+
+      <ModalPop isOpen={openVerifyOtpModal}>
+        <VerifyOtp 
+          handleClose ={() => setOpenVerifyOtpModal(false)}
+          showOpenResetPasswordModal={showOpenResetPasswordModal}
+        />
+      </ModalPop>
+
+      <ModalPop isOpen={openResetPassword}>
+        <ResetPassword 
+          handleClose= {() => setOpenResetPassword(false)}
+        />
+      </ModalPop>
+
     </div>
   )
 }
