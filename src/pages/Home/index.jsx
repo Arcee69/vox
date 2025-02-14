@@ -11,11 +11,17 @@ import Cone from "../../assets/svg/cone.svg"
 import ModalPop from '../../components/modalPop';
 import Login from '../Auth/Login';
 import SignUp from '../Auth/SignUp';
+import ForgotPassword from '../Auth/ForgotPassword';
+import VerifyOtp from '../Auth/VerifyOtp';
+import ResetPassword from '../Auth/ResetPassword';
 
 const Home = () => {
   const [openLogin, setOpenLogin] = useState(false)
   const [openSignUp, setOpenSignUp] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [openForgotPassword, setOpenForgotPassword] = useState(false)
+  const [openVerifyOtpModal, setOpenVerifyOtpModal] = useState(false)
+  const [openResetPassword, setOpenResetPassword] = useState(false)
 
   // const [callStatus, setCallStatus] = useState("inactive");
   // const [voxData, setVoxData] = useState([]);
@@ -80,6 +86,23 @@ const Home = () => {
     setOpenSignUp(true)  
 }
 
+const showOpenForgotPasswordModal = () => {
+  setOpenLogin(false)
+  setOpenForgotPassword(true)  
+}
+
+
+
+const showOpenVerifyOtpModal = () => {
+  setOpenForgotPassword(false)
+  setOpenVerifyOtpModal(true)  
+}
+
+const showOpenResetPasswordModal = () => {
+  setOpenVerifyOtpModal(false)
+  setOpenResetPassword(true)  
+}
+
  
 
   return (
@@ -122,11 +145,35 @@ const Home = () => {
       </div>
 
       <ModalPop isOpen={openLogin}>
-        <Login handleClose={() => setOpenLogin(false)} showOpenSignUpModal={showOpenSignUpModal}/>
+        <Login 
+          handleClose={() => setOpenLogin(false)} 
+          showOpenSignUpModal={showOpenSignUpModal}
+          showOpenForgotPasswordModal={showOpenForgotPasswordModal}
+        />
       </ModalPop>
 
       <ModalPop isOpen={openSignUp}>
         <SignUp handleClose={() => setOpenSignUp(false)}/>
+      </ModalPop>
+
+      <ModalPop isOpen={openForgotPassword}>
+        <ForgotPassword
+          handleClose={() => setOpenForgotPassword(false)}
+          showOpenVerifyOtpModal={showOpenVerifyOtpModal}
+        />
+      </ModalPop>
+
+      <ModalPop isOpen={openVerifyOtpModal}>
+        <VerifyOtp 
+          handleClose ={() => setOpenVerifyOtpModal(false)}
+          showOpenResetPasswordModal={showOpenResetPasswordModal}
+        />
+      </ModalPop>
+
+      <ModalPop isOpen={openResetPassword}>
+        <ResetPassword 
+          handleClose= {() => setOpenResetPassword(false)}
+        />
       </ModalPop>
 
     </div>

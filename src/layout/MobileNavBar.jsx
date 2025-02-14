@@ -76,6 +76,7 @@ const isAuthed = isObjectEmpty(JSON.parse(localStorage.getItem("userObj")))
             </div>
             <div
               className='bg-[#FF6600] cursor-pointer rounded-lg w-full mt-4 border border-[#000] p-2 flex items-center justify-center h-[67px]'
+              onClick={handleClose}
             >
                 <p className='text-[#FFF] font-poppins text-[20px] font-medium'>{userName ? `Hi ${userName?.data?.name.slice(0, 5)}` : "Get Started"}</p>
             </div>

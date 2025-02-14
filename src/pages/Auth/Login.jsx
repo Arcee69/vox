@@ -14,7 +14,8 @@ import PasswordField from '../../components/PasswordField';
 const Login = ({ handleClose, showOpenSignUpModal, showOpenForgotPasswordModal }) => {
     const [loading, setLoading] = useState(false)
    
-
+    console.log(showOpenForgotPasswordModal, "zanku")
+    
     const navigate = useNavigate()
 
     const submitForm = async (values, action) => {
@@ -52,7 +53,7 @@ const Login = ({ handleClose, showOpenSignUpModal, showOpenForgotPasswordModal }
 
   
     return (
-      <div className='bg-[#fff] mt-[100px] h-[380px] w-full py-5 xl:w-[500px] px-5 '>
+      <div className='bg-[#fff] mt-[100px] h-[420px] w-full py-5 xl:w-[500px] px-5 '>
         <div className='flex justify-end cursor-pointer' onClick={handleClose}>
           <IoClose className='text-lg'/>
         </div>
@@ -93,12 +94,8 @@ const Login = ({ handleClose, showOpenSignUpModal, showOpenForgotPasswordModal }
                         className='w-full  h-[48px] outline-none rounded-lg border border-[#8F8F8F] p-2.5'
                       />
                     </div>
-  
-  
-                    <div className='w-full xl:w-[450px] flex flex-col '>
-                      <p className='text-[#F7A301] text-xs font-bold flex justify-end cursor-pointer' onClick={showOpenForgotPasswordModal}>
-                        Forgot Password
-                      </p>
+
+                    <div className='w-full xl:w-[450px] flex flex-col'>
                       <PasswordField
                         name="password"
                         value={values.password}
@@ -115,6 +112,15 @@ const Login = ({ handleClose, showOpenSignUpModal, showOpenForgotPasswordModal }
                     >
                         <p className='text-WHITE-_100 text-sm font-semibold'>{loading ? <CgSpinner className=" animate-spin text-xl " /> : 'Login'}</p>
                     </button>
+
+                    <div className='flex justify-center'>
+                      <p 
+                        className='text-[#F7A301] text-xs font-bold cursor-pointer' 
+                        onClick={showOpenForgotPasswordModal}
+                      >
+                        Forgot Password
+                      </p>
+                    </div>
 
                     <div className='mt-[14px]'>
                         <p className='text-xs'>Not registered yet? <span className='text-[#F7A301] text-xs font-bold cursor-pointer' onClick={() => showOpenSignUpModal()} >Create Account</span></p>

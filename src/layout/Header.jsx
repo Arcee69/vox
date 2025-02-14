@@ -35,9 +35,9 @@ const Header = () => {
   const [openSignUp, setOpenSignUp] = useState(false)
   const [anchorEl, setAnchorEl] = useState(null);
   const [userName, setUserName] = useState("");
+  const [selected, setSelected] = useState(solutions[0])
   const [openForgotPassword, setOpenForgotPassword] = useState(false)
   const [openVerifyOtpModal, setOpenVerifyOtpModal] = useState(false)
-  const [selected, setSelected] = useState(solutions[0])
   const [openResetPassword, setOpenResetPassword] = useState(false)
 
 
@@ -50,6 +50,8 @@ const Header = () => {
     setOpenLogin(false)
     setOpenForgotPassword(true)  
   }
+
+ 
 
   const showOpenVerifyOtpModal = () => {
     setOpenForgotPassword(false)
@@ -184,6 +186,9 @@ const Header = () => {
           <RequestForm  handleClose={() => setOpenConsultModal(false)}/>
         </ModalPop>
 
+      <ModalPop isOpen={openSignUp}>
+        <SignUp handleClose={() => setOpenSignUp(false)}/>
+      </ModalPop>
         
       <ModalPop isOpen={openLogin}>
         <Login 
@@ -191,10 +196,6 @@ const Header = () => {
           showOpenSignUpModal={showOpenSignUpModal}
           showOpenForgotPasswordModal={showOpenForgotPasswordModal}
         />
-      </ModalPop>
-
-      <ModalPop isOpen={openSignUp}>
-        <SignUp handleClose={() => setOpenSignUp(false)}/>
       </ModalPop>
 
       <ModalPop isOpen={openForgotPassword}>
