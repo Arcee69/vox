@@ -138,8 +138,8 @@ const Header = () => {
                                             className={`block truncate ${
                                             selected ? 'font-medium' : 'font-normal'
                                             } text-[#052011]`}
-                                            onClick={() => navigate(item?.link)}
-                                        >
+                                            onClick={() => {userData?.data?.subscription_status === 0 ? navigate("/pricing") : navigate(item?.link)}}
+                                        >    
                                             {item.name}
                                         </span>
                                     </>
