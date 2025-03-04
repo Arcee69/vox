@@ -16,7 +16,7 @@ const Billing = () => {
                             <p className='text-[#FF6600] font-inter font-medium'>Monthly</p>
                         </div>
                     </div>
-                    <p className='font-inter text-base lg:text-[48px] font-semibold leading-[60px]'>₦5000<span className='text-[#667085] font-inter font-medium text-sm lg:text-base'>per month</span></p>
+                    <p className='font-inter text-base lg:text-[48px] font-semibold leading-[60px]'>₦10000<span className='text-[#667085] font-inter font-medium text-sm lg:text-base'>per month</span></p>
                 </div>
                 <div className='flex flex-col gap-[12px]'>
                     <p className='font-inter text-[#101828] font-medium'>Your subscription</p>
