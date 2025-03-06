@@ -6,6 +6,6 @@ export const appUrls = {
     VERIFYOTP_URL: "/auth/verify-otp",
     RESETPASSWORD_URL: "/auth/reset-password",
 
-    PAYMENT_URL: "/api/processpay",
+    PAYMENT_URL: "/processpay",
 
 };

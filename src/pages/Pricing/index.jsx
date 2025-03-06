@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { usePaystackPayment } from 'react-paystack';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import Help from "../../assets/svg/help_circle.svg"
@@ -15,9 +14,10 @@ import Login from '../Auth/Login';
 import SignUp from '../Auth/SignUp';
 import RequestForm from '../Insight/RequestForm';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Pricing = () => {
-    const [type, setType] = useState(0)
+    const [amount, setAmount] = useState(0)
     const [openLogin, setOpenLogin] = useState(false)
     const [openSignUp, setOpenSignUp] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -36,14 +36,12 @@ const Pricing = () => {
     const secret = import.meta.env.VITE_APP_SECRET_KEY
 
 
-  
-//   const initializePayment = usePaystackPayment(config);
   const initializePayment = async () => {
     const data= { 
         "email": userData?.data?.email,
-        "amount": `${type}00`,
+        "amount": `${amount}00`,
         "currency": "NGN",
-        "callback_url": "https://voxprinsight.com/"
+        "callback_url": "https://voxprinsight.com/pricing"
     }
     await axios.post("https://api.paystack.co/transaction/initialize", data, {
         headers: {
@@ -54,24 +52,30 @@ const Pricing = () => {
     .then((res) => {
         console.log(res, "pablo")
         const authUrl = res?.data?.data?.authorization_url
-        window.open(authUrl)
+        window.location.href = authUrl;
+        localStorage.setItem("amount", amount);
     })
     .catch((err) => {
         console.log(err, "zanku")
     })
   }
 
-    // you can call this function anything
     const verifyTransaction = async () => {
         // implementation for  whatever you want to do when the Paystack dialog closed.
-        console.log('closed')
+        const storedAmount = localStorage.getItem("amount")
         try {
-            const res = await api.get(appUrls?.PAYMENT_URL + `?ref=${reference}&total=${type}`)
-            console.log(res, "res")
+            const res = await api.get(appUrls?.PAYMENT_URL + `?ref=${reference}&total=${storedAmount}`)
+            toast(`${res?.data?.message}`, { 
+                position: "top-right",
+                autoClose: 3500,
+                closeOnClick: true,
+            });
+            localStorage.removeItem("amount")
+            navigate("/pricing", { replace: true })
         } catch (error) {
             console.log(error, "err")
         }
-        navigate("/pricing")
+   
       }
 
   const isAuthed = isObjectEmpty(JSON.parse(localStorage.getItem("userObj")))
@@ -115,7 +119,7 @@ const Pricing = () => {
                 <div className='w-[265px] h-[306px] flex flex-col px-3 gap-3'>
 
                 </div>
-                <div className='w-[265px] h-[306px] flex flex-col gap-3 px-3 gap-3'>
+                <div className='w-[265px] h-[306px] flex flex-col px-3 gap-3'>
                     <p className='text-[#101828] font-semibold font-poppins text-[20px]'>Monthly</p>
                     <hr/>
                     <p className='font-semibold text-[#101828] font-poppins text-[40px]'>₦10,000</p>
@@ -151,7 +155,7 @@ const Pricing = () => {
                     <p className='font-inter font-medium text-[#FF6600]'>Features</p>
                 </div>
                 <div className='flex flex-col'>
-                    <div className='w-full bg-[#fff] w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
+                    <div className='bg-[#fff] w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
                         <div className='flex items-center gap-1.5 w-[265px]'>
                             <p className='font-medium font-poppins'>Vox Speak</p>
                             <img src={Help} alt='Help' />
@@ -166,7 +170,7 @@ const Pricing = () => {
                             <img src={Check} alt='Check' className='w-6 h-6' />
                         </div>
                     </div>
-                    <div className='w-full bg-transparent w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
+                    <div className='bg-transparent w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
                         <div className='flex items-center gap-1.5 w-[265px]'>
                             <p className='font-medium font-poppins'>VoxScribe</p>
                             <img src={Help} alt='Help' />
@@ -181,7 +185,7 @@ const Pricing = () => {
                             <p className='font-normal text-[#667085] font-poppins'>Unlimited</p>
                         </div>
                     </div>
-                    <div className='w-full bg-[#fff] w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
+                    <div className='bg-[#fff] w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
                         <div className='flex items-center gap-1.5 w-[265px]'>
                             <p className='font-medium font-poppins'>Vox Release</p>
                             <img src={Help} alt='Help' />
@@ -196,7 +200,7 @@ const Pricing = () => {
                             <p className='font-normal text-[#667085] font-poppins'>Unlimited</p>
                         </div>
                     </div>
-                    <div className='w-full bg-transparent w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
+                    <div className='bg-transparent w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
                         <div className='flex items-center gap-1.5 w-[265px]'>
                             <p className='font-medium font-poppins'>Vox Sentiment</p>
                             <img src={Help} alt='Help' />
@@ -211,7 +215,7 @@ const Pricing = () => {
                             <img src={Check} alt='Check' className='w-6 h-6' />
                         </div>
                     </div>
-                    <div className='w-full bg-[#fff] w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
+                    <div className='bg-[#fff] w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
                         <div className='flex items-center gap-1.5 w-[265px]'>
                             <p className='font-medium font-poppins'>Vox Over</p>
                             <img src={Help} alt='Help' />
@@ -226,7 +230,7 @@ const Pricing = () => {
                             <img src={Check} alt='Check' className='w-6 h-6' />
                         </div>
                     </div>
-                    <div className='w-full bg-transparent w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
+                    <div className='bg-transparent w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
                         <div className='flex items-center gap-1.5 w-[265px]'>
                             <p className='font-medium font-poppins'>Vox Shield</p>
                             <img src={Help} alt='Help' />
@@ -241,7 +245,7 @@ const Pricing = () => {
                             <img src={Check} alt='Check' className='w-6 h-6' />
                         </div>
                     </div>
-                    <div className='w-full bg-[#fff] w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
+                    <div className=' bg-[#fff] w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
                         <div className='flex items-center gap-1.5 w-[265px]'>
                             <p className='font-medium font-poppins'>Customer Support</p>
                             <img src={Help} alt='Help' />
@@ -256,7 +260,7 @@ const Pricing = () => {
                             <img src={Check} alt='Check' className='w-6 h-6' />
                         </div>
                     </div>
-                    <div className='w-full bg-transparent w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
+                    <div className='bg-transparent w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
                         <div className='flex items-center gap-1.5 w-[265px]'>
                             <p className='font-medium font-poppins'>Product updates</p>
                             <img src={Help} alt='Help' />
@@ -271,7 +275,7 @@ const Pricing = () => {
                             <img src={Check} alt='Check' className='w-6 h-6' />
                         </div>
                     </div>
-                    <div className='w-full bg-[#fff] w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
+                    <div className='bg-[#fff] w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
                         <div className='flex items-center gap-1.5 w-[265px]'>
                             <p className='font-medium font-poppins'>Secure Data Storage</p>
                             <img src={Help} alt='Help' />
@@ -286,7 +290,7 @@ const Pricing = () => {
                             <img src={Check} alt='Check' className='w-6 h-6' />
                         </div>
                     </div>
-                    <div className='w-full bg-transparent w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
+                    <div className='bg-transparent w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
                         <div className='flex items-center gap-1.5 w-[265px]'>
                             <p className='font-medium font-poppins'>Knowledge base training</p>
                             <img src={Help} alt='Help' />
@@ -301,14 +305,14 @@ const Pricing = () => {
                             <img src={Check} alt='Check' className='w-6 h-6' />
                         </div>
                     </div>
-                    <div className='w-full bg-transparent w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
+                    <div className='bg-transparent w-[150%] lg:w-full h-[64px] p-2 flex items-center'>
                         <div className='flex items-center gap-1.5 w-[265px]'>
 
                         </div>
                         <div className='flex items-center justify-center w-[265px]'>
                             <button
                                 className='w-[217px] rounded-lg flex items-center justify-center h-[40px] bg-[#FF6600]'
-                                onClick={() => {showModal(); setType(10000)}}
+                                onClick={() => {showModal(); setAmount(10000)}}
                             >
                                 <p className='text-[#fff] font-inter font-medium text-sm'>Get Started</p>
                             </button>
@@ -316,7 +320,7 @@ const Pricing = () => {
                         <div className='flex items-center justify-center w-[265px]'>
                             <button
                                 className='w-[217px] rounded-lg flex items-center justify-center h-[40px] bg-[#FF6600]'
-                                onClick={() => {showModal(); setType(100000)}}
+                                onClick={() => {showModal(); setAmount(100000)}}
                             >
                                 <p className='text-[#fff] font-inter font-medium text-sm'>Get Started</p>
                             </button>
